@@ -58,6 +58,17 @@
             transform: scaleY(1);
         }
         
+        /* Flow Animation for Project 3 */
+        .flow-arrow {
+            stroke-dasharray: 10;
+            animation: flowDash 1s linear infinite;
+        }
+        @keyframes flowDash {
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
         /* Donut Chart Animation for Project 4 */
         .donut-chart {
             position: relative;
@@ -196,8 +207,9 @@
                     PORTFOLIO 2025
                 </div>
                 <h1 class="text-4xl md:text-6xl font-black leading-snug mb-6 text-slate-900">
-                    부동산의 가치를 기술로 연결하는<br>
-                    <span class="gradient-text">Agile Service Leader</span>
+                    비즈니스 목표를 달성하는<br>
+                    시스템을 만드는<br> <br class="md:hidden" />
+                    <span class="gradient-text">Product & Operations Leader</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-slate-500 font-light">
                     안녕하세요, <strong class="text-slate-900 font-bold border-b-2 border-slate-200">박미란</strong>입니다.
@@ -417,8 +429,8 @@
                     
                     <!-- Visual Representation: Image Replacement (Fixed Sizing) -->
                     <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8 flex flex-col justify-center items-center">
-                         <img src="mobile_ui_example.png" alt="모바일 최적화 상품 상세 및 티저 UI 예시" class="w-auto max-w-full max-h-[500px] rounded-xl shadow-md mb-4 border border-slate-100 object-contain bg-white" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'bg-white rounded-xl shadow-md p-6 text-center text-slate-400\'>[이미지: point01.png]<br></div>'">
-                         <p class="text-center text-xs text-slate-400">모바일 최적화 상품 상세 & 티저 UI 예시</p>
+                         <img src="mobile_ui_example.png" alt="모바일 최적화 상품 상세 및 티저 UI 예시" class="w-auto max-w-full max-h-[500px] rounded-xl shadow-md mb-4 border border-slate-100 object-contain bg-white" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'bg-white rounded-xl shadow-md p-6 text-center text-slate-400\'>[이미지: point01.png]<br>업로드한 이미지를 이곳에 배치해주세요.</div>'">
+                         
                     </div>
                 </div>
             </div>
