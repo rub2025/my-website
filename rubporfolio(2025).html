@@ -46,8 +46,9 @@
             background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
         }
 
+        /* Chart Animation */
         .bar-active {
-            transform: scaleY(1);
+            transform: scaleY(1) !important;
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .bar-initial {
@@ -92,6 +93,8 @@
             .project-block { page-break-before: always; margin-top: 2rem; }
             button, .no-print, header .back-btn { display: none !important; }
             .bg-slate-900 { background-color: #0f172a !important; color: white !important; }
+            .text-white { color: white !important; }
+            .bar-initial { transform: scaleY(1) !important; } /* Print bars fully extended */
         }
     </style>
 </head>
@@ -103,6 +106,7 @@
         <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-100/60 rounded-full blur-[100px]"></div>
     </div>
 
+    <!-- VIEW 1: INTRO SECTION -->
     <div id="intro-section" class="flex flex-col justify-center items-center min-h-screen p-6 transition-opacity duration-500">
         <main class="max-w-6xl w-full mx-auto">
             <header class="text-center mb-16 fade-in-up">
@@ -124,18 +128,21 @@
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <!-- Card 1 -->
                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-100 relative group">
                     <div class="absolute top-6 right-6 p-2 bg-indigo-50 rounded-lg text-indigo-600"><i data-lucide="map" class="w-6 h-6"></i></div>
                     <h3 class="text-indigo-600 font-bold tracking-wider text-sm mb-3 uppercase">Strategy & PMO</h3>
                     <div class="text-3xl font-bold text-slate-900 mb-3">Roadmap <span class="text-lg font-normal text-slate-500">설계</span></div>
                     <p class="text-slate-600 leading-relaxed text-sm">전사 <strong class="text-slate-900 bg-indigo-50 px-1">OKR/KPI 및 포트폴리오</strong>를 설계하고, 전략이 실무에서 누수 없이 실행되도록 조율합니다.</p>
                 </div>
+                <!-- Card 2 -->
                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-200 relative group">
                     <div class="absolute top-6 right-6 p-2 bg-emerald-50 rounded-lg text-emerald-600"><i data-lucide="home" class="w-6 h-6"></i></div>
                     <h3 class="text-emerald-600 font-bold tracking-wider text-sm mb-3 uppercase">PropTech Ops</h3>
                     <div class="text-3xl font-bold text-slate-900 mb-3">Lifecycle <span class="text-lg font-normal text-slate-500">시스템화</span></div>
                     <p class="text-slate-600 leading-relaxed text-sm">부동산/금융 상품의 복잡한 <strong class="text-slate-900 bg-emerald-50 px-1">생애주기(Sourcing to Exit)</strong>를 시스템화하여 운영 효율을 극대화합니다.</p>
                 </div>
+                <!-- Card 3 -->
                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-300 relative group">
                     <div class="absolute top-6 right-6 p-2 bg-blue-50 rounded-lg text-blue-600"><i data-lucide="trending-up" class="w-6 h-6"></i></div>
                     <h3 class="text-blue-600 font-bold tracking-wider text-sm mb-3 uppercase">Growth</h3>
@@ -164,6 +171,7 @@
         </main>
     </div>
 
+    <!-- VIEW 2: PROJECT DETAIL SECTION -->
     <div id="project-section" class="hidden-section min-h-screen p-6 pb-0">
         <main class="max-w-5xl w-full mx-auto">
             
@@ -171,45 +179,95 @@
                 <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i><span class="font-medium text-sm">Back to Home</span>
             </button>
 
+            <!-- 1. Core Competency (Detailed 2-Column) -->
             <div class="project-block page-break">
-                <div class="max-w-4xl mx-auto px-2">
-                    <div class="mb-10 text-center md:text-left">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="mb-12">
                         <span class="text-indigo-600 font-bold tracking-wider text-sm uppercase">Core Competency</span>
-                        <h2 class="text-3xl font-black mt-2 text-slate-900 leading-relaxed">Strategic Governance & Agile Leadership</h2>
-                        <div class="w-20 h-1.5 bg-indigo-600 mt-6 rounded-full mx-auto md:mx-0"></div>
-                        <p class="mt-6 text-xl text-slate-600 leading-relaxed font-medium">
-                            "전사 목표(Strategy)를 실무(Execution)로 연결하고,<br>
-                            데이터 기반으로 품질과 속도를 동시에 잡습니다."
-                        </p>
+                        <h2 class="text-3xl font-bold mt-2 text-slate-900 leading-relaxed">Strategic Operating Architect</h2>
+                        <div class="w-20 h-1.5 bg-indigo-600 mt-6 rounded-full"></div>
+                        <p class="mt-6 text-xl text-slate-600 leading-relaxed">"비즈니스 목표를 실행 가능한 단위로 쪼개고, <b>끝까지 완수해내는 실행력(Execution)</b>이 저의 가장 큰 무기입니다."</p>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5"><i data-lucide="target" class="w-6 h-6 text-blue-600"></i></div>
-                            <h3 class="font-bold text-lg mb-3 text-slate-900">Strategy & PMO</h3>
-                            <ul class="text-sm text-slate-600 space-y-3">
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-blue-500 mr-2 mt-0.5"></i><span><strong>전사 OKR 및 KPI 설계</strong>를 통한 목표 정렬</span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-blue-500 mr-2 mt-0.5"></i><span>프로젝트 포트폴리오 관리 및 우선순위 조율</span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-blue-500 mr-2 mt-0.5"></i><span>전사 운영 체계 및 프로세스 설계</span></li>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Strategy & PMO -->
+                        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-200 transition-colors">
+                            <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6"><i data-lucide="crosshair" class="w-6 h-6 text-indigo-600"></i></div>
+                            <h3 class="font-bold text-xl mb-6 text-slate-900 border-b border-slate-100 pb-2">Strategy & PMO</h3>
+                            <ul class="space-y-4">
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-indigo-700 mb-1">[Strategic Alignment]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">전사 비즈니스 목표(OKR/KPI) 설계 및 이를 달성하기 위한 연간/분기 로드맵을 수립하여 조직의 실행 방향 정렬.</span>
+                                </li>
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-indigo-700 mb-1">[Portfolio Management]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">한정된 개발 리소스 내 임팩트 극대화를 위한 프로젝트 우선순위 조율 및 포트폴리오 총괄 관리.</span>
+                                </li>
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-indigo-700 mb-1">[Management Support]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">경영진 의사결정 지원을 위한 주간/월간 성과 분석 대시보드 구축 및 데이터 리포팅 체계 정립.</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-5"><i data-lucide="zap" class="w-6 h-6 text-green-600"></i></div>
-                            <h3 class="font-bold text-lg mb-3 text-slate-900">Agile Execution</h3>
-                            <ul class="text-sm text-slate-600 space-y-3">
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2 mt-0.5"></i><span><strong>Scrum Master:</strong> 2주 Sprint, Daily Scrum 주재</span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2 mt-0.5"></i><span>기획-디자인-개발 간 <strong>병목(Bottleneck) 해소</strong></span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-500 mr-2 mt-0.5"></i><span>적시 배포(On-time Delivery) 실현</span></li>
+                        <!-- PropTech & Operations -->
+                        <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-200 transition-colors">
+                            <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-6"><i data-lucide="layers" class="w-6 h-6 text-emerald-600"></i></div>
+                            <h3 class="font-bold text-xl mb-6 text-slate-900 border-b border-slate-100 pb-2">PropTech & Operations</h3>
+                            <ul class="space-y-4">
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-emerald-700 mb-1">[Lifecycle Ops]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">부동산 조각투자(STO)의 <b>'소싱 → 청약 → 배당 → 청산'</b> 전 생애주기 운영 프로세스 시스템화 및 효율성 증대.</span>
+                                </li>
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-emerald-700 mb-1">[Trading System Pivot]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">규제 변화에 대응하여 호가 거래 방식을 <b>'1:1 채팅 기반 상대매매'</b> 시스템으로 성공적 전환, 거래 안정성 확보.</span>
+                                </li>
+                                <li class="flex flex-col">
+                                    <span class="text-sm font-bold text-emerald-700 mb-1">[Operational Architecture]</span>
+                                    <span class="text-sm text-slate-600 leading-relaxed">서비스-운영-기술 조직 간 사일로(Silo) 제거를 위한 통합 프로세스 설계 및 정책 표준화를 통한 리스크 최소화.</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                            <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-5"><i data-lucide="shield-check" class="w-6 h-6 text-purple-600"></i></div>
-                            <h3 class="font-bold text-lg mb-3 text-slate-900">Quality Control</h3>
-                            <ul class="text-sm text-slate-600 space-y-3">
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-purple-500 mr-2 mt-0.5"></i><span><strong>결함률 0% 목표</strong> QA 모니터링 체계 구축</span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-purple-500 mr-2 mt-0.5"></i><span>산출물 최종 승인(Sign-off) 프로세스 정립</span></li>
-                                <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-purple-500 mr-2 mt-0.5"></i><span>서비스 장애 리스크 사전 차단</span></li>
-                            </ul>
+                    </div>
+                    
+                    <div class="mt-12 pt-12 border-t border-slate-200">
+                        <div class="flex items-center mb-8">
+                            <h3 class="text-xl font-bold text-slate-900">Project Roadmap Execution</h3>
+                            <span class="ml-3 px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full">Delivered</span>
+                        </div>
+                        <div class="space-y-6 relative border-l-2 border-slate-200 ml-3 pl-8 pb-2">
+                            <div class="relative">
+                                <span class="absolute -left-[41px] top-1 w-5 h-5 bg-indigo-600 rounded-full border-4 border-white"></span>
+                                <h4 class="text-lg font-bold text-slate-900">2025: Regulatory Pivot & Upgrade</h4>
+                                <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                                    <li>Trading Pivot: 1:1 채팅 거래 시스템 전환 개발</li>
+                                    <li>UX Upgrade: 앱 메인/마켓 리뉴얼 및 디자인 시스템 v2.0</li>
+                                    <li>B2B Expansion: 법인 전용 페이지 및 보안 키패드 고도화</li>
+                                </ul>
+                            </div>
+                            <div class="relative mt-8">
+                                <span class="absolute -left-[41px] top-1 w-5 h-5 bg-slate-300 rounded-full border-4 border-white"></span>
+                                <h4 class="text-lg font-bold text-slate-900">2024: Growth & Optimization</h4>
+                                <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                                    <li>Growth: 리워드존, 친구초대 런칭</li>
+                                    <li>Infrastructure: 대체 인증 도입 및 디자인 시스템 정립</li>
+                                </ul>
+                                <div class="bg-slate-800/80 rounded-lg p-4 border border-slate-600 relative backdrop-blur-sm">
+                                    <div class="absolute -top-2.5 left-4 px-2 bg-slate-700 text-[10px] font-bold text-emerald-300 rounded border border-slate-500 uppercase tracking-wide">Content Strategy</div>
+                                    <ul class="space-y-3 mt-1">
+                                        <li class="flex gap-3 items-start"><span class="text-xs font-bold text-emerald-400 shrink-0 w-8 pt-0.5">Step 1</span><div class="text-xs text-slate-400"><strong class="text-slate-200 block mb-1">콘텐츠 페이지 신설</strong>돈불리기 꿀팁 탑재로 유저 락인 강화</div></li>
+                                        <li class="flex gap-3 items-start border-t border-slate-700 pt-2"><span class="text-xs font-bold text-emerald-400 shrink-0 w-8 pt-0.5">Step 2</span><div class="text-xs text-slate-400"><strong class="text-slate-200 block mb-1">메인 고도화</strong>개인화 추천 영역 확장</div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="relative mt-8">
+                                <span class="absolute -left-[41px] top-1 w-5 h-5 bg-slate-300 rounded-full border-4 border-white"></span>
+                                <h4 class="text-lg font-bold text-slate-900">2023: Foundation (PropTech Infra)</h4>
+                                <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                                    <li>Aggregation: 부동산 조각투자 모아보기 및 간편인증 구축</li>
+                                    <li>Partnership: 증권사 제휴 페이지 개발 및 연동</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -217,6 +275,7 @@
 
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- PROJECT 01: Core Behavior -->
             <div class="project-block page-break">
                 <header class="mb-12">
                     <div class="inline-block px-3 py-1 mb-4 bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 01</div>
@@ -225,57 +284,62 @@
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col">
-                        <h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem</h3>
-                        <p class="text-sm text-red-700 leading-relaxed">높은 신규 유저 획득 비용(CAC) 대비 체리피커 유입으로 인해 실질적 리텐션이 저하되고 마케팅 예산 효율성이 악화되었습니다.</p>
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem</h3>
+                        <p class="text-sm text-red-700 leading-relaxed">높은 신규 유저 획득 비용(CAC) 대비 체리피커 유입으로 인해 실질적 리텐션이 저하되고 마케팅 예산 효율성이 악화되었습니다.</p></div>
                     </div>
-                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col">
-                        <h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis</h3>
-                        <p class="text-sm text-indigo-700 leading-relaxed">단순 보상이 아닌 '게임(돈나무)'과 '친구 초대'를 결합한 리워드 생태계를 구축하면, 자발적 바이럴과 매일 방문하는 습관이 형성될 것입니다.</p>
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis</h3>
+                        <p class="text-sm text-indigo-700 leading-relaxed">단순 보상이 아닌 '게임(돈나무)'과 '친구 초대'를 결합한 리워드 생태계를 구축하면, 자발적 바이럴과 매일 방문하는 습관이 형성될 것입니다.</p></div>
                     </div>
-                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col">
-                        <h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action</h3>
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action</h3>
                         <ul class="text-sm text-emerald-700 space-y-2 list-disc list-outside ml-4">
                             <li>행동 기반 데이터 분석을 통해 사용자별 보상 단가 차등화</li>
                             <li>통합 적립금 시스템 및 포인트 샵 연동</li>
-                        </ul>
+                        </ul></div>
                     </div>
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col">
-                        <h3 class="font-bold text-orange-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result</h3>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-orange-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result</h3>
                         <ul class="text-sm text-slate-300 space-y-2">
                             <li>DAU 483% 성장 및 가입자 1,532% 폭증</li>
                             <li>업계 최저 수준인 CAC 1,200원 달성</li>
-                        </ul>
+                        </ul></div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                         <div class="flex items-end justify-between mb-6">
+                         <div class="flex items-end justify-between mb-4">
                              <div><p class="text-xs text-slate-400 font-bold uppercase mb-1">Impact</p><div class="text-lg font-bold text-slate-800">신규 가입자 폭증</div></div>
                              <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded font-bold">+1,532% (16배)</span>
                          </div>
-                         <div class="flex items-end justify-center gap-8 h-40 border-b border-slate-100 pb-0">
-                             <div class="w-16 flex flex-col justify-end group"><div class="w-full bg-slate-200 rounded-t-lg h-6 relative transition-all duration-1000 group-hover:bg-slate-300"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-slate-400">Before</span></div></div>
-                             <div class="w-16 flex flex-col justify-end group"><div class="w-full bg-orange-500 rounded-t-lg h-32 relative shadow-lg shadow-orange-100 transition-all duration-1000 group-hover:h-36"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-orange-600">After</span></div></div>
+                         <div class="flex items-end justify-center space-x-8 h-40 border-b border-slate-100 pb-2">
+                             <div class="w-16 bg-slate-300 rounded-t h-4 relative group"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-slate-400">Before</span></div>
+                             <div class="w-16 bg-orange-500 rounded-t h-32 relative group bar-initial chart-bar"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-orange-600">After</span></div>
                          </div>
                     </div>
                     <div class="bg-white p-6 border border-slate-200 rounded-xl shadow-sm">
-                        <div class="flex items-end justify-between mb-6">
-                            <div><p class="text-xs text-slate-400 font-bold uppercase mb-1">Efficiency</p><div class="text-lg font-bold text-slate-800">CAC(비용) 최소화</div></div>
+                        <div class="flex items-end justify-between mb-4">
+                            <div><p class="text-xs text-slate-400 font-bold uppercase mb-1">Efficiency</p><div class="text-lg font-bold text-slate-800">CAC 최소화</div></div>
                             <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-bold">1,200원 달성</span>
                         </div>
-                        <div class="flex items-end justify-center gap-10 h-40 border-b border-slate-100 pb-0">
-                            <div class="w-16 flex flex-col justify-end group"><div class="w-full bg-slate-200 rounded-t-lg h-32 relative transition-all duration-1000 group-hover:bg-slate-300"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-[10px] text-slate-400 whitespace-nowrap">업계 평균</span></div></div>
-                            <div class="w-16 flex flex-col justify-end group"><div class="w-full bg-blue-500 rounded-t-lg h-8 relative shadow-lg shadow-blue-100 transition-all duration-1000 group-hover:h-10"><span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-blue-600 whitespace-nowrap">1,200원</span></div></div>
+                        <div class="flex items-end justify-center space-x-12 h-40 border-b border-slate-100 pb-2">
+                            <div class="w-16 bg-slate-200 rounded-t h-32 relative group">
+                                <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-[10px] text-slate-400 whitespace-nowrap">업계 평균</span>
+                            </div>
+                            <div class="w-16 bg-blue-500 rounded-t h-12 relative group shadow-lg shadow-blue-100 bar-initial chart-bar">
+                                <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-blue-600 whitespace-nowrap">1,200원</span>
+                            </div>
                         </div>
-                        <p class="text-xs text-slate-500 mt-4 text-center">데이터 기반 보상 최적화로 <strong>마케팅 비용 획기적 절감</strong></p>
+                        <p class="text-xs text-slate-500 mt-3 text-center">데이터 기반 보상 최적화로 <strong>마케팅 비용 획기적 절감</strong></p>
                     </div>
                 </div>
             </div>
 
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- PROJECT 02: UX Improvement -->
             <div class="project-block page-break">
                 <header class="mb-12">
                     <div class="inline-block px-3 py-1 mb-4 bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 02</div>
@@ -283,30 +347,31 @@
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col">
-                        <h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem</h3>
-                        <p class="text-sm text-red-700 leading-relaxed">'가입 → 계좌개설 → 연동'의 3중 허들과 외부 인증(카카오페이) 의존도로 온보딩 과정에서 90% 이상의 이탈이 발생했습니다.</p>
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem</h3>
+                        <p class="text-sm text-red-700 leading-relaxed">'가입 → 계좌개설 → 연동'의 3중 허들과 외부 인증(카카오페이) 의존도로 온보딩 과정에서 90% 이상의 이탈이 발생했습니다.</p></div>
                     </div>
-                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col">
-                        <h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis</h3>
-                        <p class="text-sm text-indigo-700 leading-relaxed">외부 앱 이동을 최소화하고 자체 인증(PIN/생체)을 도입하여 단계를 축소하면, 진입 속도가 향상되고 이탈률이 50% 이상 감소할 것입니다.</p>
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis</h3>
+                        <p class="text-sm text-indigo-700 leading-relaxed">외부 앱 이동을 최소화하고 자체 인증(PIN/생체)을 도입하여 단계를 축소하면, 진입 속도가 향상되고 이탈률이 50% 이상 감소할 것입니다.</p></div>
                     </div>
-                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col">
-                        <h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action</h3>
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action</h3>
                         <ul class="text-sm text-emerald-700 space-y-2 list-disc list-outside ml-4">
                             <li>3단계 과정을 1단계로 통합하는 '평지형' UX 설계</li>
                             <li>자체 보안 키패드 및 생체 인증 로직 구현</li>
-                        </ul>
+                        </ul></div>
                     </div>
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col">
-                        <h3 class="font-bold text-purple-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result</h3>
-                        <p class="text-sm text-slate-300">서비스 진입 속도 90% 개선 및 VOC 획기적 감소</p>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-purple-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result</h3>
+                        <p class="text-sm text-slate-300">서비스 진입 속도 90% 개선 및 VOC 획기적 감소</p></div>
                     </div>
                 </div>
             </div>
 
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- PROJECT 03: Data-Driven Strategy -->
             <div class="project-block page-break">
                 <header class="mb-12">
                     <div class="inline-block px-3 py-1 mb-4 bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 03</div>
@@ -338,7 +403,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="bg-slate-900 p-8 rounded-2xl shadow-xl text-white relative overflow-hidden h-full">
                         <div class="absolute top-0 right-0 p-6 opacity-5"><i data-lucide="map" class="w-48 h-48 text-white"></i></div>
                         <h3 class="text-xl font-bold mb-8 flex items-center"><i data-lucide="route" class="w-5 h-5 mr-2 text-blue-400"></i>Execution: 연도별 로드맵 실행</h3>
@@ -347,7 +411,7 @@
                                 <span class="absolute -left-[41px] top-1.5 w-5 h-5 bg-indigo-500 rounded-full border-4 border-slate-900"></span>
                                 <h4 class="text-indigo-400 font-bold text-lg mb-1">2025: Regulatory Pivot & Upgrade</h4>
                                 <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4">
-                                    <li><strong class="text-white">Trading Pivot:</strong> 호가 거래 → 1:1 채팅 기반 거래 시스템 전환</li>
+                                    <li><strong class="text-white">Trading Pivot:</strong> 호가 거래 → 1:1 채팅 기반 거래 시스템 전환 개발</li>
                                     <li><strong class="text-white">UX Upgrade:</strong> 앱 메인/마켓 리뉴얼 및 디자인 시스템 v2.0</li>
                                     <li><strong class="text-white">B2B Expansion:</strong> 법인 전용 페이지 및 보안 키패드 고도화</li>
                                 </ul>
@@ -390,6 +454,60 @@
 
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- PROJECT 05: Regulatory Response -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 05</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">Regulatory Response UX<br><span class="text-indigo-600">(규제 대응 및 채팅 거래 시스템)</span></h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">"복잡한 정책을 가장 익숙한 채팅 경험으로 풀어냈습니다."</div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem</h3>
+                        <p class="text-sm text-red-700 leading-relaxed">금융당국의 '발행/유통 분리' 규제로 인해 기존의 '호가 거래' 방식이 법적 리스크에 직면하며 서비스 중단 위기가 발생했습니다.</p></div>
+                    </div>
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis</h3>
+                        <p class="text-sm text-indigo-700 leading-relaxed">규제를 준수하면서도 '1:1 채팅 기반 상대매매' 시스템으로 전환하면, 자산 동결 우려를 해소하고 신뢰도를 높여 거래 연속성을 확보할 수 있을 것입니다.</p></div>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action</h3>
+                        <ul class="text-sm text-emerald-700 space-y-2 list-disc list-outside ml-4">
+                            <li>호가창 대신 구매자와 판매자가 직접 가격을 협의하는 'Negotiation' 프로세스 설계</li>
+                            <li>채팅방 내에서 협의된 가격으로 즉시 체결 및 안전 결제가 이루어지는 자동화 시스템 구축</li>
+                        </ul></div>
+                    </div>
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result</h3>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>서비스 중단 없는 Seamless한 피보팅(Pivot) 성공</li>
+                            <li>법적 리스크 해소 및 제도권 내 안정적 안착 기반 마련</li>
+                        </ul></div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm flex flex-col items-center justify-center">
+                    <div class="w-full max-w-sm bg-slate-50 rounded-xl p-4 border border-slate-200">
+                         <div class="flex gap-2 mb-4">
+                             <div class="w-8 h-8 rounded-full bg-slate-300 flex-shrink-0"></div>
+                             <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-xs text-slate-700 border border-slate-200">안녕하세요, 10,500원에 10주 매수 가능할까요?</div>
+                         </div>
+                         <div class="flex gap-2 mb-4 flex-row-reverse">
+                             <div class="w-8 h-8 rounded-full bg-indigo-500 flex-shrink-0"></div>
+                             <div class="bg-indigo-600 p-3 rounded-l-xl rounded-br-xl shadow-sm text-xs text-white">네, 가능합니다. 거래 요청 보낼게요.</div>
+                         </div>
+                         <div class="bg-white border border-indigo-100 rounded-lg p-3 text-center">
+                             <div class="text-xs text-slate-500 mb-1">제안 가격: <span class="font-bold text-slate-900">10,500원</span></div>
+                             <button class="w-full py-2 bg-indigo-600 text-white text-xs rounded font-bold">거래 체결하기</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
+
+            <!-- PROJECT 07: Marketplace Architecture & Policy 0 to 1 (RESTORED TITLE + FRAMEWORK APPLIED) -->
             <div class="project-block page-break">
                 <header class="mb-12">
                     <div class="inline-block px-3 py-1 mb-4 bg-teal-100 text-teal-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 07</div>
@@ -397,48 +515,44 @@
                         Marketplace Architecture<br>& Policy 0 to 1<br>
                         <span class="text-teal-600">(정책 수립 및 초기 셋업)</span>
                     </h2>
-                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">"초기 셋업부터 고도화까지, 비즈니스가 돌아가는 '규칙'과 '시스템'을 만들었습니다."</div>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "초기 셋업부터 고도화까지, 비즈니스가 돌아가는 '규칙'과 '시스템'을 만들었습니다."
+                    </div>
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    <div class="bg-white p-8 rounded-2xl border border-teal-100 shadow-sm flex flex-col h-full">
-                        <div class="mb-6 flex items-center">
-                            <div class="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600 mr-3"><i data-lucide="layers" class="w-5 h-5"></i></div>
-                            <h3 class="text-xl font-bold text-slate-900">1. Foundation Setup (0 to 1)</h3>
-                        </div>
-                        <ul class="space-y-4 flex-1">
-                            <li class="flex gap-3">
-                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center mt-0.5">1</span>
-                                <div><h4 class="font-bold text-slate-800 text-sm">운영 로직 및 정책 수립</h4><p class="text-sm text-slate-600 mt-1">회원 가입/탈퇴, 거래/결제, 배송/환불 등 서비스 전반의 <strong>표준 운영 정책 100% 수립</strong></p></div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center mt-0.5">2</span>
-                                <div><h4 class="font-bold text-slate-800 text-sm">Back-office Planning</h4><p class="text-sm text-slate-600 mt-1">운영자 편의성을 고려한 <strong>어드민(Admin) 페이지 기획</strong> 및 기능 정의</p></div>
-                            </li>
-                        </ul>
+                    <!-- Problem -->
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem (비효율)</h3>
+                        <p class="text-sm text-red-700 leading-relaxed">신규 플랫폼(티켓베이, 잇다이아) 런칭 초기, 운영 정책 부재로 인한 혼란과 수기 업무의 비효율이 발생했습니다.</p></div>
                     </div>
-
-                    <div class="bg-teal-900 p-8 rounded-2xl text-white shadow-lg flex flex-col h-full">
-                        <div class="mb-6 flex items-center">
-                            <div class="w-10 h-10 rounded-lg bg-teal-800 flex items-center justify-center text-teal-300 mr-3"><i data-lucide="settings" class="w-5 h-5"></i></div>
-                            <h3 class="text-xl font-bold text-white">2. Process Optimization</h3>
-                        </div>
-                        <ul class="space-y-4 flex-1">
-                            <li class="p-4 bg-white/10 rounded-xl border border-white/10">
-                                <h4 class="font-bold text-teal-300 mb-1 text-sm">Automation (자동화)</h4>
-                                <p class="text-sm text-slate-300">엑셀/수기 업무를 시스템화하여 <strong>운영 리소스 50% 절감</strong> 및 데이터 정합성 확보</p>
-                            </li>
-                            <li class="p-4 bg-white/10 rounded-xl border border-white/10">
-                                <h4 class="font-bold text-teal-300 mb-1 text-sm">Dispute Resolution (분쟁 조정)</h4>
-                                <p class="text-sm text-slate-300">클레임 대응 매뉴얼 및 분쟁 조정 기준을 고도화하여 <strong>리스크 관리 체계 확립</strong></p>
-                            </li>
-                        </ul>
+                    <!-- Hypothesis -->
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis (가설)</h3>
+                        <p class="text-sm text-indigo-700 leading-relaxed">초기부터 '운영 정책(Policy)'과 '시스템(Admin)'을 0 to 1으로 설계하면, 리스크를 최소화하고 서비스가 조기 안착할 것입니다.</p></div>
+                    </div>
+                    <!-- Action -->
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action (적용)</h3>
+                        <ul class="text-sm text-emerald-700 space-y-2 list-disc list-outside ml-4">
+                            <li><strong>[Ticketbay]:</strong> 국내 최대 티켓 중개 플랫폼의 초기 운영 정책 및 CS 프로세스를 0부터 설계하여 런칭 리스크 최소화</li>
+                            <li><strong>[Itdaia]:</strong> 기획-운영 통합 프로세스 설계 및 수기 정산 로직의 어드민(Admin) 전산화</li>
+                        </ul></div>
+                    </div>
+                    <!-- Result -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-teal-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result (성과)</h3>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>서비스 조기 안착 견인 및 운영 리소스 <strong>50% 절감</strong></li>
+                            <li>공급망(Seller) 안정화 및 <strong>운영 시스템 표준화</strong> 달성</li>
+                        </ul></div>
                     </div>
                 </div>
             </div>
             
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- PROJECT 08: Large-scale Operations & Profit Center (RESTORED TITLE + FRAMEWORK APPLIED) -->
             <div class="project-block page-break">
                 <header class="mb-12">
                     <div class="inline-block px-3 py-1 mb-4 bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 08</div>
@@ -446,45 +560,44 @@
                         Large-scale Operations &<br>Profit Center<br>
                         <span class="text-rose-600">(대규모 운영 및 수익화)</span>
                     </h2>
-                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">"대규모 트래픽을 감당하는 인프라를 구축하고, 운영 조직을 수익 부서로 전환했습니다."</div>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "대규모 트래픽을 감당하는 인프라를 구축하고, 운영 조직을 수익 부서로 전환했습니다."
+                    </div>
                 </header>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4"><i data-lucide="bar-chart-3" class="w-6 h-6 text-blue-600"></i></div>
-                        <h4 class="font-bold text-lg text-slate-900 mb-3">Scale & Efficiency</h4>
-                        <ul class="text-sm text-slate-600 space-y-3">
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 mr-2 shrink-0"></span><span><strong>SLA Management:</strong> 대규모 도급 센터 서비스 수준 협약 지표 설계 및 관리</span></li>
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 mr-2 shrink-0"></span><span><strong>CAPA Modeling:</strong> 시기/이슈별 상담 인력 예측을 통한 예산 최적화</span></li>
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 mr-2 shrink-0"></span><span><strong>Education:</strong> 신규 입사자 OJT 및 스킬업 교육 커리큘럼 기획</span></li>
-                        </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <!-- Problem -->
+                    <div class="bg-red-50 p-6 rounded-xl border border-red-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-red-800 mb-3 flex items-center"><i data-lucide="alert-circle" class="w-5 h-5 mr-2"></i>Problem (비용 문제)</h3>
+                        <p class="text-sm text-red-700 leading-relaxed">대규모 트래픽을 처리하기 위해 상담 인력을 유지해야 하지만, 필연적으로 발생하는 유휴 시간(Idle Time)이 비용 낭비로 인식되었습니다.</p></div>
                     </div>
-
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mb-4"><i data-lucide="shield-alert" class="w-6 h-6 text-slate-600"></i></div>
-                        <h4 class="font-bold text-lg text-slate-900 mb-3">Risk & Setup</h4>
-                        <ul class="text-sm text-slate-600 space-y-3">
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-slate-500 mt-1.5 mr-2 shrink-0"></span><span><strong>0 to 1 Process:</strong> 티켓베이 초기 운영 정책 및 CS 프로세스 백지 상태에서 설계</span></li>
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-slate-500 mt-1.5 mr-2 shrink-0"></span><span><strong>Contingency Plan:</strong> 공연 취소/우천 등 대형 이슈 대응 매뉴얼 수립</span></li>
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-slate-500 mt-1.5 mr-2 shrink-0"></span><span><strong>Control Tower:</strong> 리스크 발생 시 컨트롤 타워 역할 수행</span></li>
-                        </ul>
+                    <!-- Hypothesis -->
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-indigo-800 mb-3 flex items-center"><i data-lucide="flask-conical" class="w-5 h-5 mr-2"></i>Hypothesis (가설)</h3>
+                        <p class="text-sm text-indigo-700 leading-relaxed">유휴 시간에 이탈 유저나 휴면 고객을 대상으로 '아웃바운드 콜'을 진행하면, 추가 인건비 없이 매출을 창출할 수 있을 것입니다.</p></div>
                     </div>
-
-                    <div class="bg-rose-50 p-6 rounded-2xl border border-rose-100 shadow-sm relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 opacity-10"><i data-lucide="coins" class="w-24 h-24 text-rose-600"></i></div>
-                        <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center mb-4"><i data-lucide="trending-up" class="w-6 h-6 text-rose-600"></i></div>
-                        <h4 class="font-bold text-lg text-rose-800 mb-3">Sales Ops (수익화)</h4>
-                        <p class="text-sm text-rose-700 leading-relaxed mb-4 font-medium">단순 CS 조직을 <strong>매출 기여(Sales Ops) 조직</strong>으로 전환</p>
-                        <ul class="text-sm text-rose-700 space-y-3">
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 mr-2 shrink-0"></span><span><strong>Idle Time 활용:</strong> 상담 유휴 시간에 아웃바운드 영업 진행</span></li>
-                            <li class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 mr-2 shrink-0"></span><span><strong>Revenue Generation:</strong> '재거래 유도 캠페인' 기획으로 추가 매출 창출</span></li>
-                        </ul>
+                    <!-- Action -->
+                    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-emerald-800 mb-3 flex items-center"><i data-lucide="play" class="w-5 h-5 mr-2"></i>Action (적용)</h3>
+                        <ul class="text-sm text-emerald-700 space-y-2 list-disc list-outside ml-4">
+                            <li><strong>Sales Ops 전환:</strong> 재거래 유도 캠페인을 기획하여 상담사 R&R을 영업 조직으로 확장</li>
+                            <li><strong>Contingency Plan:</strong> 공연 취소 등 대형 이슈 발생 시 즉각 대응하는 위기 관리 매뉴얼 수립</li>
+                        </ul></div>
+                    </div>
+                    <!-- Result -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-white h-full flex flex-col justify-between">
+                        <div><h3 class="font-bold text-rose-400 mb-3 flex items-center"><i data-lucide="trophy" class="w-5 h-5 mr-2"></i>Result (성과)</h3>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>CS 조직의 <strong>Profit Center(수익 창출 조직) 전환</strong> 성공</li>
+                            <li>대규모 이슈 발생 시 <strong>초동 대응 성공률 100%</strong>로 브랜드 신뢰도 방어</li>
+                        </ul></div>
                     </div>
                 </div>
             </div>
 
             <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div><div class="relative flex justify-center"><span class="bg-slate-50 px-2 text-slate-500"><i data-lucide="more-horizontal" class="w-6 h-6"></i></span></div></div>
 
+            <!-- Footer: Career History -->
             <div class="bg-slate-900 rounded-3xl p-10 md:p-14 text-slate-300 relative overflow-hidden mb-16 page-break">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-slate-800 rounded-full mix-blend-overlay filter blur-[64px] opacity-30 pointer-events-none"></div>
                 <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -497,23 +610,13 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="cpu" class="w-6 h-6 mr-3 text-slate-400"></i>Strategic Toolkit</h3>
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="flex items-center p-4 bg-slate-800/50 rounded-xl border border-slate-700">
-                                <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center text-blue-400 mr-4"><i data-lucide="database" class="w-5 h-5"></i></div>
-                                <div><h4 class="text-white font-bold text-sm">SQL & Data Analysis</h4><p class="text-xs text-slate-400 mt-0.5">데이터 추출 및 정량적 문제 진단</p></div>
-                            </div>
-                            <div class="flex items-center p-4 bg-slate-800/50 rounded-xl border border-slate-700">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-900/50 flex items-center justify-center text-emerald-400 mr-4"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></div>
-                                <div><h4 class="text-white font-bold text-sm">Dashboard & Reporting</h4><p class="text-xs text-slate-400 mt-0.5">경영진 의사결정 지원 리포트 작성</p></div>
-                            </div>
-                            <div class="flex items-center p-4 bg-slate-800/50 rounded-xl border border-slate-700">
-                                <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center text-purple-400 mr-4"><i data-lucide="target" class="w-5 h-5"></i></div>
-                                <div><h4 class="text-white font-bold text-sm">OKR & KPI Design</h4><p class="text-xs text-slate-400 mt-0.5">전사 전략 지표 설계 및 성과 관리</p></div>
-                            </div>
-                            <div class="flex items-center p-4 bg-slate-800/50 rounded-xl border border-slate-700">
-                                <div class="w-10 h-10 rounded-lg bg-orange-900/50 flex items-center justify-center text-orange-400 mr-4"><i data-lucide="trello" class="w-5 h-5"></i></div>
-                                <div><h4 class="text-white font-bold text-sm">Jira & Agile</h4><p class="text-xs text-slate-400 mt-0.5">프로젝트 포트폴리오 관리</p></div>
+                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="cpu" class="w-6 h-6 mr-3 text-slate-400"></i>Skills & Tools</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="trello" class="w-6 h-6 text-blue-400 mb-1"></i><span class="text-[10px] text-slate-300">Jira</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="book-open" class="w-6 h-6 text-blue-300 mb-1"></i><span class="text-[10px] text-slate-300">Conf.</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="file-text" class="w-6 h-6 text-white mb-1"></i><span class="text-[10px] text-slate-300">Notion</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="slack" class="w-6 h-6 text-purple-400 mb-1"></i><span class="text-[10px] text-slate-300">Slack</span></div>
                             </div>
                         </div>
                     </div>
@@ -524,6 +627,7 @@
 
     <script>
         lucide.createIcons();
+
         function showProject() {
             const intro = document.getElementById('intro-section');
             const project = document.getElementById('project-section');
@@ -534,11 +638,14 @@
                 project.style.display = 'block';
                 void project.offsetWidth;
                 project.style.opacity = '1';
-                setTimeout(() => { bars.forEach((bar) => { bar.classList.add('bar-active'); }); }, 300);
+                setTimeout(() => {
+                    bars.forEach((bar) => { bar.classList.add('bar-active'); });
+                }, 300);
                 window.scrollTo(0, 0);
                 lucide.createIcons();
             }, 500);
         }
+
         function showIntro() {
             const intro = document.getElementById('intro-section');
             const project = document.getElementById('project-section');
