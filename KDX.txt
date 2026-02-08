@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDX 차세대 STO 유통 플랫폼 제안서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #F3F4F6; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Animation Classes */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .phone-frame {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item.active {
+            background-color: #EFF6FF; /* blue-50 */
+            color: #2563EB; /* blue-600 */
+            border-right: 3px solid #2563EB;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+    </style>
+    <!-- Chosen Palette: Toss-like Minimalist (White #FFFFFF, Background #F3F4F6, Primary Blue #2563EB, Text Dark #1F2937) -->
+    <!-- Application Structure Plan: Dashboard layout with Sidebar navigation. 
+         1. Executive Summary: High-level strategy (Efficiency/Growth).
+         2. App Experience: Interactive Phone Mockup to demonstrate UX/UI (Home, Sim, Trade, Viral).
+         3. Core Values: 4-Pillar Grid layout.
+         4. Admin System: Toggle view for Issuer vs Exchange admin.
+         5. Impact: Timeline and metrics. 
+         This structure mimics a professional software pitch, focusing on "Showing" rather than just "Telling". -->
+    <!-- Visualization & Content Choices: 
+         - Phone Mockup (HTML/CSS): To visualize "Gen-Z Interface" & "Visual-First".
+         - Chart.js: To prove "High Efficiency" (Time/Cost savings) and "High Growth" (Volume).
+         - Icons (FontAwesome): For visual hierarchy without SVGs.
+         - Admin Dashboard UI: To demonstrate the backend capabilities. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="text-gray-800 h-screen flex overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <nav class="w-64 bg-white shadow-xl flex-shrink-0 flex flex-col justify-between hidden md:flex z-20">
+        <div>
+            <div class="p-8">
+                <h1 class="text-2xl font-black text-blue-600 tracking-tighter">KDX STO<br><span class="text-gray-800 text-lg font-bold">Platform Proposal</span></h1>
+                <p class="text-xs text-gray-500 mt-2">High-Efficiency & Growth</p>
+            </div>
+            <ul class="space-y-1">
+                <li><button onclick="navigate('summary')" id="nav-summary" class="nav-item w-full text-left px-8 py-4 font-medium hover:bg-gray-50 transition flex items-center gap-3 active"><i class="fas fa-bullseye"></i> 전략 요약</button></li>
+                <li><button onclick="navigate('experience')" id="nav-experience" class="nav-item w-full text-left px-8 py-4 font-medium hover:bg-gray-50 transition flex items-center gap-3"><i class="fas fa-mobile-alt"></i> 앱 서비스 경험</button></li>
+                <li><button onclick="navigate('values')" id="nav-values" class="nav-item w-full text-left px-8 py-4 font-medium hover:bg-gray-50 transition flex items-center gap-3"><i class="fas fa-star"></i> 4대 핵심 가치</button></li>
+                <li><button onclick="navigate('admin')" id="nav-admin" class="nav-item w-full text-left px-8 py-4 font-medium hover:bg-gray-50 transition flex items-center gap-3"><i class="fas fa-server"></i> 통합 어드민</button></li>
+                <li><button onclick="navigate('impact')" id="nav-impact" class="nav-item w-full text-left px-8 py-4 font-medium hover:bg-gray-50 transition flex items-center gap-3"><i class="fas fa-chart-line"></i> 기대 효과</button></li>
+            </ul>
+        </div>
+        <div class="p-8 border-t">
+            <div class="bg-blue-50 p-4 rounded-xl">
+                <p class="text-xs font-bold text-blue-800 mb-1">개발 기간</p>
+                <p class="text-2xl font-black text-blue-600">6개월</p>
+                <p class="text-xs text-gray-500">완벽한 상용화 가능</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto relative" id="main-content">
+        
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-white p-4 shadow-md sticky top-0 z-30 flex justify-between items-center">
+            <span class="font-bold text-blue-600">KDX Proposal</span>
+            <button onclick="toggleMobileMenu()" class="text-gray-600"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col p-8 space-y-4 md:hidden">
+            <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <button onclick="mobileNav('summary')" class="text-xl font-bold py-2 border-b">전략 요약</button>
+            <button onclick="mobileNav('experience')" class="text-xl font-bold py-2 border-b">앱 서비스 경험</button>
+            <button onclick="mobileNav('values')" class="text-xl font-bold py-2 border-b">4대 핵심 가치</button>
+            <button onclick="mobileNav('admin')" class="text-xl font-bold py-2 border-b">통합 어드민</button>
+            <button onclick="mobileNav('impact')" class="text-xl font-bold py-2 border-b">기대 효과</button>
+        </div>
+
+        <!-- 1. Executive Summary -->
+        <section id="summary" class="p-6 md:p-12 max-w-7xl mx-auto fade-in">
+            <div class="mb-8">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">고효율·고성장<br><span class="text-blue-600">통합 마켓플레이스</span></h2>
+                <p class="text-lg text-gray-600 leading-relaxed max-w-3xl">
+                    본 제안서는 펀블의 검증된 기술력과 혁신적인 UX 전략을 결합하여, 
+                    KDX 컨소시엄을 위한 <strong>가장 빠르고, 안전하며, 매력적인</strong> STO 유통 플랫폼 구축 방향을 제시합니다.
+                    단순한 거래소를 넘어, MZ세대가 머무르고 즐기는 금융 놀이터를 구축합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- High Efficiency Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+                        <i class="fas fa-cogs text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">High-Efficiency (고효율)</h3>
+                    <p class="text-gray-600 mb-6">검증된 <strong>'멀티 에셋 엔진'</strong>과 <strong>'표준화된 디자인 시스템'</strong>으로 구축 비용을 최소화하고 운영 효율을 극대화합니다.</p>
+                    <div class="chart-container h-48">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">구축 기간 및 리소스 절감 효과</p>
+                </div>
+
+                <!-- High Growth Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-6">
+                        <i class="fas fa-rocket text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">High-Growth (고성장)</h3>
+                    <p class="text-gray-600 mb-6"><strong>'토스급 UI'</strong>와 <strong>'게이미피케이션'</strong> 전략으로 MZ세대를 유입시키고, 시장 거래 회전율을 폭발적으로 성장시킵니다.</p>
+                    <div class="chart-container h-48">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">예상 트래픽 및 거래량 성장 추이</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Service Experience (App Mockup) -->
+        <section id="experience" class="p-6 md:p-12 max-w-7xl mx-auto hidden fade-in">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">Target Service Scope</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    텍스트 위주의 1세대 앱을 넘어, <strong>"금융 앱 같지 않은 세련됨"</strong>을 제공합니다.
+                    직관적인 홈, 몰입형 시뮬레이션, 그리고 습관을 만드는 게이미피케이션을 직접 체험해보세요.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+                <!-- Controls -->
+                <div class="w-full lg:w-1/3 space-y-4">
+                    <button onclick="setPhoneScreen('home')" id="btn-home" class="screen-btn w-full p-6 bg-white rounded-2xl shadow-sm border border-gray-200 text-left hover:shadow-md transition group active ring-2 ring-blue-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                                <i class="fas fa-th-large"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Multi-Asset Home</h4>
+                                <p class="text-sm text-gray-500">직관적인 통합 메인 화면</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button onclick="setPhoneScreen('sim')" id="btn-sim" class="screen-btn w-full p-6 bg-white rounded-2xl shadow-sm border border-gray-200 text-left hover:shadow-md transition group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Investment Simulation</h4>
+                                <p class="text-sm text-gray-500">시각적 데이터 & 가상 투자</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button onclick="setPhoneScreen('trade')" id="btn-trade" class="screen-btn w-full p-6 bg-white rounded-2xl shadow-sm border border-gray-200 text-left hover:shadow-md transition group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Visual-First Trading</h4>
+                                <p class="text-sm text-gray-500">토스급 미니멀 UI & 매매</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button onclick="setPhoneScreen('viral')" id="btn-viral" class="screen-btn w-full p-6 bg-white rounded-2xl shadow-sm border border-gray-200 text-left hover:shadow-md transition group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Gamification</h4>
+                                <p class="text-sm text-gray-500">출석체크 & 랭킹전</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Phone Simulator -->
+                <div class="phone-frame w-[320px] h-[640px] bg-black rounded-[3rem] p-3 relative flex-shrink-0 border-4 border-gray-800">
+                    <div class="w-full h-full bg-gray-50 rounded-[2.5rem] overflow-hidden relative">
+                        <!-- Status Bar -->
+                        <div class="h-8 w-full bg-white flex justify-between items-center px-6 text-xs font-bold z-10 relative">
+                            <span>12:00</span>
+                            <div class="flex gap-1">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Content Area -->
+                        <div id="phone-content" class="h-full overflow-y-auto pb-20 no-scrollbar">
+                            <!-- Default: Home content rendered by JS -->
+                        </div>
+
+                        <!-- Bottom Nav -->
+                        <div class="absolute bottom-0 w-full h-16 bg-white border-t flex justify-around items-center pb-2 z-10">
+                            <div class="flex flex-col items-center text-blue-600"><i class="fas fa-home text-lg"></i><span class="text-[10px]">홈</span></div>
+                            <div class="flex flex-col items-center text-gray-400"><i class="fas fa-search text-lg"></i><span class="text-[10px]">발견</span></div>
+                            <div class="flex flex-col items-center text-gray-400"><i class="fas fa-chart-pie text-lg"></i><span class="text-[10px]">자산</span></div>
+                            <div class="flex flex-col items-center text-gray-400"><i class="fas fa-ellipsis-h text-lg"></i><span class="text-[10px]">전체</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Key Core Values -->
+        <section id="values" class="p-6 md:p-12 max-w-7xl mx-auto hidden fade-in">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">4대 핵심 차별화 기능</h2>
+                <p class="text-gray-600">KDX 유통 플랫폼만의 독보적인 가치를 제안합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 1. Scalable Trading -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">1</div>
+                        <h3 class="text-xl font-bold">Scalable Trading <span class="text-sm font-normal text-gray-500 block">초개인화 멀티 에셋 엔진</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i><span><strong>All-in-One 마켓:</strong> 부동산, 미술품, 음원 등 모든 기초자산 특성(배당/차익) 즉시 반영</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i><span><strong>직관적 정보 큐레이션:</strong> 복잡한 공시 정보를 시각화하여 정보 접근성 극대화</span></li>
+                    </ul>
+                </div>
+
+                <!-- 2. Edu-Fintech -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold">2</div>
+                        <h3 class="text-xl font-bold">Edu-Fintech <span class="text-sm font-normal text-gray-500 block">투자 시뮬레이션 솔루션</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i><span><strong>가상 투자 경험:</strong> "그때 투자했다면?" 비교 체험으로 심리적 장벽 해소</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i><span><strong>Dual-Track Conversion:</strong> 신규는 '매수'로, 기보유자는 '매도(Exit)'로 즉시 연결하여 유동성 확보</span></li>
+                    </ul>
+                </div>
+
+                <!-- 3. Gen-Z Interface -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">3</div>
+                        <h3 class="text-xl font-bold">Gen-Z Interface <span class="text-sm font-normal text-gray-500 block">토스급 직관성 구현</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span><strong>Design Modernization:</strong> 불필요한 정보는 숨기고(Hide) 핵심 숫자만 강조하는 미니멀리즘</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span><strong>Frictionless Experience:</strong> 한 손 조작과 매끄러운 마이크로 인터랙션</span></li>
+                    </ul>
+                </div>
+
+                <!-- 4. Viral & Retention -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center font-bold">4</div>
+                        <h3 class="text-xl font-bold">Viral & Retention <span class="text-sm font-normal text-gray-500 block">유동성 공급 팩</span></h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-600 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-yellow-500 mt-1"></i><span><strong>Daily Habit:</strong> '매일 출석체크'로 앱 접속 습관 형성 및 DAU 유지</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-yellow-500 mt-1"></i><span><strong>Growth Engine:</strong> '친구 초대 랭킹전'으로 마케팅 비용 없이 폭발적 모객</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Integrated Admin System -->
+        <section id="admin" class="p-6 md:p-12 max-w-7xl mx-auto hidden fade-in">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">Integrated Admin System</h2>
+                <p class="text-gray-600">발행사와 거래소를 위한 완벽한 관제 시스템을 제공합니다.</p>
+                
+                <!-- Toggle Switch -->
+                <div class="flex justify-center mt-6">
+                    <div class="bg-gray-200 p-1 rounded-full flex relative">
+                        <button onclick="switchAdmin('issuer')" id="btn-issuer" class="px-6 py-2 rounded-full font-bold text-sm transition-all bg-white shadow text-blue-600 z-10">Issuer Admin</button>
+                        <button onclick="switchAdmin('exchange')" id="btn-exchange" class="px-6 py-2 rounded-full font-bold text-sm transition-all text-gray-500 z-10">Exchange Admin</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-2xl p-4 shadow-2xl overflow-hidden">
+                <!-- Browser Header -->
+                <div class="bg-gray-800 rounded-t-lg p-2 flex gap-2 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                
+                <!-- Admin Content -->
+                <div id="admin-content" class="bg-gray-100 rounded min-h-[400px] p-6 text-gray-800">
+                    <!-- Default: Issuer Admin rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Expected Impact -->
+        <section id="impact" class="p-6 md:p-12 max-w-7xl mx-auto hidden fade-in">
+            <div class="mb-12">
+                <h2 class="text-3xl font-black text-gray-900 mb-6">기대 효과</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-blue-500">
+                        <div class="text-4xl font-black text-blue-600 mb-2">6개월</div>
+                        <h3 class="font-bold text-lg mb-2">Speed-to-Market</h3>
+                        <p class="text-sm text-gray-500">검증된 엔진으로 개발 리스크 없이<br>6개월 내 완벽 상용화</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-green-500">
+                        <div class="text-4xl font-black text-green-600 mb-2">ZERO</div>
+                        <h3 class="font-bold text-lg mb-2">Security Issues</h3>
+                        <p class="text-sm text-gray-500">금융위 샌드박스 무사고 운영<br>금융권 수준 보안성 충족</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border-t-4 border-purple-500">
+                        <div class="text-4xl font-black text-purple-600 mb-2">Design</div>
+                        <h3 class="font-bold text-lg mb-2">System Package</h3>
+                        <p class="text-sm text-gray-500">풀 패키지 디자인 시스템 제공으로<br>유지보수 비용 획기적 절감</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 Funble x KDX Consortium Proposal. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Navigation Logic
+        function navigate(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(el => el.classList.add('hidden'));
+            // Show target section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update Sidebar Active State
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active', 'bg-blue-50', 'text-blue-600', 'border-r-4', 'border-blue-600');
+                el.classList.add('text-gray-600');
+            });
+            const activeBtn = document.getElementById('nav-' + sectionId);
+            activeBtn.classList.add('active', 'bg-blue-50', 'text-blue-600', 'border-r-4', 'border-blue-600');
+            activeBtn.classList.remove('text-gray-600');
+
+            // Scroll to top
+            document.getElementById('main-content').scrollTop = 0;
+            
+            // Trigger chart update if necessary (simple re-render or animation check could go here)
+        }
+
+        // Mobile Nav Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        function mobileNav(sectionId) {
+            toggleMobileMenu();
+            navigate(sectionId);
+        }
+
+        // Phone Simulator Logic
+        function setPhoneScreen(screenName) {
+            const contentDiv = document.getElementById('phone-content');
+            const buttons = document.querySelectorAll('.screen-btn');
+            
+            // Update buttons
+            buttons.forEach(btn => btn.classList.remove('ring-2', 'ring-blue-500'));
+            document.getElementById('btn-' + screenName).classList.add('ring-2', 'ring-blue-500');
+
+            let html = '';
+
+            if (screenName === 'home') {
+                html = `
+                    <div class="p-4 pt-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold text-gray-800">내 자산</h2>
+                            <i class="fas fa-bell text-gray-400"></i>
+                        </div>
+                        <div class="bg-blue-600 rounded-2xl p-6 text-white mb-6 shadow-lg shadow-blue-200">
+                            <p class="text-sm opacity-80 mb-1">총 평가 금액</p>
+                            <h3 class="text-2xl font-bold">12,450,000원</h3>
+                            <div class="mt-4 flex gap-2">
+                                <span class="bg-blue-500 px-3 py-1 rounded-full text-xs">+15.2%</span>
+                                <span class="bg-blue-500 px-3 py-1 rounded-full text-xs">▲ 1,650,000</span>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-3">투자 마켓</h3>
+                        <div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar mb-2">
+                            <button class="px-4 py-2 bg-black text-white rounded-full text-sm font-bold whitespace-nowrap">전체</button>
+                            <button class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-bold whitespace-nowrap">부동산</button>
+                            <button class="px-4 py-2 bg-white border border-gray-200 text-gray-600 rounded-full text-sm font-bold whitespace-nowrap">미술품</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gray-200 rounded-lg bg-cover bg-center" style="background-image: url('https://via.placeholder.com/100x100?text=Building')"></div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-sm">강남 역삼 타워 1호</h4>
+                                    <p class="text-xs text-blue-500">배당 4.5% + 매각차익 기대</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-sm text-red-500">+12%</p>
+                                    <p class="text-xs text-gray-400">10,200원</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gray-200 rounded-lg bg-cover bg-center" style="background-image: url('https://via.placeholder.com/100x100?text=Art')"></div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-sm">앤디 워홀: Dollar</h4>
+                                    <p class="text-xs text-purple-500">아트 컬렉션</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-sm text-gray-800">0%</p>
+                                    <p class="text-xs text-gray-400">1,000원</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (screenName === 'sim') {
+                html = `
+                    <div class="p-4 pt-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-6">투자 시뮬레이션</h2>
+                        <div class="bg-white p-6 rounded-3xl border border-gray-100 mb-4 shadow-sm">
+                            <p class="text-sm text-gray-500 mb-2">1년 전, 100만원을<br><strong>강남 타워</strong>에 투자했다면?</p>
+                            <div class="h-32 flex items-end justify-center gap-4 mt-6">
+                                <div class="w-12 bg-gray-200 rounded-t-lg relative group" style="height: 40%">
+                                    <span class="absolute -top-6 left-0 w-full text-center text-xs text-gray-400">예금</span>
+                                </div>
+                                <div class="w-12 bg-blue-600 rounded-t-lg relative group" style="height: 90%">
+                                    <span class="absolute -top-6 left-0 w-full text-center text-xs font-bold text-blue-600">STO</span>
+                                    <div class="absolute top-2 w-full text-center text-white text-xs font-bold">+33%</div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t text-center">
+                                <p class="text-2xl font-black text-blue-600">1,330,000원</p>
+                                <p class="text-xs text-gray-400">예상 수령액 (배당 포함)</p>
+                            </div>
+                        </div>
+                        <button class="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-200 active:scale-95 transition">지금 바로 시작하기</button>
+                    </div>
+                `;
+            } else if (screenName === 'trade') {
+                html = `
+                    <div class="p-4 pt-6">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900">서초 마제스타</h2>
+                                <p class="text-sm text-gray-500">부동산 · 오피스</p>
+                            </div>
+                            <div class="text-right">
+                                <h3 class="text-2xl font-bold text-red-500">5,500원</h3>
+                                <p class="text-xs text-red-400">▲ 500 (10%)</p>
+                            </div>
+                        </div>
+                        <!-- Simple Chart Mockup -->
+                        <div class="w-full h-40 bg-white rounded-xl border border-gray-100 mb-6 relative overflow-hidden flex items-end px-2">
+                             <div class="absolute top-2 left-2 text-xs text-gray-300">1D Chart</div>
+                             <!-- Simulated Graph Lines using CSS borders is complex, using simple bars for visual -->
+                             <div class="flex items-end gap-1 w-full h-full justify-between opacity-50">
+                                <div class="w-1 bg-red-200 h-[20%]"></div>
+                                <div class="w-1 bg-red-300 h-[40%]"></div>
+                                <div class="w-1 bg-red-400 h-[35%]"></div>
+                                <div class="w-1 bg-red-500 h-[60%]"></div>
+                                <div class="w-1 bg-red-500 h-[80%]"></div>
+                                <div class="w-1 bg-red-600 h-[70%]"></div>
+                                <div class="w-1 bg-red-600 h-[90%]"></div>
+                             </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                <p class="text-xs text-gray-400">배당수익률</p>
+                                <p class="font-bold text-gray-800">4.5%</p>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg text-center">
+                                <p class="text-xs text-gray-400">매각차익</p>
+                                <p class="font-bold text-gray-800">기대중</p>
+                            </div>
+                        </div>
+
+                        <div class="fixed bottom-16 left-0 w-full p-4 bg-white border-t rounded-b-[2rem]">
+                            <div class="flex gap-2">
+                                <button class="flex-1 py-3 bg-red-50 text-red-500 rounded-xl font-bold">팔기</button>
+                                <button class="flex-1 py-3 bg-red-500 text-white rounded-xl font-bold">사기</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (screenName === 'viral') {
+                html = `
+                    <div class="bg-gradient-to-b from-blue-500 to-blue-600 min-h-full p-4 pt-10 text-white">
+                        <div class="text-center mb-8">
+                            <p class="text-blue-100 text-sm mb-1">매일매일 출석체크</p>
+                            <h2 class="text-3xl font-bold">오늘의 포인트<br>받아가세요!</h2>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-4 text-gray-800 shadow-lg mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="font-bold">2월 출석부</span>
+                                <span class="text-xs text-gray-400">누적 15일</span>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2 text-center text-sm">
+                                <div class="p-2">1</div>
+                                <div class="p-2 bg-blue-100 rounded-full text-blue-600 font-bold">2</div>
+                                <div class="p-2 bg-blue-100 rounded-full text-blue-600 font-bold">3</div>
+                                <div class="p-2 bg-blue-100 rounded-full text-blue-600 font-bold">4</div>
+                                <div class="p-2">5</div>
+                                <div class="p-2">6</div>
+                                <div class="p-2">7</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20">
+                            <h3 class="font-bold mb-3 flex items-center gap-2"><i class="fas fa-trophy text-yellow-300"></i> 친구 초대 랭킹</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-yellow-300 w-4">1</span>
+                                    <div class="w-8 h-8 rounded-full bg-white/20"></div>
+                                    <span class="flex-1 text-sm truncate">STO고수</span>
+                                    <span class="text-sm font-bold">152명</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-gray-300 w-4">2</span>
+                                    <div class="w-8 h-8 rounded-full bg-white/20"></div>
+                                    <span class="flex-1 text-sm truncate">김펀블</span>
+                                    <span class="text-sm font-bold">98명</span>
+                                </div>
+                            </div>
+                            <button class="w-full mt-4 py-2 bg-white text-blue-600 rounded-lg font-bold text-sm">초대하고 랭킹 도전</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            contentDiv.innerHTML = html;
+        }
+
+        // Admin System Switcher
+        function switchAdmin(mode) {
+            const container = document.getElementById('admin-content');
+            const btnIssuer = document.getElementById('btn-issuer');
+            const btnExchange = document.getElementById('btn-exchange');
+
+            if (mode === 'issuer') {
+                btnIssuer.className = "px-6 py-2 rounded-full font-bold text-sm transition-all bg-white shadow text-blue-600 z-10";
+                btnExchange.className = "px-6 py-2 rounded-full font-bold text-sm transition-all text-gray-500 z-10";
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="md:col-span-1 border-r border-gray-200 pr-4">
+                            <h4 class="text-sm font-bold text-gray-500 mb-4 uppercase">Partner Center</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="font-bold text-blue-600">상품 관리</li>
+                                <li class="text-gray-600">공시 업로드</li>
+                                <li class="text-gray-600">배당금 지급</li>
+                                <li class="text-gray-600">투자자 통계</li>
+                            </ul>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="text-xl font-bold mb-4">투자자 공시 등록</h3>
+                            <div class="bg-white p-6 rounded-xl border border-gray-200">
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1">관련 상품</label>
+                                        <select class="w-full border rounded p-2 text-sm"><option>강남 역삼 타워 1호</option></select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 mb-1">공시 유형</label>
+                                        <select class="w-full border rounded p-2 text-sm"><option>정기 배당</option></select>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-xs font-bold text-gray-500 mb-1">제목</label>
+                                    <input type="text" class="w-full border rounded p-2 text-sm" value="[배당] 2026년 2월 정기 배당금 지급 안내">
+                                </div>
+                                <div class="h-32 bg-gray-50 border rounded flex items-center justify-center text-gray-400 mb-4">
+                                    에디터 영역 (Editor)
+                                </div>
+                                <div class="flex justify-end gap-2">
+                                    <button class="px-4 py-2 text-sm text-gray-500">임시저장</button>
+                                    <button class="px-4 py-2 text-sm bg-blue-600 text-white rounded font-bold">발행하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                btnIssuer.className = "px-6 py-2 rounded-full font-bold text-sm transition-all text-gray-500 z-10";
+                btnExchange.className = "px-6 py-2 rounded-full font-bold text-sm transition-all bg-white shadow text-blue-600 z-10";
+                container.innerHTML = `
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">거래소 통합 모니터링 (Monitoring)</h3>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">● System Normal</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <p class="text-xs text-gray-500 mb-1">실시간 동시 접속</p>
+                            <p class="text-2xl font-black text-blue-600">12,450명</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <p class="text-xs text-gray-500 mb-1">금일 거래 대금</p>
+                            <p class="text-2xl font-black text-gray-800">45.2억 원</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <p class="text-xs text-gray-500 mb-1">이상 징후 (FDS)</p>
+                            <p class="text-2xl font-black text-green-600">0건</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-200 h-48 flex items-center justify-center text-gray-400">
+                        [실시간 트래픽/거래량 차트 영역]
+                    </div>
+                `;
+            }
+        }
+
+        // Charts Initialization
+        window.onload = function() {
+            setPhoneScreen('home'); // Init Phone
+            switchAdmin('issuer'); // Init Admin
+
+            // 1. Efficiency Chart (Bar)
+            const ctxEff = document.getElementById('efficiencyChart').getContext('2d');
+            new Chart(ctxEff, {
+                type: 'bar',
+                data: {
+                    labels: ['일반 구축', 'KDX 제안'],
+                    datasets: [{
+                        label: '구축 기간 (개월)',
+                        data: [18, 6],
+                        backgroundColor: ['#E5E7EB', '#2563EB'],
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+                }
+            });
+
+            // 2. Growth Chart (Line)
+            const ctxGrowth = document.getElementById('growthChart').getContext('2d');
+            new Chart(ctxGrowth, {
+                type: 'line',
+                data: {
+                    labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
+                    datasets: [{
+                        label: '예상 거래량 (성장 모델)',
+                        data: [100, 150, 300, 550, 900, 1500],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { display: false }, x: { grid: { display: false } } }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
