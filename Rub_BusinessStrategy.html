@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박미란 - Platform Business Strategy Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        /* Professional Blue/Teal gradient fitting PropTech/Trustay vibe */
+        .gradient-text { background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #bae6fd; }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        .delay-100 { animation-delay: 0.1s; } .delay-200 { animation-delay: 0.2s; } .delay-300 { animation-delay: 0.3s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .bg-grid { background-size: 40px 40px; background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px); }
+        .hidden-section { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .visible-section { display: block; opacity: 1; }
+        .bar-initial { transform: scaleY(0); transform-origin: bottom; transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bar-active { transform: scaleY(1) !important; }
+        .donut-chart { position: relative; border-radius: 50%; transition: opacity 1s ease-out; }
+        .donut-hole { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; background-color: white; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+        
+        /* Print Optimization */
+        @media print {
+            @page { size: A4 landscape; margin: 0.5cm; }
+            body { background-color: white !important; zoom: 0.75; -webkit-print-color-adjust: exact; }
+            #intro-section, #project-section { display: block !important; opacity: 1 !important; visibility: visible !important; height: auto !important; position: static !important; transform: none !important; }
+            #intro-section { height: 100vh !important; display: flex !important; flex-direction: column; justify-content: center; align-items: center; page-break-after: always; }
+            .project-block { page-break-before: always; page-break-inside: avoid; margin-top: 0 !important; padding-top: 1rem; min-height: 95vh; }
+            button, .no-print, header .back-btn { display: none !important; }
+            .bg-slate-900 { background-color: #0f172a !important; color: white !important; }
+            .text-white { color: white !important; }
+            .bar-initial { transform: scaleY(1) !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+
+    <div class="fixed inset-0 bg-grid opacity-50 -z-20 no-print"></div>
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none no-print">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sky-100/40 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-teal-100/30 rounded-full blur-[100px]"></div>
+    </div>
+
+    <!-- VIEW 1: INTRO SECTION -->
+    <div id="intro-section" class="flex flex-col justify-center items-center min-h-screen p-6 transition-opacity duration-500">
+        <main class="max-w-6xl w-full mx-auto">
+            <header class="text-center mb-16 fade-in-up">
+                <div class="inline-block px-4 py-1.5 mb-6 border border-slate-200 rounded-full bg-white/80 shadow-sm backdrop-blur-sm text-slate-500 text-sm font-semibold tracking-wide">
+                    BUSINESS STRATEGY PORTFOLIO
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-snug mb-6 text-slate-900">
+                    프롭테크 플랫폼의 스케일업과<br>
+                    신규 사업 모델을 설계하는<br class="md:hidden" />
+                    <span class="gradient-text">Business Strategy Leader</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-500 font-light">
+                    안녕하세요, <strong class="text-slate-900 font-bold border-b-2 border-slate-300">박미란</strong>입니다.
+                </p>
+                <br>
+                <p style="font-size: 1.1rem; color: #475569; font-weight: 500; margin-bottom: 20px;">
+                    "플랫폼 비즈니스 구조를 이해하고, B2B 제휴부터 시스템 효율화까지 완벽한 실행을 이끕니다."
+                </p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <!-- Card 1: B2B Deal -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-100 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-sky-50 rounded-lg text-sky-600"><i data-lucide="handshake" class="w-6 h-6"></i></div>
+                    <h3 class="text-sky-700 font-bold tracking-wider text-sm mb-3 uppercase">B2B Alliance</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">Deal <span class="text-lg font-normal text-slate-500">Making</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        토스(Toss) 등 대형 매체와의 <strong class="text-slate-900 bg-sky-50 px-1">전략적 제휴 및 협상</strong>을 이끌고 파트너 연계 캠페인 완판을 달성했습니다.
+                    </p>
+                </div>
+                <!-- Card 2: PropTech & Sales Ops -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-200 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-teal-50 rounded-lg text-teal-600"><i data-lucide="building" class="w-6 h-6"></i></div>
+                    <h3 class="text-teal-700 font-bold tracking-wider text-sm mb-3 uppercase">PropTech Biz</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">0 to 1 <span class="text-lg font-normal text-slate-500">Model</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        프롭테크 및 마켓플레이스의 <strong class="text-slate-900 bg-teal-50 px-1">초기 비즈니스 로직과 Sales Ops(매출구조)</strong>를 설계하여 가치를 창출합니다.
+                    </p>
+                </div>
+                <!-- Card 3: PMO & Organization -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-300 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-indigo-50 rounded-lg text-indigo-600"><i data-lucide="users" class="w-6 h-6"></i></div>
+                    <h3 class="text-indigo-700 font-bold tracking-wider text-sm mb-3 uppercase">Team Building & PMO</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">Agile <span class="text-lg font-normal text-slate-500">Scale-up</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        초기 조직 셋업부터 유관 부서(영업/개발) 협업을 주도하는 <strong class="text-slate-900 bg-indigo-50 px-1">전사 스크럼 리딩 역량</strong>을 갖췄습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-200 pt-10 fade-in-up delay-400">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-slate-400 font-bold text-xs tracking-[0.2em] uppercase">Core Experience</div>
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-10">
+                        <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-teal-500"></div><span class="text-slate-800 font-bold text-lg">펀블 <span class="text-slate-500 font-normal text-sm ml-1">프롭테크 사업 전략·제휴</span></span></div>
+                        <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-indigo-400"></div><span class="text-slate-600 font-medium text-lg">리을 <span class="text-slate-400 font-normal text-sm ml-1">운영 자동화 및 정산 셋업</span></span></div>
+                        <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-sky-500"></div><span class="text-slate-600 font-medium text-lg">티켓베이 <span class="text-slate-400 font-normal text-sm ml-1">플랫폼 0 to 1 및 Sales Ops</span></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center fade-in-up delay-400 no-print">
+                <button onclick="showProject()" class="group relative px-8 py-3.5 bg-slate-900 text-white font-bold rounded-full transition-all shadow-lg hover:bg-slate-800 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
+                    <span>포트폴리오 보기</span>
+                    <i data-lucide="arrow-right" class="inline-block w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- VIEW 2: PROJECT DETAIL SECTION -->
+    <div id="project-section" class="hidden-section min-h-screen p-6 pb-0">
+        <main class="max-w-5xl w-full mx-auto">
+            
+            <button onclick="showIntro()" class="mb-8 flex items-center text-slate-500 hover:text-slate-900 transition-colors no-print back-btn">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i><span class="font-medium text-sm">Back to Home</span>
+            </button>
+
+            <!-- ============================================== -->
+            <!-- CORE COMPETENCY -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="mb-12">
+                        <span class="text-sky-600 font-bold tracking-wider text-sm uppercase">Core Competency</span>
+                        <h2 class="text-3xl font-bold mt-2 text-slate-900 leading-relaxed">Platform Business Strategy & Execution</h2>
+                        <div class="w-20 h-1.5 bg-sky-500 mt-6 rounded-full"></div>
+                        <p class="mt-6 text-xl text-slate-600 leading-relaxed">"단순한 기획이 아닌, <b>플랫폼 생태계의 비즈니스 구조를 이해하고 트래픽을 실질적인 성과(매출/효율)</b>로 연결합니다."</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-teal-300 transition-colors">
+                            <div class="w-10 h-10 bg-teal-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="handshake" class="w-5 h-5 text-teal-600"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">B2B 영업 & 제휴 사업</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 대형 금융/IT 플랫폼(토스 등) 제휴 리딩</li>
+                                <li>• 상호 수익을 위한 비즈니스 조건 협상</li>
+                                <li>• 제휴 파트너 연계 프로모션 기획/완판</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors">
+                            <div class="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="trending-up" class="w-5 h-5 text-sky-600"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">신규 사업 모델 & Sales Ops</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 비용 부서의 Profit Center 전환 (Sales Ops)</li>
+                                <li>• 인앱 리워드 비즈니스 모델 기획/사업화</li>
+                                <li>• 파트너 정산 및 통합 어드민 자동화 설계</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="users" class="w-5 h-5 text-indigo-600"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">조직 셋업 & Agile PMO</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 초기 스타트업 운영/전략 조직 셋업 (팀 빌딩)</li>
+                                <li>• 영업·운영·개발 유관 부서 협업 스크럼 주재</li>
+                                <li>• 전사 KPI 수립 및 데이터(대시보드) 성과 검증</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 01: B2B Partnership & Deal Closing -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-teal-100 text-teal-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 01</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        B2B Strategic Alliance &<br>Deal Closing<br>
+                        <span class="text-teal-600">(전략적 파트너십 및 B2B 제휴)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "토스(Toss) 등 메가 트래픽 채널과의 협상을 주도하여 실제 비즈니스 제휴 및 연계 캠페인을 성사시켰습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-slate-100 text-slate-600 rounded-full mr-3 text-sm">1</span>가교 역할 및 조건 협상</h3>
+                        <p class="text-slate-600 leading-relaxed">프롭테크 기반 금융 상품(STO)을 대형 플랫폼에 연동시키기 위해 <strong>경영진의 네트워크를 실무 레벨로 구체화하는 가교 역할</strong>을 수행했습니다. 토스(Toss), 증권사(키움/SK) 등의 실무 부서와 구체적인 마케팅 조건, 연동 API 일정, 수익 분배 방안(RS) 등을 치열하게 협상했습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-slate-100 text-slate-600 rounded-full mr-3 text-sm">2</span>제휴 제안 (Pitch Deck) 수립</h3>
+                        <p class="text-slate-600 leading-relaxed">상대 B2B 플랫폼의 유저 타겟층에 맞춘 <strong>제안 논리(Pitch Deck)와 프로모션 메시징을 직접 구축</strong>했습니다. 복잡한 프롭테크/금융 구조를 파트너사가 자사 고객에게 매력적인 혜택으로 어필할 수 있도록 직관적인 영업 언어로 재해석하여 제휴 동력을 확보했습니다.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10"><i data-lucide="handshake" class="w-64 h-64"></i></div>
+                    <div class="relative z-10">
+                        <h4 class="text-lg font-bold text-teal-400 mb-6 border-b border-slate-700 pb-2">Business Impact</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <span class="block text-2xl font-black text-white mb-2">Deal Closed</span>
+                                <span class="text-sm text-slate-300">전략적 제휴 계약 최종 합의 및 런칭</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-black text-white mb-2">100% Sold-out</span>
+                                <span class="text-sm text-slate-300">파트너 연계 캠페인을 통한 공모 완판 달성</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-black text-white mb-2">Network Setup</span>
+                                <span class="text-sm text-slate-300">증권사(키움/SK) 등 외부 제휴망 연동</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 02: Platform Growth & Sales Ops -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-sky-100 text-sky-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 02</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Platform Growth &<br>Sales Ops Transition<br>
+                        <span class="text-sky-600">(플랫폼 활성화 및 매출 구조 개선)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "대규모 유저 베이스 환경에서 신규 프로모션을 발굴하고, Sales Ops를 통해 직접적인 매출을 창출했습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Growth & Reward (Funble) -->
+                    <div class="bg-sky-50 p-8 rounded-2xl border border-sky-200 shadow-sm h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-sky-900 mb-4 flex items-center text-lg"><i data-lucide="trending-up" class="w-5 h-5 mr-2"></i>[펀블] 인앱 마케팅 모델 사업화</h3>
+                            <p class="text-sm text-sky-800 leading-relaxed mb-4">
+                                프롭테크 플랫폼 내에서 유저 접속 빈도 극대화를 위한 자체 신규 프로모션 모델인 '리워드존(돈나무 등)'을 기획했습니다. 단순히 예산을 지출하는 이벤트가 아닌, <strong>데이터 시뮬레이션을 통해 획득 단가(CAC)를 1,200원으로 최적화</strong>하는 비즈니스 로직을 구축하여 전년 대비 DAU 483% 성장을 이끌었습니다.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Sales Ops (Ticketbay) -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-sky-800 mb-4 flex items-center text-lg"><i data-lucide="refresh-cw" class="w-5 h-5 mr-2"></i>[티켓베이] 비용 조직의 Profit Center 전환</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                마켓플레이스 운영 총괄 당시, 단순 비용 부서(Cost Center)로 인식되던 CS 조직의 인력 효율(CAPA)을 최적화했습니다. 확보된 상담원 유휴 시간을 활용하여 <strong>'이탈 고객 재거래 유도 아웃바운드 세일즈 캠페인' 영업 방안을 수립, 플랫폼 추가 매출을 직접 창출하는 '수익 창출 조직(Sales Ops)'으로 구조를 혁신</strong>했습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 03: NEW! Operations & System Automation -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 03</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Ops Architecture &<br>System Automation<br>
+                        <span class="text-emerald-600">(운영 프로세스 및 B2B 정산 시스템 자동화)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "파편화된 수기 업무를 100% 시스템으로 자동화하여, 리소스를 대폭 절감하고 파트너 정산 신뢰도를 구축했습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-red-100 text-red-600 rounded-full mr-3 text-sm">!</span>Problem</h3>
+                        <p class="text-slate-600 leading-relaxed">이커머스/마켓플레이스(잇다이아) 초기 구축 환경에서, 주문-발주-결제-정산에 이르는 B2B 거래 과정이 <strong>엑셀과 수기에 크게 의존</strong>하고 있었습니다. 이로 인해 파트너사(공급사) 정산 지연 및 오류가 발생하고, 운영 리소스가 과도하게 낭비되는 병목 현상이 심화되었습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full mr-3"><i data-lucide="check" class="w-4 h-4"></i></span>Solution</h3>
+                        <p class="text-slate-600 leading-relaxed">다수 판매자와의 수익 배분(Revenue Share) 구조 및 정산 정책을 표준화하고, 이를 <strong>통합 어드민(Back-office) 시스템 로직으로 기획 및 자동화</strong>했습니다. 공급망(SCM) 관리와 정산 워크플로우를 시스템에 이식하여 무결점의 인프라를 셋업했습니다.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10"><i data-lucide="server" class="w-64 h-64"></i></div>
+                    <div class="relative z-10">
+                        <h4 class="text-lg font-bold text-emerald-400 mb-6 border-b border-slate-700 pb-2">Business Impact</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <span class="block text-2xl font-black text-emerald-300 mb-2">50% Saving</span>
+                                <span class="text-sm text-slate-300">수기 업무 자동화로 운영팀 리소스 50% 이상 획기적 절감</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-black text-emerald-300 mb-2">Error 0%</span>
+                                <span class="text-sm text-slate-300">B2B 파트너(판매자) 정산 오류율 0% 달성 및 신뢰도 증대</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-black text-emerald-300 mb-2">SOP Established</span>
+                                <span class="text-sm text-slate-300">표준 운영 절차(SOP) 자산화 및 서비스 품질 상향 평준화</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 04: Data-Driven Business Pivot (FGI Donut Chart) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 04</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Data-Driven Business Pivot<br>
+                        <span class="text-orange-600">(데이터 기반 사업 전략 수립)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "대규모 유저 데이터를 분석하여 사업 확장의 명확한 전략적 방향성을 제시했습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Left: Analytics Visual -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">유저 설문 데이터 분석 (N=347)</h3>
+                        <div class="flex-1 flex flex-col md:flex-row items-center justify-center gap-8">
+                            <div class="relative w-48 h-48 shrink-0">
+                                <div class="donut-chart w-full h-full shadow-inner" style="background: conic-gradient(#ea580c 0% 45.5%, #fed7aa 45.5% 63.7%, #fdba74 63.7% 77.8%, #fb923c 77.8% 100%);"></div>
+                                <div class="donut-hole w-24 h-24 shadow-sm">
+                                    <span class="text-orange-600 font-bold text-2xl">45.5%</span><span class="text-slate-500 text-[10px] mt-1">압도적 1위</span>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center justify-between p-2 bg-orange-50 rounded-lg border border-orange-100">
+                                        <span class="font-bold text-slate-900">상품 다양성 부족</span><span class="font-bold text-orange-700">45.5%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2">
+                                        <span class="text-slate-600">사용성 불편</span><span class="text-slate-500">18.2%</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2">
+                                        <span class="text-slate-600">공모 상품 주기</span><span class="text-slate-500">14.1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Strategic Insight -->
+                    <div class="bg-orange-50 p-8 rounded-2xl border border-orange-100 shadow-sm h-full flex flex-col justify-center">
+                        <h3 class="font-bold text-orange-900 mb-4 flex items-center text-lg"><i data-lucide="lightbulb" class="w-5 h-5 mr-2"></i>Strategic Insight & Execution</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed mb-4">
+                            고객 이탈의 원인이 앱 사용성(UI)에 있는 것이 아니라, <strong>'투자할 만한 상품의 절대적인 부족(45.5%)'</strong>에 있음을 데이터로 입증했습니다.
+                        </p>
+                        <ul class="text-sm text-slate-700 space-y-3 list-disc list-outside ml-4">
+                            <li>전사 사업 로드맵의 최우선 순위를 '기능 개선'에서 <strong>'신규 상품 소싱 및 타사 상품 모아보기(Aggregation) 플랫폼 확장'</strong>으로 전면 피봇팅(Pivot).</li>
+                            <li>데이터 기반의 명확한 의사결정으로 불필요한 개발 리소스 낭비 방지.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 05: UX Funnel Innovation (3-to-1 Step) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 05</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">Funnel Optimization<br><span class="text-indigo-600">(플랫폼 전환율 최적화)</span></h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">"마케팅으로 획득한 트래픽이 튕겨나가지 않도록 진입 장벽을 완전히 제거했습니다."</div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-red-100 text-red-600 rounded-full mr-3 text-sm">!</span>Problem</h3>
+                        <p class="text-slate-600 leading-relaxed">프롭테크/금융 앱 특성상 <strong>'가입 $\rightarrow$ 계좌개설 $\rightarrow$ 연동'이라는 복잡한 3중 허들</strong>이 존재하여, 획득한 유저가 실제 거래 퍼널로 진입하기 전 절반 이상 이탈(Drop-off)하고 있었습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full mr-3"><i data-lucide="check" class="w-4 h-4"></i></span>Solution</h3>
+                        <p class="text-slate-600 leading-relaxed">온보딩 프로세스를 기획 단계부터 재분석하여 <strong class="text-slate-900 bg-indigo-50 px-1">복잡한 3단계를 필수 인증 1단계로 축소</strong>했습니다. 이를 통해 진입 속도를 단축하고 최종 <strong>가입 완료율(CVR)을 90% 이상 극적으로 상승</strong>시켰습니다.</p>
+                    </div>
+                </div>
+
+                <!-- Funnel Visuals -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden shadow-lg border border-slate-200 mb-8">
+                    <div class="bg-slate-800 p-8 text-white relative overflow-hidden">
+                        <h4 class="text-lg font-bold text-slate-300 mb-6 border-b border-slate-700 pb-2">기존 이탈 퍼널 (3-Step)</h4>
+                        <div class="flex flex-col space-y-4 relative z-10">
+                            <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-slate-600 flex items-center justify-center shrink-0"><i data-lucide="user-plus" class="w-5 h-5"></i></div><div class="text-sm font-bold text-slate-200">1. 가입 허들</div></div>
+                            <div class="ml-5 border-l border-dashed border-red-500/50 h-6 pl-4 flex items-center"><span class="text-red-400 text-xs">트래픽 1차 이탈</span></div>
+                            <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-slate-600 flex items-center justify-center shrink-0"><i data-lucide="landmark" class="w-5 h-5"></i></div><div class="text-sm font-bold text-slate-200">2. 계좌 개설 허들</div></div>
+                            <div class="ml-5 border-l border-dashed border-red-500/50 h-6 pl-4 flex items-center"><span class="text-red-400 text-xs">전환 실패</span></div>
+                            <div class="flex items-center gap-4 opacity-70"><div class="w-10 h-10 rounded-full bg-slate-600 flex items-center justify-center shrink-0"><i data-lucide="link" class="w-5 h-5"></i></div><div class="text-sm font-bold text-slate-200">3. 필수 연동 허들</div></div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-indigo-50 to-white p-8 relative overflow-hidden flex flex-col justify-center">
+                        <h4 class="text-lg font-bold text-indigo-900 mb-6 border-b border-indigo-200 pb-2">개선된 원클릭 퍼널 (1-Step)</h4>
+                        <div class="flex items-center w-full max-w-xs mx-auto relative mb-6">
+                            <div class="flex flex-col items-center z-10"><div class="w-14 h-14 rounded-full bg-indigo-500 flex items-center justify-center shadow-lg text-white"><i data-lucide="shield-check" class="w-6 h-6"></i></div><div class="mt-2 text-xs font-bold text-slate-900">통합 인증</div></div>
+                            <div class="flex-1 h-1 bg-indigo-200 mx-2 relative"><div class="absolute inset-0 bg-indigo-400"></div></div>
+                            <div class="flex flex-col items-center z-10"><div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg border-2 border-indigo-400 text-indigo-500"><i data-lucide="check-circle" class="w-6 h-6"></i></div><div class="mt-2 text-xs font-bold text-slate-900">즉시 완료</div></div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-sm font-bold rounded-full"><i data-lucide="zap" class="w-4 h-4 inline-block mr-1"></i>CVR 90% 상승 완료</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 06: PropTech Domain Expertise (Lifecycle) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 06</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        PropTech Business Lifecycle<br>
+                        <span class="text-emerald-700">(프롭테크 사업 생애주기 리딩)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "단순 IT 기획을 넘어, 부동산/금융 플랫폼 상품의 [기획 $\rightarrow$ 배당운영 $\rightarrow$ 매각] 전 과정을 총괄합니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative group hover:border-emerald-300 transition-colors">
+                        <div class="w-12 h-12 rounded-xl bg-white shadow-sm text-slate-600 border border-slate-200 flex items-center justify-center mb-6 text-xl font-bold">1</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3 text-emerald-700">Planning (기획/소싱)</h4>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc list-outside ml-4">
+                            <li>우량 부동산 물건 분석 및 소싱</li>
+                            <li>투자 매력도(USP) 발굴 및 공모</li>
+                            <li>고객 대상 랜딩/상세 페이지 기획</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative group hover:border-emerald-400 transition-colors">
+                        <div class="hidden md:block absolute top-1/2 -left-3 w-6 h-6 bg-slate-50 border-l border-b border-slate-200 transform rotate-45 z-10 group-hover:border-emerald-400"></div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6 text-xl font-bold">2</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3 text-emerald-800">Operation (배당/운영)</h4>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc list-outside ml-4">
+                            <li>정기 배당금 지급 프로세스 셋업</li>
+                            <li>이슈 발생 시 투자자 공시/알림</li>
+                            <li>안정적인 1:1 상대매매 시스템 운영</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative group hover:border-teal-500 transition-colors">
+                        <div class="hidden md:block absolute top-1/2 -left-3 w-6 h-6 bg-slate-50 border-l border-b border-slate-200 transform rotate-45 z-10 group-hover:border-teal-500"></div>
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mb-6 text-xl font-bold">3</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3 text-teal-800">Exit (매각/청산)</h4>
+                        <ul class="text-sm text-slate-600 space-y-2 list-disc list-outside ml-4">
+                            <li>매각/수익자 총회 의사결정 프로세스</li>
+                            <li>청산 시 수익 배분(RS) 구조 설계</li>
+                            <li>투자자 권리 보호 및 최종 커뮤니케이션</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Pivot Box -->
+                <div class="mt-8 bg-emerald-50 border border-emerald-200 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 shadow-sm">
+                    <div class="p-4 bg-white rounded-full text-emerald-600 shadow-sm shrink-0"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
+                    <div>
+                        <h4 class="text-lg font-bold text-emerald-900 mb-2">Regulatory System Pivot (규제 대응 피봇팅)</h4>
+                        <p class="text-sm text-slate-700 leading-relaxed">금융 당국의 토큰증권 규제 변화에 즉각 대응하여, 기존 호가창 방식의 거래를 <strong>'1:1 채팅 기반 상대매매' 시스템으로 전면 개편(Pivot)</strong>하는 프로젝트를 성공적으로 완수하여 사업 중단 리스크를 방어했습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 07: PMO & Organization Building -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 07</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Agile PMO &<br>Organization Building<br>
+                        <span class="text-purple-700">(초기 조직 셋업 및 애자일 리딩)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "초기 스케일업 환경에서 부서를 세팅하고, 영업·마케팅·개발 간의 완벽한 협업을 이끌어냅니다."
+                    </div>
+                </header>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm mb-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                        <!-- Step 1 -->
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-4 text-purple-700 shadow-inner">
+                                <i data-lucide="users" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2">1. 신규 조직 셋업 (팀 빌딩)</h4>
+                            <p class="text-sm text-slate-600">도급 조직을 인하우스로 내재화하고, 본부장으로서 채용, R&R 수립, OJT 교육 등 전략/운영 조직의 기반을 다졌습니다.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 mx-auto bg-sky-100 rounded-full flex items-center justify-center mb-4 text-sky-600 shadow-inner">
+                                <i data-lucide="bar-chart" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2">2. 사업 성과 KPI 트래킹</h4>
+                            <p class="text-sm text-slate-600">내부 대시보드 및 데이터 툴(GA4 등)을 활용해 핵심 사업 지표를 분석하고 경영진의 의사결정과 사업 방향 피봇팅을 지원했습니다.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 mx-auto bg-teal-100 rounded-full flex items-center justify-center mb-4 text-teal-600 shadow-inner">
+                                <i data-lucide="trello" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2">3. 애자일(Scrum) 리딩</h4>
+                            <p class="text-sm text-slate-600">영업·기획·개발 부서 간 상충하는 요구사항을 조율하고, 2주 단위 스크럼을 통해 사업 전략이 적시(On-time)에 시장에 배포되도록 총괄했습니다.</p>
+                        </div>
+                        <!-- Connecting Line -->
+                        <div class="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-slate-100 -z-10 border-t-2 border-dashed border-slate-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 08: Digital Media Insight (YouTube) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-slate-800 text-white text-xs font-bold uppercase tracking-wider rounded-md">Extra Capability</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Digital Media Insight &<br>Ad Monetization<br>
+                        <span class="text-slate-600">(디지털 미디어 광고 수익화 검증)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "디지털 미디어 환경에 대한 실무 감각을 잃지 않기 위해, 퇴사 후 최근 진행한 개인 프로젝트 성과입니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <!-- YouTube Owned Media -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 h-full flex flex-col justify-between shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-slate-800 mb-3 flex items-center"><i data-lucide="video" class="w-5 h-5 mr-2 text-red-500"></i>개인 미디어 채널 직접 운영</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                트렌드 시청자 니즈를 파악하여 유튜브 채널 기획부터 운영 전반을 총괄했습니다. 단기간에 <strong>구독자 10,000명을 돌파하고 유튜브 파트너 조건(광고 수익화)을 달성하여 매체 트래픽의 디지털 수익화 구조를 직접 검증</strong>했습니다.
+                            </p>
+                            <div class="flex items-center gap-2 mt-4">
+                                <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded font-bold border border-red-100">🔥 구독자 10,000+ 달성</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded font-bold border border-blue-100">디지털 광고 수익 모델 검증</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Data-Driven A/B Testing -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 h-full flex flex-col justify-between shadow-sm">
+                        <div>
+                            <h3 class="font-bold text-slate-800 mb-3 flex items-center"><i data-lucide="split" class="w-5 h-5 mr-2 text-indigo-500"></i>데이터 기반 A/B 테스트</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                감각에만 의존하지 않고 채널 애널리틱스 데이터를 분석하여 콘텐츠 성과를 지속적으로 개선했습니다.
+                            </p>
+                            <ul class="text-sm text-slate-500 mt-3 space-y-2 list-disc ml-4">
+                                <li>시각 소재(썸네일) 및 카피 <strong>A/B 테스트를 통한 클릭률(CTR) 극대화</strong></li>
+                                <li>시청자 이탈 구간(Retention) 데이터 분석을 통한 콘텐츠 완주율 개선</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- Footer: Career History -->
+            <div class="bg-slate-900 rounded-3xl p-10 md:p-14 text-slate-300 relative overflow-hidden mb-16 page-break">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-sky-900 rounded-full mix-blend-overlay filter blur-[64px] opacity-20 pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="briefcase" class="w-6 h-6 mr-3 text-sky-500"></i>Strategy & Platform Career</h3>
+                        <div class="space-y-8 border-l border-slate-700 ml-3 pl-8 relative">
+                            <!-- Career 1 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-teal-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">주식회사 펀블</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">프롭테크(STO) 비즈니스 전략, B2B 대형 제휴, 신규 활성화 모델 기획 및 조직 셋업(PMO)</p>
+                            </div>
+                            <!-- Career 2 (NEW) -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-emerald-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">주식회사 리을</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">플랫폼 어드민 자동화 설계, B2B 파트너 정산 구조(RS) 시스템화</p>
+                            </div>
+                            <!-- Career 3 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-sky-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">아이템베이 (티켓베이)</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">마켓플레이스 0 to 1 설계, Sales Ops(아웃바운드 세일즈) 기반 매출 구조 개선</p>
+                            </div>
+                            <!-- Career 4 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-indigo-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">개인 프로젝트 (유튜브 채널)</h4>
+                                <p class="text-slate-400 text-sm leading-relaxed">디지털 미디어 광고 수익화 검증 및 팬덤 확보 <span class="text-xs font-normal text-indigo-300 ml-1">(퇴사 후 최근)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="cpu" class="w-6 h-6 mr-3 text-sky-500"></i>Core Capabilities</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="pie-chart" class="w-6 h-6 text-sky-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Monetize</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="handshake" class="w-6 h-6 text-teal-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">B2B Deal</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="server" class="w-6 h-6 text-emerald-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">System</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="building" class="w-6 h-6 text-orange-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">PropTech</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="trello" class="w-6 h-6 text-indigo-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Agile PMO</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        function showProject() {
+            const intro = document.getElementById('intro-section');
+            const project = document.getElementById('project-section');
+            const bars = document.querySelectorAll('.chart-bar');
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+                project.style.display = 'block';
+                void project.offsetWidth;
+                project.style.opacity = '1';
+                setTimeout(() => { bars.forEach((bar) => { bar.classList.add('bar-active'); }); }, 300);
+                window.scrollTo(0, 0);
+                lucide.createIcons();
+            }, 500);
+        }
+        function showIntro() {
+            const intro = document.getElementById('intro-section');
+            const project = document.getElementById('project-section');
+            const bars = document.querySelectorAll('.chart-bar');
+            project.style.opacity = '0';
+            setTimeout(() => {
+                project.style.display = 'none';
+                bars.forEach((bar) => { bar.classList.remove('bar-active'); });
+                intro.style.display = 'flex';
+                void intro.offsetWidth;
+                intro.style.opacity = '1';
+                window.scrollTo(0, 0);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
