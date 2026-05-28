@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박미란 - Operations Strategy Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        /* Trust & Efficiency Vibe: Sky Blue & Emerald Green */
+        .gradient-text { background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #bae6fd; }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        .delay-100 { animation-delay: 0.1s; } .delay-200 { animation-delay: 0.2s; } .delay-300 { animation-delay: 0.3s; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .bg-grid { background-size: 40px 40px; background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px); }
+        .hidden-section { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .visible-section { display: block; opacity: 1; }
+        .bar-initial { transform: scaleY(0); transform-origin: bottom; transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bar-active { transform: scaleY(1) !important; }
+        
+        /* Print Optimization */
+        @media print {
+            @page { size: A4 landscape; margin: 0.5cm; }
+            body { background-color: white !important; zoom: 0.75; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            #intro-section, #project-section { display: block !important; opacity: 1 !important; visibility: visible !important; height: auto !important; position: static !important; transform: none !important; }
+            #intro-section { height: 100vh !important; display: flex !important; flex-direction: column; justify-content: center; align-items: center; page-break-after: always; }
+            .project-block { page-break-before: always; page-break-inside: avoid; margin-top: 0 !important; padding-top: 1rem; min-height: 95vh; }
+            button, .no-print, header .back-btn { display: none !important; }
+            .bg-slate-900 { background-color: #0f172a !important; color: white !important; }
+            .text-white { color: white !important; }
+            .bar-initial { transform: scaleY(1) !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+
+    <div class="fixed inset-0 bg-grid opacity-50 -z-20 no-print"></div>
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none no-print">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sky-100/40 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-100/30 rounded-full blur-[100px]"></div>
+    </div>
+
+    <!-- VIEW 1: INTRO SECTION -->
+    <div id="intro-section" class="flex flex-col justify-center items-center min-h-screen p-6 transition-opacity duration-500">
+        <main class="max-w-6xl w-full mx-auto">
+            <header class="text-center mb-16 fade-in-up">
+                <div class="inline-block px-4 py-1.5 mb-6 border border-slate-300 rounded-full bg-white/80 shadow-sm backdrop-blur-sm text-slate-600 text-sm font-bold tracking-wide">
+                    OPERATIONS & PRODUCT PORTFOLIO
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-snug mb-6 text-slate-900">
+                    운영의 병목을 구조화하여<br>
+                    시스템으로 자동화하는<br class="md:hidden" />
+                    <span class="gradient-text">Operations Architect</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-500 font-light">
+                    안녕하세요, <strong class="text-slate-900 font-bold border-b-2 border-slate-400">박미란</strong>입니다.
+                </p>
+                <br>
+                <p style="font-size: 1.1rem; color: #475569; font-weight: 500; margin-bottom: 20px;">
+                    "플랫폼의 고속 성장을 뒷받침하는 린(Lean)한 운영 인프라와 표준 체계를 설계합니다."
+                </p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <!-- Card 1: Process Automation -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-100 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-sky-50 rounded-lg text-sky-700"><i data-lucide="settings" class="w-6 h-6"></i></div>
+                    <h3 class="text-sky-700 font-bold tracking-wider text-sm mb-3 uppercase">Automation</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">System <span class="text-lg font-normal text-slate-500">Design</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        반복적인 수기/엑셀 업무의 비효율을 <strong class="text-slate-900 bg-sky-50 px-1">통합 어드민(Admin)으로 자동화</strong>하여 팀 운영 리소스를 50% 절감합니다.
+                    </p>
+                </div>
+                <!-- Card 2: QA & Governance -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-200 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-emerald-50 rounded-lg text-emerald-700"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                    <h3 class="text-emerald-700 font-bold tracking-wider text-sm mb-3 uppercase">Governance</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">Policy <span class="text-lg font-normal text-slate-500">Setup</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        마켓플레이스의 다자간 분쟁, 환불 등 <strong class="text-slate-900 bg-emerald-50 px-1">현장 리스크를 방어하는 위기 대응 매뉴얼(SOP)</strong>을 구축합니다.
+                    </p>
+                </div>
+                <!-- Card 3: VOC to Product -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover fade-in-up delay-300 relative group">
+                    <div class="absolute top-6 right-6 p-2 bg-indigo-50 rounded-lg text-indigo-700"><i data-lucide="bar-chart-2" class="w-6 h-6"></i></div>
+                    <h3 class="text-indigo-700 font-bold tracking-wider text-sm mb-3 uppercase">VOC to Product</h3>
+                    <div class="text-3xl font-bold text-slate-900 mb-3">Insight <span class="text-lg font-normal text-slate-500">Action</span></div>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        단순 응대를 넘어 운영 데이터를 분석하고, <strong class="text-slate-900 bg-indigo-50 px-1">기획/개발팀과 협업하여 근본적인 시스템 병목을 개선</strong>합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-200 pt-10 fade-in-up delay-400">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-slate-400 font-bold text-xs tracking-[0.2em] uppercase">Core Experience</div>
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-10">
+                        <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-slate-800 font-bold text-lg">펀블 <span class="text-slate-500 font-normal text-sm ml-1">프롭테크 운영 고도화 및 팀 리딩</span></span></div>
+                        <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-sky-500"></div><span class="text-slate-600 font-medium text-lg">티켓베이/리을 <span class="text-slate-400 font-normal text-sm ml-1">마켓플레이스 정책 수립 및 자동화</span></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center fade-in-up delay-400 no-print">
+                <button onclick="showProject()" class="group relative px-8 py-3.5 bg-slate-900 text-white font-bold rounded-full transition-all shadow-lg hover:bg-slate-800 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
+                    <span>운영 고도화 성과 확인하기</span>
+                    <i data-lucide="arrow-right" class="inline-block w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- VIEW 2: PROJECT DETAIL SECTION -->
+    <div id="project-section" class="hidden-section min-h-screen p-6 pb-0">
+        <main class="max-w-5xl w-full mx-auto">
+            
+            <button onclick="showIntro()" class="mb-8 flex items-center text-slate-500 hover:text-slate-900 transition-colors no-print back-btn">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i><span class="font-medium text-sm">Back to Home</span>
+            </button>
+
+            <!-- ============================================== -->
+            <!-- CORE COMPETENCY: EXPERT FRAMEWORK -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="mb-12">
+                        <span class="text-sky-700 font-bold tracking-wider text-sm uppercase">Core Competency</span>
+                        <h2 class="text-3xl font-bold mt-2 text-slate-900 leading-relaxed">Operations Architecture & Problem Solving</h2>
+                        <div class="w-20 h-1.5 bg-sky-500 mt-6 rounded-full"></div>
+                        <p class="mt-6 text-xl text-slate-600 leading-relaxed">"단순한 고객 상담(CS)을 넘어, <b>반복되는 문제를 구조적으로 해결하고 운영 시스템을 자동화</b>하는 역량을 갖췄습니다."</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-sky-300 transition-colors">
+                            <div class="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="settings" class="w-5 h-5 text-sky-700"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">프로세스 자동화</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 수기 주문/정산 어드민 시스템 설계</li>
+                                <li>• 비효율/반복 업무 제어 로직 셋업</li>
+                                <li>• 운영 조직 리소스 최적화 (50% 절감)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-colors">
+                            <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">운영 정책 & 거버넌스</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 서비스 이용약관 및 규정(SOP) 자산화</li>
+                                <li>• 예외 케이스 및 위기 대응 매뉴얼 수립</li>
+                                <li>• 상담 품질(QA) 가이드 및 SLA 지표 설계</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+                            <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center mb-4"><i data-lucide="trello" class="w-5 h-5 text-indigo-600"></i></div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-900">VOC 기반 프로덕트 개선</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• 운영 이슈 및 이탈 데이터 구조화</li>
+                                <li>• 개선 과제 도출 및 우선순위 설정</li>
+                                <li>• 기획/개발팀 협업 애자일(PMO) 리딩</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 01: 수작업 자동화 및 프로세스 체계 구축 (JD Match 1) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-sky-100 text-sky-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 01</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Process Automation &<br>System Efficiency<br>
+                        <span class="text-sky-600">(반복적 수작업 자동화 및 운영 체계 구축)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "엑셀과 수기에 의존하던 비효율적인 업무를 통합 어드민 시스템으로 재설계하여, 일관되고 빠른 운영 체계를 확립했습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-red-100 text-red-600 rounded-full mr-3 text-sm">!</span>Problem (운영 병목 현상)</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">[리을/잇다이아] 플랫폼 런칭 초기, 다수의 파트너사(공급자)와의 주문, 발주, 대금 정산에 이르는 전 과정이 <strong>엑셀 등 파편화된 수기 작업</strong>으로 진행되었습니다.</p>
+                        <p class="text-slate-600 leading-relaxed">이로 인해 정산 지연 및 휴먼 에러가 발생하고, 운영팀의 업무 로드가 한계치에 달하는 심각한 병목(Bottleneck) 현상이 나타났습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="flex items-center text-xl font-bold text-slate-900 mb-4"><span class="w-8 h-8 flex items-center justify-center bg-emerald-100 text-emerald-600 rounded-full mr-3"><i data-lucide="check" class="w-4 h-4"></i></span>Solution (시스템 구조화)</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">반복적으로 발생하는 수작업 업무 흐름을 파악하여 <strong>통합 어드민(Back-office)의 자동화 로직으로 기획 및 재설계</strong>했습니다.</p>
+                        <ul class="text-slate-600 space-y-2 list-disc list-outside ml-4">
+                            <li>파트너 전용 관리 페이지 및 자동 정산 로직 기획</li>
+                            <li><strong>팀 운영 리소스 50% 획기적 절감</strong> 및 업무 일관성 확보</li>
+                            <li>정산 오류 0% 달성을 통한 플랫폼 신뢰도 구축</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10"><i data-lucide="server" class="w-64 h-64"></i></div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <h4 class="text-lg font-bold text-sky-400 mb-2">Operational Impact</h4>
+                            <p class="text-sm text-slate-300">"운영팀이 더 빠르고 일관되게 일할 수 있는 확장 가능한 시스템 구조를 완성했습니다."</p>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="text-center">
+                                <span class="block text-3xl font-black text-sky-300 mb-1">50%↓</span>
+                                <span class="text-xs text-slate-400 uppercase tracking-wider">리소스 절감</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="block text-3xl font-black text-emerald-300 mb-1">0%</span>
+                                <span class="text-xs text-slate-400 uppercase tracking-wider">정산 오류율</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 02: 마켓플레이스 정책 및 리스크 관리 (JD Match 2) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 02</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        Marketplace Policy &<br>Risk Governance<br>
+                        <span class="text-emerald-700">(다자간 마켓플레이스 정책 수립 및 리스크 통제)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "공급자와 수요자가 얽힌 중개 플랫폼에서 발생할 수 있는 클레임과 예외 케이스를 선제적으로 통제하는 '운영의 표준(SOP)'을 설계했습니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-emerald-800 mb-4 flex items-center text-lg"><i data-lucide="shield" class="w-5 h-5 mr-2 text-emerald-600"></i>안전결제(에스크로) 및 분쟁 정책 설계</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                                국내 최대 티켓 중개 플랫폼 '티켓베이' 런칭 시, 판매자와 구매자 간의 신뢰를 담보하기 위해 <strong>에스크로 기반의 거래 대금 지급 및 환불/수수료 프로세스를 백지상태에서 기획</strong>했습니다. 다자간 거래 환경(C2C/B2C)에서 양측의 귀책 사유를 명확히 판단하는 서비스 이용약관 및 클레임 대응 기준을 수립했습니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-200 shadow-sm h-full flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-emerald-900 mb-4 flex items-center text-lg"><i data-lucide="alert-octagon" class="w-5 h-5 mr-2 text-emerald-700"></i>대형 이슈 위기 대응 매뉴얼 수립</h3>
+                            <p class="text-sm text-emerald-800 leading-relaxed mb-6">
+                                마켓플레이스 특성상 예고 없이 발생하는 예외 케이스(어뷰징, 공연 당일 취소 등 대규모 환불 사태)를 유형별로 데이터화했습니다. 이에 <strong>즉각 대응할 수 있는 위기 대응 매뉴얼(Contingency Plan)을 자산화하고 현장 에스컬레이션(Escalation) 룰을 정립</strong>하여 초동 대응 성공률 100%를 달성했습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 03: VOC 기반 운영 병목 구조화 및 프로덕트 협업 (JD Match 3) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 03</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        VOC to Product<br>Enhancement<br>
+                        <span class="text-indigo-700">(운영 이슈 구조화 및 프로덕트 개선 협업)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "고객의 불만을 단순 응대로 넘기지 않고, 데이터를 바탕으로 운영상의 병목을 정의하여 근본적인 시스템(Product) 개선을 이뤄냅니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <!-- Funnel Innovation -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">운영 데이터 기반 진입 장벽 제거</h3>
+                        <div class="flex-1 flex flex-col justify-center gap-4">
+                            <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-100">
+                                <span class="font-bold text-indigo-800 text-sm mb-1 block">1. 문제 정의 (Insight)</span>
+                                <p class="text-xs text-slate-600">앱 내 처리 시간, 이탈 구간 데이터 및 반복되는 VOC를 결합 분석하여, 고객의 가장 큰 불만이 '가입 → 계좌개설 → 연동'에 이르는 <strong>복잡한 3중 허들</strong>에 있음을 구조화했습니다.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-slate-800 text-sm mb-1 block">2. 프로덕트 협업 (Action)</span>
+                                <p class="text-xs text-slate-600">이를 단순 CS 응대 가이드 수정이 아닌 '근본적 기능 개선 과제'로 설정하고, <strong>기획/개발 조직과의 협업 리딩(PMO)</strong>을 통해 필수 인증 기반의 1단계 프로세스로 시스템을 개선했습니다.</p>
+                            </div>
+                            <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
+                                <span class="font-bold text-emerald-800 text-sm mb-1 block">3. 결과 (Result)</span>
+                                <p class="text-xs text-emerald-700">서비스 진입 속도 90% 개선 및 가입/인증 관련 <strong>반복 문의(컴플레인) 제로화</strong> 달성.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process Visualization -->
+                    <div class="bg-slate-900 p-8 rounded-2xl shadow-xl text-white relative overflow-hidden h-full flex flex-col justify-center">
+                        <div class="absolute top-0 right-0 p-6 opacity-10"><i data-lucide="git-merge" class="w-48 h-48 text-white"></i></div>
+                        <h3 class="text-xl font-bold mb-6 flex items-center relative z-10"><i data-lucide="trello" class="w-5 h-5 mr-2 text-indigo-400"></i>운영 중심의 애자일(Agile) 협업</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-6 relative z-10">
+                            현장에서 발생하는 운영 이슈를 개발팀이 명확히 이해할 수 있도록 구조화된 문서(요구사항 정의서)로 전달합니다. <strong>2주 단위 스크럼(Sprint)을 주재</strong>하여 개발 우선순위를 설정하고, 운영팀의 니즈가 실제 앱(App) 변화로 빠르게 배포되도록 커뮤니케이션을 조율합니다.
+                        </p>
+                        <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20 relative z-10 text-sm font-bold text-indigo-200">
+                            <span>운영 이슈 분석</span> <i data-lucide="arrow-right" class="w-4 h-4"></i> <span>과제 정의</span> <i data-lucide="arrow-right" class="w-4 h-4"></i> <span>프로덕트 개선</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- ============================================== -->
+            <!-- PROJECT 04: 대규모 CS 품질 관리 및 조직 리더십 (JD Match 4) -->
+            <!-- ============================================== -->
+            <div class="project-block page-break">
+                <header class="mb-12">
+                    <div class="inline-block px-3 py-1 mb-4 bg-sky-100 text-sky-800 text-xs font-bold uppercase tracking-wider rounded-md">Key Project 04</div>
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-loose">
+                        QA Governance &<br>Team Leadership<br>
+                        <span class="text-sky-700">(상담 품질 고도화 및 조직 문화 구축)</span>
+                    </h2>
+                    <div class="pl-6 border-l-4 border-slate-200 italic text-slate-600 text-lg md:text-xl">
+                        "운영의 주체인 '사람(상담사/팀원)'의 퍼포먼스를 높이기 위해 교육 체계와 조직 문화를 정립합니다."
+                    </div>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- QA -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm h-full flex flex-col justify-center">
+                        <h3 class="font-bold text-slate-900 mb-4 flex items-center text-lg"><i data-lucide="headset" class="w-6 h-6 mr-2 text-sky-600"></i>상담 품질(QA) 및 운영 지표 관리</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            대규모 트래픽을 처리하는 상담 센터(도급/인하우스)의 상담 품질을 높이기 위해 <strong>응대 기준, FAQ, 고객 안내 문구를 데이터 기반으로 고도화</strong>했습니다. 처리 시간, 클레임 유형 등 운영 지표(SLA)를 지속적으로 트래킹하여 일관된 서비스 퀄리티를 유지하는 뼈대를 세웠습니다.
+                        </p>
+                    </div>
+                    <!-- Leadership -->
+                    <div class="bg-sky-50 p-8 rounded-2xl border border-sky-200 shadow-sm h-full flex flex-col justify-center">
+                        <h3 class="font-bold text-sky-900 mb-4 flex items-center text-lg"><i data-lucide="heart-handshake" class="w-6 h-6 mr-2 text-sky-700"></i>조직 온보딩 및 팀 리딩</h3>
+                        <p class="text-sm text-sky-800 leading-relaxed">
+                            본부장/팀장으로서 신규 입사자 온보딩부터 스킬업까지 체계적인 교육(OJT) 커리큘럼을 세팅했습니다. 특히 신규 팀원의 정서적 적응을 돕는 <strong>'버디(Buddy) 제도'를 신설/운영</strong>하여, 운영 조직 내 이직률을 낮추고 팀원들이 유기적으로 협력하는 단단한 조직 문화를 구축했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-12"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div></div>
+
+            <!-- Footer: Career History -->
+            <div class="bg-slate-900 rounded-3xl p-10 md:p-14 text-slate-300 relative overflow-hidden mb-16 page-break">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-sky-900 rounded-full mix-blend-overlay filter blur-[64px] opacity-20 pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="briefcase" class="w-6 h-6 mr-3 text-sky-500"></i>Operations & Strategy Career</h3>
+                        <div class="space-y-8 border-l border-slate-700 ml-3 pl-8 relative">
+                            <!-- Career 1 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-emerald-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">주식회사 펀블</h4>
+                                <div class="text-xs text-emerald-400 mb-1">2022.10 - 2025.11 | 서비스운영본부 본부장</div>
+                                <p class="text-slate-400 text-sm leading-relaxed">프롭테크 서비스 운영 체계 고도화, 전사 PMO(프로덕트 협업 리딩), VOC 분석 기반 운영 병목 제거 및 조직 빌딩</p>
+                            </div>
+                            <!-- Career 2 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-sky-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">리을 / 핑크시슬리</h4>
+                                <div class="text-xs text-sky-400 mb-1">2019.05 - 2022.05 | 서비스운영 책임관리 팀장</div>
+                                <p class="text-slate-400 text-sm leading-relaxed">마켓플레이스 수기 주문/정산 업무 어드민 자동화 (리소스 50% 절감), 공급자/파트너 정산 규정 시스템화</p>
+                            </div>
+                            <!-- Career 3 -->
+                            <div class="relative">
+                                <span class="absolute -left-[39px] top-1.5 w-5 h-5 rounded-full bg-slate-500 border-4 border-slate-900"></span>
+                                <h4 class="text-lg font-bold text-white">아이템베이 (티켓베이)</h4>
+                                <div class="text-xs text-slate-400 mb-1">2006.05 - 2019.01 | 서비스운영관리 팀장</div>
+                                <p class="text-slate-400 text-sm leading-relaxed">대규모 트래픽 기반 다자간 거래 정책 및 안전결제 설계, 대형 이슈 위기 대응 매뉴얼 구축 및 SLA 품질 관리</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i data-lucide="cpu" class="w-6 h-6 mr-3 text-sky-500"></i>Core Capabilities</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="settings" class="w-6 h-6 text-sky-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Auto-Ops</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="shield-check" class="w-6 h-6 text-emerald-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Governance</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="bar-chart-2" class="w-6 h-6 text-indigo-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">VOC Data</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="users" class="w-6 h-6 text-blue-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Team Bldg</span></div>
+                                <div class="flex flex-col items-center p-2 bg-slate-800 rounded-lg w-16 h-16 justify-center"><i data-lucide="trello" class="w-6 h-6 text-orange-400 mb-1"></i><span class="text-[10px] text-slate-300 text-center">Agile PMO</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        function showProject() {
+            const intro = document.getElementById('intro-section');
+            const project = document.getElementById('project-section');
+            const bars = document.querySelectorAll('.chart-bar');
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+                project.style.display = 'block';
+                void project.offsetWidth;
+                project.style.opacity = '1';
+                setTimeout(() => { bars.forEach((bar) => { bar.classList.add('bar-active'); }); }, 300);
+                window.scrollTo(0, 0);
+                lucide.createIcons();
+            }, 500);
+        }
+        function showIntro() {
+            const intro = document.getElementById('intro-section');
+            const project = document.getElementById('project-section');
+            const bars = document.querySelectorAll('.chart-bar');
+            project.style.opacity = '0';
+            setTimeout(() => {
+                project.style.display = 'none';
+                bars.forEach((bar) => { bar.classList.remove('bar-active'); });
+                intro.style.display = 'flex';
+                void intro.offsetWidth;
+                intro.style.opacity = '1';
+                window.scrollTo(0, 0);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
