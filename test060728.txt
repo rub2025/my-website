@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문내역 조회 표준 와이어프레임</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-6 text-gray-800 border-b pb-4">주문내역 조회 표준 와이어프레임 (운영 가이드용)</h2>
+        
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">주문일시</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">주문번호</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">원주문번호</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">종목코드/명</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">유형</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">상태</th>
+                        <th class="px-4 py-3 text-right font-bold text-gray-700">주문수량</th>
+                        <th class="px-4 py-3 text-right font-bold text-gray-700">체결수량</th>
+                        <th class="px-4 py-3 text-right font-bold text-gray-700 text-red-600">미체결</th>
+                        <th class="px-4 py-3 text-right font-bold text-gray-700">단가</th>
+                        <th class="px-4 py-3 text-left font-bold text-gray-700">비고(이력추적)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <!-- Row 1: Partial Fill -->
+                    <tr class="hover:bg-blue-50">
+                        <td class="px-4 py-3 text-gray-600">2026-06-15 10:00:05</td>
+                        <td class="px-4 py-3 font-mono text-blue-600">ORD-001</td>
+                        <td class="px-4 py-3 font-mono text-gray-400">-</td>
+                        <td class="px-4 py-3 font-medium">A005930<br>(OO신탁 1호)</td>
+                        <td class="px-4 py-3">매수</td>
+                        <td class="px-4 py-3 text-orange-600 font-bold">부분체결</td>
+                        <td class="px-4 py-3 text-right">70</td>
+                        <td class="px-4 py-3 text-right">30</td>
+                        <td class="px-4 py-3 text-right font-bold text-red-600">40</td>
+                        <td class="px-4 py-3 text-right">70,000</td>
+                        <td class="px-4 py-3 text-gray-500 text-xs">최초 접수 후 30주 체결(미체결 40 남음)</td>
+                    </tr>
+                    <!-- Row 2: Correction -->
+                    <tr class="bg-yellow-50 hover:bg-yellow-100">
+                        <td class="px-4 py-3 text-gray-600">2026-06-15 10:05:20</td>
+                        <td class="px-4 py-3 font-mono text-blue-600">ORD-002</td>
+                        <td class="px-4 py-3 font-mono text-blue-600">ORD-001</td>
+                        <td class="px-4 py-3 font-medium">A005930<br>(OO신탁 1호)</td>
+                        <td class="px-4 py-3">매수</td>
+                        <td class="px-4 py-3 text-blue-600 font-bold">정정(미체결)</td>
+                        <td class="px-4 py-3 text-right">30</td>
+                        <td class="px-4 py-3 text-right">0</td>
+                        <td class="px-4 py-3 text-right font-bold text-red-600">30</td>
+                        <td class="px-4 py-3 text-right">70,000</td>
+                        <td class="px-4 py-3 text-blue-700 text-xs font-semibold">ORD-001 잔량 30주로 수량 정정</td>
+                    </tr>
+                    <!-- Row 3: Normal Sell -->
+                    <tr class="hover:bg-blue-50">
+                        <td class="px-4 py-3 text-gray-600">2026-06-15 11:30:12</td>
+                        <td class="px-4 py-3 font-mono text-blue-600">ORD-003</td>
+                        <td class="px-4 py-3 font-mono text-gray-400">-</td>
+                        <td class="px-4 py-3 font-medium">A000660<br>(OO신탁 2호)</td>
+                        <td class="px-4 py-3">매도</td>
+                        <td class="px-4 py-3 text-green-600 font-bold">체결완료</td>
+                        <td class="px-4 py-3 text-right">50</td>
+                        <td class="px-4 py-3 text-right">50</td>
+                        <td class="px-4 py-3 text-right font-bold text-gray-400">0</td>
+                        <td class="px-4 py-3 text-right">190,000</td>
+                        <td class="px-4 py-3 text-gray-500 text-xs">신규 매도 주문 전량 체결</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-6 text-sm text-gray-500 bg-gray-50 p-4 rounded border-l-4 border-blue-500">
+            <strong>운영 검수 체크리스트:</strong> 
+            <ul class="list-disc ml-5 mt-2 space-y-1">
+                <li><strong>정정 시 보존:</strong> 원주문(ORD-001)이 삭제되지 않고 상태만 변경되며 이력이 유지되는가?</li>
+                <li><strong>추적성:</strong> 정정주문(ORD-002)에 원주문번호(ORD-001)가 매핑되어 CS 추적이 가능한가?</li>
+                <li><strong>가독성:</strong> '미체결수량' 컬럼이 별도로 존재하여 잔량을 즉시 파악할 수 있는가?</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
