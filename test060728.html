@@ -127,13 +127,21 @@
 
                 <!-- Auto-Age Check Branch -->
                 <div class="absolute top-1/2 left-[280px] w-12 h-0.5 bg-gray-300 z-0 hidden lg:block"></div>
-                <div class="hidden lg:block absolute top-[-10px] left-[328px] flow-card legal-point bg-orange-50 w-[320px]">
+                <div class="hidden lg:block absolute top-[-30px] left-[328px] flow-card legal-point bg-orange-50 w-[380px]">
                     <div class="badge bg-orange-500">자동 검증 로직</div>
-                    <h3 class="font-bold text-orange-700 mb-1">고령투자자(만 65세) 자동 식별</h3>
-                    <p class="text-xs text-orange-900 mb-2">고객정보(생년월일) 기반으로 '연령' 문항 자동 체크</p>
-                    <div class="bg-white border border-orange-200 p-2 rounded text-xs text-orange-800 font-medium">
-                        🚨 만 65세 이상 도달 시:<br>
-                        "조력자(가족 등)의 도움을 받으시겠습니까?" 팝업 노출 (KYC 정보 수집용)
+                    <h3 class="font-bold text-orange-700 mb-1">고령투자자(만 65세) 식별 및 조력자 팝업</h3>
+                    <p class="text-xs text-orange-900 mb-2">고객정보(생년월일) 기반으로 "가족 등 조력자의 도움을 받으시겠습니까?" 팝업 의무 노출</p>
+                    
+                    <div class="bg-white border border-orange-200 p-2 rounded text-xs text-gray-800 flex flex-col space-y-2 mt-2">
+                        <div class="flex items-start">
+                            <span class="font-bold text-red-600 mr-2">[도움 거절 시]</span>
+                            <span>"혼자 진행" 선택 로그 DB 적재 후 Step 3 정상 진입 (민원 방어용)</span>
+                        </div>
+                        <div class="border-t border-orange-100 my-1"></div>
+                        <div class="flex items-start">
+                            <span class="font-bold text-blue-600 mr-2">[도움 요청 시]</span>
+                            <span>비대면(MTS) 특성상 <b>"[v] 현재 조력자와 동석하여 함께 진행 중임을 확인합니다"</b> 체크박스 추가 노출 후 Step 3 진입 허용</span>
+                        </div>
                     </div>
                 </div>
             </div>
