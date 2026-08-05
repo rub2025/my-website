@@ -3,114 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>부적합확인서 법무검토용 UI</title>
+    <title>노션 주간업무보고 구조도</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; padding: 20px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #f7f9fc; }
+        .notion-font { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
         
-        .mobile-frame {
-            width: 375px; height: 750px; background: white; 
-            border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-            border: 8px solid #1f2937;
+        .arrow-down {
+            width: 0; 
+            height: 0; 
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #cbd5e1;
+            margin: 10px auto;
         }
-        .header { padding: 16px; font-weight: 700; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center;}
-        
-        .question-marker {
-            position: absolute; right: -25px; top: 50%; transform: translateY(-50%);
-            background: #ef4444; color: white; width: 24px; height: 24px; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 12px; cursor: help;
+
+        .view-tab {
+            border-bottom: 2px solid transparent;
         }
-        .q-badge { background: #fee2e2; color: #ef4444; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; margin-bottom: 4px; display: inline-block;}
+        .view-tab.active {
+            border-bottom: 2px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
     </style>
 </head>
-<body>
+<body class="p-8 text-gray-800 notion-font">
 
-    <div class="flex flex-col items-center">
-        <h3 class="mb-4 font-bold text-gray-700">[화면 A] 최초 매수 시 : 부적합확인서 UI</h3>
-        <div class="mobile-frame">
-            <div class="header">부적합 상품 거래 확인</div>
-            
-            <div class="p-5 overflow-y-auto flex-1">
-                <h2 class="text-xl font-bold text-gray-900 mb-2 leading-tight">고객님의 투자성향보다<br><span class="text-red-500">위험등급이 높은 상품</span>입니다.</h2>
-                
-                <!-- 질의 5번 영역 -->
-                <div class="mt-5 p-4 pr-16 bg-gray-50 rounded-lg border relative shadow-sm">
-                    <div class="q-badge">질의 5 대상</div>
-                    <div class="flex justify-between text-sm mb-2">
-                        <span class="text-gray-500">나의 투자 성향</span><span class="font-bold">안정추구형</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-gray-500">본 상품 위험도</span><span class="font-bold text-red-500">초고위험</span>
-                    </div>
-                    <!-- 법무팀 코멘트 유도용 핀 마커 -->
-                    <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-600 text-base font-black bg-white border-2 border-red-200 px-2 py-1 rounded shadow-md z-10">Q5 📌</div>
-                </div>
-
-                <div class="mt-6">
-                    <h3 class="text-sm font-bold mb-4">필수 확인 사항</h3>
-                    
-                    <!-- 질의 1, 2번 영역 -->
-                    <div class="flex items-start mb-5 relative p-3 pr-20 border-2 border-dashed border-red-300 rounded bg-red-50">
-                        <div class="q-badge absolute -top-3 left-2 bg-red-100 border border-red-200">질의 1, 2 대상 (유통시장)</div>
-                        <input type="checkbox" class="mt-1 mr-2 flex-shrink-0">
-                        <div class="text-sm">
-                            <span class="font-bold block text-gray-900">[필수] KDX 유통 상품 투자설명서 확인</span>
-                            <p class="text-xs text-gray-500 mt-1 leading-tight">발행사가 작성한 투자설명서를 확인하였습니까?</p>
-                        </div>
-                        <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-red-600 text-base font-black bg-white border-2 border-red-200 px-2 py-1 rounded shadow-md z-10">Q1,2 📌</div>
-                    </div>
-
-                    <!-- 질의 3번 영역 -->
-                    <div class="flex items-start mb-4 relative p-3 pr-16 border-2 border-dashed border-blue-300 rounded bg-blue-50 mt-6">
-                        <div class="q-badge absolute -top-3 left-2 bg-blue-100 text-blue-600 border border-blue-200">질의 3 대상 (만 65세 이상)</div>
-                        <input type="checkbox" class="mt-1 mr-2 flex-shrink-0">
-                        <div class="text-sm">
-                            <span class="font-bold block text-gray-900">[필수] 고령투자자 유의사항 확인</span>
-                            <p class="text-xs text-gray-500 mt-1 leading-tight">본 상품은 원금 손실 위험이 크며... (단순 체크로 갈음 가능한지? 조력자 예/아니오 뎁스가 필요한지?)</p>
-                        </div>
-                        <div class="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 text-base font-black bg-white border-2 border-blue-200 px-2 py-1 rounded shadow-md z-10">Q3 📌</div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="p-4 border-t">
-                <button class="w-full bg-gray-300 text-white font-bold py-3 rounded-lg">전자서명 후 매수</button>
-            </div>
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+        
+        <!-- Header -->
+        <div class="bg-gray-50 px-8 py-6 border-b border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-blue-500"></i>
+                플랫폼사업부 주간업무일지 최적화 구조
+            </h1>
+            <p class="text-gray-500 mt-2 text-sm">팀원 개별 작성 ➔ 부서장 자동 취합 ➔ 연말 개인 실적 추출을 위한 뷰(View) 분리 가이드</p>
         </div>
-    </div>
 
-    <div class="flex flex-col items-center">
-        <h3 class="mb-4 font-bold text-gray-700">[화면 B] 2회차 이상 추가 매수 시 : 경고 팝업</h3>
-        <div class="mobile-frame bg-gray-800 bg-opacity-50 justify-center p-6">
+        <div class="p-8">
             
-            <div class="bg-white rounded-xl p-5 relative border-2 border-dashed border-green-400">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">
-                    질의 4 대상 (매번 띄워야 하는가?)
-                </div>
-                
-                <div class="text-center mt-3">
-                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span class="text-red-500 text-2xl font-bold">!</span>
-                    </div>
-                    <h2 class="text-lg font-bold text-gray-900 mb-2">투자 위험 안내</h2>
-                    <p class="text-sm text-gray-600 mb-6">
-                        고객님의 성향보다 위험등급이 높은 상품입니다.<br>원금 손실 위험을 인지하시고<br>계속 진행하시겠습니까?
-                    </p>
+            <!-- Step 1: 데이터 입력 구조 -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-indigo-700">
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Step 1</span>
+                    기본 데이터 입력 방식 (Master Data)
+                </h2>
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 relative">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg">가장 중요한 핵심!</div>
+                    <p class="mb-4 text-gray-700 font-medium">✔️ 1개의 셀에 몰아 쓰지 않고, <strong>팀원 각자가 매주 새로운 행(Row)을 추가</strong>합니다.</p>
                     
-                    <div class="flex gap-2">
-                        <button class="flex-1 border border-gray-300 text-gray-600 py-2.5 rounded-lg font-medium">취소</button>
-                        <button class="flex-1 bg-blue-600 text-white py-2.5 rounded-lg font-medium">매수 계속</button>
+                    <div class="overflow-x-auto bg-white rounded shadow-sm border border-gray-200">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs text-gray-500 bg-gray-50 border-b border-gray-200">
+                                <tr>
+                                    <th class="px-4 py-3"><i class="fa-regular fa-calendar mr-1"></i> 주차구분 (Select)</th>
+                                    <th class="px-4 py-3"><i class="fa-solid fa-align-left mr-1"></i> 지난주 한 일 (Text)</th>
+                                    <th class="px-4 py-3"><i class="fa-solid fa-align-left mr-1"></i> 이번주 할 일 (Text)</th>
+                                    <th class="px-4 py-3"><i class="fa-regular fa-user mr-1"></i> 작성자 (Person)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100">
+                                    <td class="px-4 py-3"><span class="bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs">8월 1주차</span></td>
+                                    <td class="px-4 py-3 text-gray-600">사업계획 초안 작성...</td>
+                                    <td class="px-4 py-3 text-gray-600">KPI 지표 확정...</td>
+                                    <td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-5 h-5 rounded-full bg-indigo-500 text-white flex items-center justify-center text-[10px]">A</div> 홍길동 (팀원)</div></td>
+                                </tr>
+                                <tr class="border-b border-gray-100">
+                                    <td class="px-4 py-3"><span class="bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs">8월 1주차</span></td>
+                                    <td class="px-4 py-3 text-gray-600">플랫폼 UI 기획...</td>
+                                    <td class="px-4 py-3 text-gray-600">디자인팀 리뷰...</td>
+                                    <td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px]">B</div> 김철수 (팀원)</div></td>
+                                </tr>
+                                <tr class="bg-gray-50 border-b border-gray-200">
+                                    <td class="px-4 py-3"><span class="bg-orange-100 text-orange-800 px-2 py-0.5 rounded text-xs">8월 2주차</span></td>
+                                    <td class="px-4 py-3 text-gray-600">KPI 지표 확정 완료...</td>
+                                    <td class="px-4 py-3 text-gray-600">사업계획 수정본 보고...</td>
+                                    <td class="px-4 py-3"><div class="flex items-center gap-2"><div class="w-5 h-5 rounded-full bg-indigo-500 text-white flex items-center justify-center text-[10px]">A</div> 홍길동 (팀원)</div></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div class="text-white text-sm mt-6 text-center bg-black bg-opacity-70 p-3 rounded">
-                <p class="font-bold text-green-400 mb-1">Q4 핵심 질의</p>
-                "최초 1회에 [화면 A]를 거쳤다면,<br>추가 매수 시마다 이 [화면 B] 팝업을<br>반드시 띄워야 하는 법적 강제성이 있는가?"
+            <div class="arrow-down"></div>
+
+            <!-- Step 2: 뷰 분리 -->
+            <div>
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-indigo-700">
+                    <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Step 2</span>
+                    목적에 맞게 상단 탭 (View) 분리하기
+                </h2>
+                
+                <p class="text-gray-600 mb-6">하나의 원본 데이터를 노션의 상단 탭을 추가하여 <strong>세 가지 모습</strong>으로 바꿔서 봅니다.</p>
+
+                <!-- 탭 UI 시뮬레이션 -->
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+                    
+                    <!-- 노션 상단 탭 영역 -->
+                    <div class="flex border-b border-gray-200 px-4 bg-gray-50 rounded-t-lg text-sm text-gray-600">
+                        <div class="px-4 py-3 view-tab cursor-pointer hover:bg-gray-100"><i class="fa-solid fa-table list"></i> 전체 보기</div>
+                        <div class="px-4 py-3 view-tab active cursor-pointer"><i class="fa-solid fa-layer-group"></i> 👔 부서장 취합 (주차별 그룹화)</div>
+                        <div class="px-4 py-3 view-tab cursor-pointer hover:bg-gray-100"><i class="fa-solid fa-user"></i> 📝 내 업무만 보기 (작성자 필터)</div>
+                    </div>
+
+                    <!-- 뷰 설명 컨테이너 -->
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- 뷰 1: 부서장 취합용 -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
+                            <h3 class="font-bold text-lg mb-2 text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-sitemap text-slate-500"></i> 부서장 취합용 뷰
+                            </h3>
+                            <p class="text-sm text-slate-600 mb-4 h-10">대표님 보고를 위해 이번 주 업무만 묶어서 보는 화면입니다.</p>
+                            
+                            <div class="bg-white p-3 rounded border border-slate-200 mb-4 text-sm font-mono text-slate-700">
+                                <strong>설정 방법:</strong><br>
+                                1. 필터(Filter): '주차구분' = '8월 1주차'<br>
+                                2. 그룹화(Group): '주차구분' 기준
+                            </div>
+
+                            <!-- 노션 그룹화 시각화 -->
+                            <div class="border-l-4 border-slate-400 pl-3">
+                                <div class="font-bold text-slate-700 mb-2 flex items-center gap-2 cursor-pointer hover:bg-slate-100 p-1 rounded">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i> 8월 1주차 <span class="text-slate-400 text-xs font-normal">2</span>
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-2 mb-2 text-xs shadow-sm">
+                                    <span class="font-bold text-indigo-700">[홍길동]</span> 사업계획 초안 작성, KPI 지표 확정...
+                                </div>
+                                <div class="bg-white border border-slate-200 rounded p-2 text-xs shadow-sm">
+                                    <span class="font-bold text-emerald-700">[김철수]</span> 플랫폼 UI 기획, 디자인팀 리뷰...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 뷰 2: 개인 실적용 -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-5">
+                            <h3 class="font-bold text-lg mb-2 text-blue-800 flex items-center gap-2">
+                                <i class="fa-solid fa-list-check text-blue-500"></i> 팀원 작성 / 연말 실적용 뷰
+                            </h3>
+                            <p class="text-sm text-blue-600 mb-4 h-10">각자가 업무를 입력하거나, 연말에 1년 치 본인 실적만 뽑아보는 화면입니다.</p>
+                            
+                            <div class="bg-white p-3 rounded border border-blue-200 mb-4 text-sm font-mono text-blue-700">
+                                <strong>설정 방법:</strong><br>
+                                1. 필터(Filter): '작성자' = <strong>'나(Me)'</strong><br>
+                                <span class="text-xs text-gray-500">* 이렇게 설정하면 로그인한 사람 본인의 글만 보입니다.</span>
+                            </div>
+
+                            <!-- 노션 필터 시각화 -->
+                            <div class="bg-white border border-blue-200 rounded p-3 text-xs shadow-sm">
+                                <div class="flex justify-between border-b border-gray-100 pb-2 mb-2 text-gray-500 font-semibold">
+                                    <span>주차구분</span>
+                                    <span>이번주 할 일</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="bg-red-100 text-red-800 px-2 py-0.5 rounded">8월 1주차</span>
+                                    <span class="text-gray-700">KPI 지표 확정</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-0.5 rounded">8월 2주차</span>
+                                    <span class="text-gray-700">사업계획 수정본 보고</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded">8월 3주차</span>
+                                    <span class="text-gray-700">실적 예상 분석</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 결론 요약 -->
+            <div class="mt-8 bg-emerald-50 border border-emerald-200 rounded-lg p-6 flex gap-4 items-start">
+                <i class="fa-solid fa-lightbulb text-emerald-500 text-2xl mt-1"></i>
+                <div>
+                    <h4 class="font-bold text-emerald-800 mb-1">결론</h4>
+                    <p class="text-emerald-700 text-sm leading-relaxed">
+                        첨부하신 이미지처럼 데이터베이스 뼈대(속성)는 아주 잘 만들어져 있습니다.<br>
+                        이제 <strong>"1주차에 1개의 페이지"를 만들어서 상세 내용에 각자 적는 방식이 아니라,</strong><br>
+                        데이터베이스 원본에 <strong>"홍길동 행 추가", "김철수 행 추가" 방식으로 각자 줄(Row)을 추가하여 작성</strong>하도록 안내해 주세요.<br>
+                        그리고 상단에 부서장님을 위한 <strong>'그룹화 뷰'</strong>와 팀원을 위한 <strong>'작성자 필터 뷰'</strong> 탭만 만들어 주시면 모든 목적이 달성됩니다.
+                    </p>
+                </div>
             </div>
 
         </div>
@@ -118,3 +197,13 @@
 
 </body>
 </html>
+```eof
+
+요청하신 노션 구조도를 웹 페이지(HTML/Tailwind CSS) 형태로 생성해 드렸습니다. 오른쪽 화면에서 시각화된 가이드를 바로 확인하실 수 있습니다.
+
+**핵심 요약:**
+이미 만들어두신 데이터베이스 구조가 훌륭하므로, 표 안에 내용(상세 페이지)을 길게 풀어쓰는 방식보다는 **팀원 한 명당 한 줄(행, Row)씩 추가해서 작성하는 방식**을 추천합니다.
+
+그 후, 노션 데이터베이스 상단의 탭(View) 기능을 활용하여 위 구조도처럼 **'부서장 취합용(주차별 그룹화)'**과 **'팀원용(작성자 필터)'**으로 보기만 다르게 설정해 주시면 됩니다.
+
+구조도를 보시고 노션에서 뷰를 추가하거나 그룹화를 설정하는 구체적인 클릭 위치가 궁금하시다면 편하게 말씀해 주세요!
