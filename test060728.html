@@ -3,108 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDX 투자성향 진단 결과 UI</title>
+    <title>KDX 콜센터 위탁운영 RFP</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #f1f5f9; display: flex; justify-content: center; padding: 40px 20px; }
-        
-        .mobile-frame {
-            width: 375px; height: 812px; background: white; 
-            border-radius: 36px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-            border: 10px solid #1e293b;
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f1f5f9;
         }
-
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .slide-enter {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar for content areas */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
 
-    <div>
-        <div class="mb-4 text-center">
-            <h3 class="font-bold text-blue-700 text-lg">투자성향 진단 결과 화면 (법무 수정 반영)</h3>
-            <p class="text-xs text-slate-500">법무팀 요구사항: '적합 상품 추천/안내' 영역 전면 삭제</p>
+    <div class="w-full max-w-5xl mx-auto flex flex-col gap-4">
+        
+        <!-- Header / Toolbar -->
+        <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                    K
+                </div>
+                <h1 class="font-bold text-slate-800 text-lg">KDX 콜센터 위탁운영 제안요청서(RFP)</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full" id="slide-indicator">1 / 8</span>
+                <div class="flex gap-2">
+                    <button id="prev-btn" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-btn" class="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="mobile-frame">
-            <!-- Header -->
-            <div class="h-14 flex items-center justify-between px-5 border-b border-slate-100 bg-white sticky top-0 z-10">
-                <button class="text-slate-400 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <span class="font-bold text-slate-800">투자성향 진단 결과</span>
-                <div class="w-6"></div> <!-- Spacer -->
-            </div>
-
-            <!-- Content -->
-            <div class="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col bg-slate-50">
+        <!-- Slide Area (16:9 Aspect Ratio Container) -->
+        <div class="relative w-full aspect-video bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200" id="slide-container">
+            
+            <!-- Slide 1: Cover -->
+            <div class="absolute inset-0 w-full h-full bg-slate-900 text-white flex flex-col slide-item" id="slide-1">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-10 -mt-10"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-20 -mb-20"></div>
                 
-                <div class="text-center mb-6 pt-4">
-                    <h2 class="text-lg font-bold text-slate-700 mb-1">고객님의 투자 성향은</h2>
-                    <!-- 결과 강조 (예시: 안정추구형) -->
-                    <div class="inline-block px-6 py-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-200 mt-2 mb-3">
-                        <span class="text-2xl font-extrabold text-white tracking-tight">안정추구형 (4등급)</span>
+                <div class="flex-1 flex flex-col items-center justify-center text-center p-12 z-10">
+                    <div class="mb-8 w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
+                        <span class="text-blue-700 text-3xl font-black tracking-tighter">KDX</span>
                     </div>
-                    <p class="text-[13px] text-slate-500 mt-2">
-                        진단일: 2026.08.11 <span class="mx-2">|</span> 만료일: 2027.08.10
+                    <span class="text-blue-400 font-semibold tracking-wider text-sm mb-4">REQUEST FOR PROPOSAL</span>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        KDX 고객센터 위탁 운영(BPO)<br/>제안요청서
+                    </h2>
+                    <p class="text-slate-300 text-lg max-w-2xl font-light mb-12">
+                        고품질 고객경험 제공 및 체계적인 콜센터 운영을 위한 전문 파트너 선정
                     </p>
-                </div>
-
-                <!-- Data Summary -->
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-6">
-                    <h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> 분석 데이터 요약
-                    </h3>
-                    
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
-                            <span class="text-xs text-slate-500">투자 목적</span>
-                            <span class="text-xs font-bold text-slate-700">예금보다 높은 수익 추구</span>
+                    <div class="flex gap-8 text-sm text-slate-400 font-medium">
+                        <div class="flex flex-col items-center gap-1">
+                            <i class="far fa-calendar-alt text-lg"></i>
+                            <span>작성일자: 2026. 08</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
-                            <span class="text-xs text-slate-500">감내 가능 손실</span>
-                            <span class="text-xs font-bold text-slate-700">원금의 10% 미만</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
-                            <span class="text-xs text-slate-500">금융 지식 수준</span>
-                            <span class="text-xs font-bold text-slate-700">기본적인 금융상품 이해</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-500">투자가능 기간</span>
-                            <span class="text-xs font-bold text-slate-700">1년 ~ 3년 미만</span>
+                        <div class="flex flex-col items-center gap-1">
+                            <i class="far fa-building text-lg"></i>
+                            <span>발주처: KDX</span>
                         </div>
                     </div>
                 </div>
+                <div class="p-4 text-center bg-black bg-opacity-30 backdrop-blur-sm text-xs text-slate-400 z-10">
+                    <i class="fas fa-lock mr-1"></i> 본 문서는 KDX의 대외비 정보가 포함되어 있으므로 제안 참여 목적 외의 사용을 금합니다.
+                </div>
+            </div>
 
-                <!-- Compliance Notice (Crucial) -->
-                <div class="bg-slate-100 rounded-2xl p-5 border border-slate-200">
-                    <div class="flex items-start gap-2.5">
-                        <svg class="w-5 h-5 text-slate-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <!-- Slide 2: Table of Contents -->
+            <div class="absolute inset-0 w-full h-full bg-white flex flex-col hidden slide-item" id="slide-2">
+                <div class="h-2 w-full bg-blue-600"></div>
+                <div class="flex-1 p-10 md:p-14 flex flex-col">
+                    <div class="mb-10 border-b border-slate-200 pb-4 flex items-end justify-between">
                         <div>
-                            <h4 class="text-xs font-bold text-slate-700 mb-1.5">진단 결과 활용 안내 (필수 확인)</h4>
-                            <p class="text-[11px] text-slate-500 leading-relaxed">
-                                KDX는 비권유 서비스 플랫폼으로, 본 진단 결과를 바탕으로 특정 상품의 투자를 권유하거나 추천하지 않습니다.<br><br>
-                                본 결과는 고객님께서 <strong class="text-slate-700">본인의 성향보다 위험 등급이 높은 상품을 거래하실 때, 위험성을 사전에 경고(적정성 원칙)</strong>해 드리기 위한 용도로만 활용됩니다.
-                            </p>
+                            <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Table of Contents</span>
+                            <h2 class="text-3xl font-black text-slate-800 mt-1">목차</h2>
+                        </div>
+                        <i class="fas fa-list text-3xl text-slate-200"></i>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-x-16 gap-y-8 flex-1 content-center px-4">
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">01</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">프로젝트 개요</h3>
+                                <p class="text-slate-500 text-sm">사업명, 추진 목적, 계약 기간 및 근무지 안내</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">02</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">업무 범위 및 운영 기준</h3>
+                                <p class="text-slate-500 text-sm">상담 채널, 주요 업무, 운영 시간 및 요구 인력 규모</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">03</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-600 mb-2">핵심 요구사항 (SLA)</h3>
+                                <p class="text-slate-500 text-sm font-medium">웹/게시판 처리 속도, 응답률 목표 등 핵심 지표</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">04</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-600 mb-2">보고 체계 및 품질 관리</h3>
+                                <p class="text-slate-500 text-sm font-medium">일/주/월간 필수 보고 사항 및 QA 의무 사항</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">05</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">제안서 작성 지침</h3>
+                                <p class="text-slate-500 text-sm">목차 요구사항 및 견적 산출 기준</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">06</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">업체 선정 및 일정</h3>
+                                <p class="text-slate-500 text-sm">추진 일정 및 제출/문의처 안내</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Bottom Action Area -->
-            <div class="p-6 bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)] flex gap-3">
-                <button class="flex-[1] py-4 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">
-                    다시 진단
-                </button>
-                <button class="flex-[2] py-4 bg-blue-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 transition">
-                    확인 및 홈으로 이동
-                </button>
+            <!-- Slide 3: Project Overview -->
+            <div class="absolute inset-0 w-full h-full bg-slate-50 flex flex-col hidden slide-item" id="slide-3">
+                <div class="h-2 w-full bg-blue-600"></div>
+                <div class="flex flex-1 h-full">
+                    <!-- Left Sidebar -->
+                    <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-600 font-bold text-5xl mb-4 block">01</span>
+                            <h2 class="text-2xl font-black text-slate-800 leading-tight">프로젝트<br/>개요</h2>
+                        </div>
+                        <div class="text-slate-300">
+                            <i class="fas fa-bullseye text-6xl"></i>
+                        </div>
+                    </div>
+                    <!-- Right Content -->
+                    <div class="w-3/4 p-10 overflow-y-auto custom-scroll flex flex-col justify-center">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 mb-6">
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Project Name</h3>
+                            <p class="text-2xl font-bold text-slate-800">KDX 고객센터 위탁 운영(BPO) 사업</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-800 mb-3">추진 목적</h3>
+                                <ul class="space-y-2 text-slate-600 text-sm">
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> BPO 업체의 인프라를 활용한 신속한 고객 응대</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> 웹/게시판 문의 처리 속도 대폭 개선</li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> 체계적인 QA 및 리포팅을 통한 서비스 고도화</li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-col gap-6">
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1">
+                                    <h3 class="text-sm font-bold text-slate-400 mb-2">계약 기간</h3>
+                                    <p class="text-lg font-bold text-slate-800">계약일로부터 1년 <span class="text-sm font-normal text-slate-500">(평가 후 연장 가능)</span></p>
+                                </div>
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex-1">
+                                    <h3 class="text-sm font-bold text-slate-400 mb-2">근무지 조건</h3>
+                                    <p class="text-lg font-bold text-slate-800">부산 지역 내<br/><span class="text-sm font-normal text-slate-500">제안사가 보유한 컨택센터 인프라 활용</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Slide 4: Scope of Work -->
+            <div class="absolute inset-0 w-full h-full bg-slate-50 flex flex-col hidden slide-item" id="slide-4">
+                <div class="h-2 w-full bg-blue-600"></div>
+                <div class="flex flex-1 h-full">
+                    <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-600 font-bold text-5xl mb-4 block">02</span>
+                            <h2 class="text-2xl font-black text-slate-800 leading-tight">업무 범위 및<br/>인력 기준</h2>
+                        </div>
+                        <div class="text-slate-300">
+                            <i class="fas fa-headset text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-3/4 p-10 overflow-y-auto custom-scroll">
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-xl">
+                                <h4 class="font-bold text-indigo-800 mb-2"><i class="fas fa-phone-alt mr-2"></i>유선 (인바운드)</h4>
+                                <p class="text-sm text-indigo-600">일반 고객 문의 응대 및 불만 접수 (대표번호 기 확보됨)</p>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-100 p-5 rounded-xl">
+                                <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-laptop-code mr-2"></i>웹/게시판/톡</h4>
+                                <p class="text-sm text-blue-600">온라인으로 접수되는 문의에 대한 신속한 답변 작성 및 처리</p>
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-100 p-5 rounded-xl">
+                                <h4 class="font-bold text-emerald-800 mb-2"><i class="fas fa-phone-volume mr-2"></i>아웃바운드</h4>
+                                <p class="text-sm text-emerald-600">필요시 특정 이슈 발생 시 해피콜 및 고객 안내</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-6 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-bold text-slate-800 mb-1">운영 시간</h3>
+                                <p class="text-slate-500 text-sm">공휴일 및 주말 휴무 / 점심시간 교대 운영 필수</p>
+                            </div>
+                            <div class="text-2xl font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-lg">
+                                평일 09:00 ~ 18:00
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800 text-white p-6 rounded-2xl shadow-md">
+                            <h3 class="font-bold text-lg mb-4 border-b border-slate-600 pb-2">요구 인력 규모 <span class="text-slate-400 text-sm font-normal ml-2">※ 제안사에서 최적의 구성안 제안 요망</span></h3>
+                            <div class="flex items-center justify-around text-center mt-4">
+                                <div>
+                                    <i class="fas fa-chair text-3xl text-slate-400 mb-2"></i>
+                                    <p class="text-sm text-slate-300">총 예상 좌석</p>
+                                    <p class="text-xl font-bold text-blue-400">약 OO석</p>
+                                </div>
+                                <div class="w-px h-12 bg-slate-600"></div>
+                                <div>
+                                    <i class="fas fa-user-tie text-3xl text-slate-400 mb-2"></i>
+                                    <p class="text-sm text-slate-300">센터장(관리자)</p>
+                                    <p class="text-xl font-bold">1명</p>
+                                </div>
+                                <div class="w-px h-12 bg-slate-600"></div>
+                                <div>
+                                    <i class="fas fa-chalkboard-teacher text-3xl text-slate-400 mb-2"></i>
+                                    <p class="text-sm text-slate-300">QA/교육 강사</p>
+                                    <p class="text-xl font-bold">1명</p>
+                                </div>
+                                <div class="w-px h-12 bg-slate-600"></div>
+                                <div>
+                                    <i class="fas fa-users text-3xl text-slate-400 mb-2"></i>
+                                    <p class="text-sm text-slate-300">일반 상담사</p>
+                                    <p class="text-xl font-bold">OO명</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Core Requirements (SLA) -->
+            <div class="absolute inset-0 w-full h-full bg-slate-50 flex flex-col hidden slide-item" id="slide-5">
+                <div class="h-2 w-full bg-red-500"></div>
+                <div class="flex flex-1 h-full">
+                    <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-red-500 font-bold text-5xl mb-4 block">03</span>
+                            <h2 class="text-2xl font-black text-slate-800 leading-tight">핵심 요구사항<br/>(SLA)</h2>
+                            <p class="mt-4 text-sm text-slate-500 leading-relaxed">제안사는 아래의 KPI를 달성하기 위한 구체적 방안을 반드시 제시해야 합니다.</p>
+                        </div>
+                        <div class="text-slate-300">
+                            <i class="fas fa-chart-line text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-3/4 p-10 flex flex-col justify-center gap-6 overflow-y-auto custom-scroll">
+                        
+                        <!-- KPI 1 -->
+                        <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">지표 1</span>
+                                    <h3 class="text-lg font-bold text-slate-800">웹/게시판 문의 처리 속도 (TAT)</h3>
+                                </div>
+                                <p class="text-slate-600 text-sm">고객 문의 등록 후 영업시간 기준 <span class="font-bold text-red-600 bg-red-50 px-1">30분 이내 1차 답변</span> 완료</p>
+                            </div>
+                            <div class="text-right pl-6 border-l border-slate-200">
+                                <p class="text-xs text-slate-500 mb-1">목표 달성률</p>
+                                <p class="text-3xl font-black text-red-600">95% <span class="text-lg">이상</span></p>
+                            </div>
+                        </div>
+
+                        <!-- KPI 2 -->
+                        <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded">지표 2</span>
+                                    <h3 class="text-lg font-bold text-slate-800">유선 상담 응답률 (Service Level)</h3>
+                                </div>
+                                <p class="text-slate-600 text-sm">총 인입 콜 대비 응답률 유지 (20초 이내 응답률 80% 이상)</p>
+                            </div>
+                            <div class="text-right pl-6 border-l border-slate-200">
+                                <p class="text-xs text-slate-500 mb-1">목표 응답률</p>
+                                <p class="text-3xl font-black text-blue-600">90% <span class="text-lg">이상</span></p>
+                            </div>
+                        </div>
+
+                        <!-- KPI 3 -->
+                        <div class="bg-white border-l-4 border-emerald-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="bg-emerald-100 text-emerald-600 text-xs font-bold px-2 py-1 rounded">지표 3</span>
+                                    <h3 class="text-lg font-bold text-slate-800">상담 품질 평가 (QA 점수)</h3>
+                                </div>
+                                <p class="text-slate-600 text-sm">월 단위 상담사 녹취/게시판 답변 자체 품질 평가 진행</p>
+                            </div>
+                            <div class="text-right pl-6 border-l border-slate-200">
+                                <p class="text-xs text-slate-500 mb-1">평균 점수</p>
+                                <p class="text-3xl font-black text-emerald-600">85점 <span class="text-lg">이상</span></p>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 flex items-start gap-3 mt-2">
+                            <i class="fas fa-exclamation-triangle mt-1"></i>
+                            <p><strong>필수 제안 요건:</strong> 위 SLA 지표 미달 또는 초과 달성 시, 도급 비용 지급에 적용할 <strong>페널티 및 인센티브 방안</strong>을 제안서에 반드시 포함하여 작성 바랍니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Reporting and QA -->
+            <div class="absolute inset-0 w-full h-full bg-slate-50 flex flex-col hidden slide-item" id="slide-6">
+                <div class="h-2 w-full bg-blue-600"></div>
+                <div class="flex flex-1 h-full">
+                    <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-600 font-bold text-5xl mb-4 block">04</span>
+                            <h2 class="text-2xl font-black text-slate-800 leading-tight">보고 체계 및<br/>품질 관리</h2>
+                            <p class="mt-4 text-sm text-slate-500 leading-relaxed">투명한 센터 운영을 위한 정기 보고 및 QA 의무 사항입니다.</p>
+                        </div>
+                        <div class="text-slate-300">
+                            <i class="fas fa-file-signature text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-3/4 p-10 flex flex-col gap-6 overflow-y-auto custom-scroll">
+                        
+                        <!-- Reporting Section -->
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fas fa-folder-open text-blue-500"></i> 정기 보고서 필수 포함 내용</h3>
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4">
+                                    <div class="bg-slate-100 text-slate-600 text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">일간 (18:30)</div>
+                                    <div>
+                                        <p class="text-slate-700 text-sm">당일 콜/웹 인입 및 처리 통계, 미처리 건수, 당일 특이 민원(VOC) 요약</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4">
+                                    <div class="bg-blue-50 text-blue-600 text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">주간 (월 10:00)</div>
+                                    <div>
+                                        <p class="text-slate-700 text-sm">주간 SLA 목표 달성률, 주요 문의 유형(FAQ) 순위 변동, 주간 이슈 사항</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-blue-300 flex items-start gap-4 relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-2 py-1 font-bold rounded-bl-lg">중요</div>
+                                    <div class="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">월간 (익월 5일)</div>
+                                    <div>
+                                        <p class="text-slate-800 font-medium text-sm">월간 KPI 종합 결과 분석, 인력 현황(퇴사/신규), 차월 운영 계획</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QA Section -->
+                        <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg mt-2 relative">
+                            <div class="absolute right-6 top-6 opacity-20"><i class="fas fa-headphones-alt text-6xl"></i></div>
+                            <h3 class="text-lg font-bold mb-4 border-b border-slate-600 pb-2 relative z-10">상담 품질 관리 (QA) 의무 사항</h3>
+                            <ul class="space-y-3 relative z-10 text-sm text-slate-200">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1"></i>
+                                    <span>외주사 자체 QA 인력을 통해 상담사 1인당 <strong>월 최소 O콜 이상 녹취 청취 및 게시판 답변 품질 평가</strong> 진행</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1"></i>
+                                    <span>월간 보고 시 <strong>'개인별 QA 스코어 카드'</strong> 및 <strong>'코칭 피드백 결과'</strong> 첨부 필수</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-check-circle text-blue-400 mt-1"></i>
+                                    <span>분기별 KDX 실무진과 함께하는 QA 캘리브레이션(평가 기준 조율) 회의 진행</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Proposal Guidelines -->
+            <div class="absolute inset-0 w-full h-full bg-slate-50 flex flex-col hidden slide-item" id="slide-7">
+                <div class="h-2 w-full bg-blue-600"></div>
+                <div class="flex flex-1 h-full">
+                    <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-600 font-bold text-5xl mb-4 block">05</span>
+                            <h2 class="text-2xl font-black text-slate-800 leading-tight">제안서 작성 지침<br/>및 비용 제안</h2>
+                        </div>
+                        <div class="text-slate-300">
+                            <i class="fas fa-file-invoice-dollar text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="w-3/4 p-10 overflow-y-auto custom-scroll flex gap-8">
+                        
+                        <!-- Left Col -->
+                        <div class="w-1/2 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-slate-800 border-b-2 border-slate-800 pb-2 mb-2">제안서 목차 요구사항</h3>
+                            
+                            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
+                                <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                                <h4 class="font-bold text-slate-800 ml-2">제안사 일반 현황</h4>
+                                <p class="text-sm text-slate-500 mt-1 ml-2">부산 지역 센터 인프라 위주 설명</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
+                                <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                                <h4 class="font-bold text-slate-800 ml-2">인력 채용 및 유지 관리</h4>
+                                <p class="text-sm text-slate-500 mt-1 ml-2">상담사 이직률 방어 대책 필수 포함</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
+                                <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                                <h4 class="font-bold text-slate-800 ml-2">교육 및 QA 운영 계획</h4>
+                                <p class="text-sm text-slate-500 mt-1 ml-2">신입 교육 커리큘럼 및 월간 QA 프로세스</p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-5 rounded-xl shadow-sm border border-blue-200 relative">
+                                <span class="absolute -left-3 top-5 bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">4</span>
+                                <h4 class="font-bold text-blue-800 ml-2">SLA 달성 전략 (핵심)</h4>
+                                <p class="text-sm text-blue-600 mt-1 ml-2">웹 30분 이내 답변 달성을 위한 동선 및 인력 운영 전략 상세 기술</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Col -->
+                        <div class="w-1/2 flex flex-col gap-4">
+                            <h3 class="text-lg font-bold text-slate-800 border-b-2 border-slate-800 pb-2 mb-2">견적 산출 기준 <span class="text-xs text-red-500 font-normal bg-red-50 px-2 py-1 rounded ml-2">별도 밀봉 제출</span></h3>
+                            
+                            <div class="bg-slate-800 text-white rounded-xl p-6 shadow-md h-full flex flex-col gap-6">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <i class="fas fa-coins text-yellow-400 text-xl"></i>
+                                        <h4 class="font-bold text-lg">월 고정 도급비</h4>
+                                    </div>
+                                    <p class="text-sm text-slate-300 ml-8 border-l-2 border-slate-600 pl-3">인원/좌석당 단가를 명시하여 월 고정 운영비 산출</p>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <i class="fas fa-tools text-slate-400 text-xl"></i>
+                                        <h4 class="font-bold text-lg">초기 세팅비 (Set-up)</h4>
+                                    </div>
+                                    <p class="text-sm text-slate-300 ml-8 border-l-2 border-slate-600 pl-3">초기 교육, 시스템 연동 등 1회성 발생 비용 분리</p>
+                                </div>
+
+                                <div class="mt-auto bg-slate-700/50 p-4 rounded-lg text-sm text-slate-200 border border-slate-600">
+                                    <i class="fas fa-info-circle mr-2 text-blue-400"></i>
+                                    견적 내 <strong>상담원 복리후생 및 프로모션(포상) 예산</strong> 포함 여부를 반드시 명시할 것.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Schedule & Contact -->
+            <div class="absolute inset-0 w-full h-full bg-slate-900 text-white flex flex-col hidden slide-item" id="slide-8">
+                <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0yMCAwbDIwIDIwdjIwaC0yMHptLTIwIDIwbDIwLTIwdjIwaC0yMHoiIGZpbGw9IiMzMzQxNTUiIGZpbGwtb3BhY2l0eT0iLjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4=')] opacity-30"></div>
+                
+                <div class="flex-1 p-12 z-10 flex flex-col">
+                    <h2 class="text-3xl font-black mb-10 text-center"><span class="text-blue-500">06.</span> 업체 선정 및 추진 일정</h2>
+                    
+                    <div class="flex justify-center gap-8 mb-12">
+                        <!-- Timeline -->
+                        <div class="w-2/3">
+                            <div class="relative wrap overflow-hidden p-4 h-full">
+                                <div class="border-2-2 absolute border-opacity-20 border-white h-full border" style="left: 50%"></div>
+                                
+                                <div class="mb-4 flex justify-between items-center w-full right-timeline">
+                                    <div class="order-1 w-5/12"></div>
+                                    <div class="z-20 flex items-center order-1 bg-blue-600 shadow-xl w-6 h-6 rounded-full"></div>
+                                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-3 border border-slate-700">
+                                        <h3 class="font-bold text-blue-400 text-sm">RFP 배포</h3>
+                                        <p class="text-sm text-slate-300 mt-1">2026. 08. 11 (화)</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                                    <div class="order-1 w-5/12"></div>
+                                    <div class="z-20 flex items-center order-1 bg-blue-600 shadow-xl w-6 h-6 rounded-full"></div>
+                                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-3 text-right border border-slate-700">
+                                        <h3 class="font-bold text-blue-400 text-sm">질의 응답</h3>
+                                        <p class="text-sm text-slate-300 mt-1">2026. 08. 12 ~ 08. 14</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4 flex justify-between items-center w-full right-timeline">
+                                    <div class="order-1 w-5/12"></div>
+                                    <div class="z-20 flex items-center order-1 bg-red-500 shadow-xl w-6 h-6 rounded-full ring-4 ring-slate-900"></div>
+                                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-3 border border-red-900">
+                                        <h3 class="font-bold text-red-400 text-sm">제안서 마감</h3>
+                                        <p class="text-sm text-slate-200 mt-1 font-bold">2026. 08. 21 (금) 17:00</p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                                    <div class="order-1 w-5/12"></div>
+                                    <div class="z-20 flex items-center order-1 bg-slate-500 shadow-xl w-6 h-6 rounded-full"></div>
+                                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-3 text-right border border-slate-700 opacity-70">
+                                        <h3 class="font-bold text-slate-400 text-sm">PT 및 실사</h3>
+                                        <p class="text-sm text-slate-400 mt-1">08월 넷째 주 (개별 통보)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="w-1/3 bg-slate-800 rounded-2xl p-6 border border-slate-700 flex flex-col justify-center">
+                            <h3 class="text-xl font-bold mb-6 text-center text-blue-400 border-b border-slate-700 pb-4">제출 및 문의처</h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
+                                    <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-user"></i></div>
+                                    <div>
+                                        <p class="text-slate-400 text-xs">담당부서</p>
+                                        <p class="font-medium text-slate-200">KDX [부서명] [담당자명]</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
+                                    <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-envelope"></i></div>
+                                    <div>
+                                        <p class="text-slate-400 text-xs">이메일</p>
+                                        <p class="font-medium text-slate-200">[이메일 주소 입력]</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
+                                    <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-phone"></i></div>
+                                    <div>
+                                        <p class="text-slate-400 text-xs">연락처</p>
+                                        <p class="font-medium text-slate-200">[전화번호 입력]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Instruction for User -->
+        <div class="text-center text-slate-500 text-sm mt-2">
+            <p><i class="fas fa-info-circle mr-1"></i> 화살표 버튼을 눌러 슬라이드를 넘겨보세요. 위 디자인과 텍스트를 캔바/PPT 템플릿에 그대로 적용하시면 됩니다.</p>
         </div>
     </div>
 
+    <script>
+        const totalSlides = 8;
+        let currentSlide = 1;
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const indicator = document.getElementById('slide-indicator');
+
+        function updateSlides() {
+            // Hide all slides
+            document.querySelectorAll('.slide-item').forEach(slide => {
+                slide.classList.add('hidden');
+                slide.classList.remove('slide-enter');
+            });
+
+            // Show current slide
+            const activeSlide = document.getElementById(`slide-${currentSlide}`);
+            activeSlide.classList.remove('hidden');
+            // Trigger reflow for animation
+            void activeSlide.offsetWidth; 
+            activeSlide.classList.add('slide-enter');
+
+            // Update UI
+            indicator.textContent = `${currentSlide} / ${totalSlides}`;
+            
+            // Update button states
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        // Initialize
+        updateSlides();
+    </script>
 </body>
 </html>
