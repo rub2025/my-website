@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDX 비권유 서비스 고지 UI</title>
+    <title>KDX 투자성향 진단 결과 UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
@@ -18,99 +18,89 @@
 
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Custom Checkbox */
-        .custom-checkbox {
-            appearance: none; width: 22px; height: 22px; border: 2px solid #cbd5e1;
-            border-radius: 6px; background-color: white; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-        }
-        .custom-checkbox:checked { background-color: #2563eb; border-color: #2563eb; }
-        .custom-checkbox:checked::after {
-            content: ''; width: 5px; height: 10px; border: solid white;
-            border-width: 0 2px 2px 0; transform: rotate(45deg); margin-bottom: 2px;
-        }
     </style>
 </head>
 <body>
 
     <div>
         <div class="mb-4 text-center">
-            <h3 class="font-bold text-slate-800 text-lg">투자성향 분석 진입 시 최초 화면 (신설)</h3>
-            <p class="text-xs text-slate-500">법무팀 요구사항: 비권유 서비스 고지 및 확인 프로세스</p>
+            <h3 class="font-bold text-blue-700 text-lg">투자성향 진단 결과 화면 (법무 수정 반영)</h3>
+            <p class="text-xs text-slate-500">법무팀 요구사항: '적합 상품 추천/안내' 영역 전면 삭제</p>
         </div>
 
         <div class="mobile-frame">
             <!-- Header -->
-            <div class="h-14 flex items-center justify-between px-5 border-b border-slate-100">
+            <div class="h-14 flex items-center justify-between px-5 border-b border-slate-100 bg-white sticky top-0 z-10">
                 <button class="text-slate-400 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 </button>
-                <span class="font-bold text-slate-800">안내</span>
+                <span class="font-bold text-slate-800">투자성향 진단 결과</span>
                 <div class="w-6"></div> <!-- Spacer -->
             </div>
 
             <!-- Content -->
-            <div class="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col">
+            <div class="flex-1 overflow-y-auto hide-scrollbar p-6 flex flex-col bg-slate-50">
                 
-                <!-- Icon -->
-                <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
-                    <span class="text-2xl">📢</span>
+                <div class="text-center mb-6 pt-4">
+                    <h2 class="text-lg font-bold text-slate-700 mb-1">고객님의 투자 성향은</h2>
+                    <!-- 결과 강조 (예시: 안정추구형) -->
+                    <div class="inline-block px-6 py-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-200 mt-2 mb-3">
+                        <span class="text-2xl font-extrabold text-white tracking-tight">안정추구형 (4등급)</span>
+                    </div>
+                    <p class="text-[13px] text-slate-500 mt-2">
+                        진단일: 2026.08.11 <span class="mx-2">|</span> 만료일: 2027.08.10
+                    </p>
                 </div>
 
-                <!-- Title -->
-                <h1 class="text-2xl font-extrabold text-slate-900 leading-tight mb-4">
-                    KDX는 <span class="text-blue-600">투자권유를<br>하지 않습니다.</span>
-                </h1>
-                
-                <p class="text-sm text-slate-600 leading-relaxed mb-8">
-                    안전한 금융 거래를 위해, 본격적인 시작 전 아래 내용을 반드시 확인해 주세요.
-                </p>
-
-                <!-- Info Cards -->
-                <div class="space-y-4 mb-8">
-                    <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
-                            <h4 class="font-bold text-sm text-slate-800">비권유 서비스 플랫폼</h4>
+                <!-- Data Summary -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-6">
+                    <h3 class="text-sm font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> 분석 데이터 요약
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
+                            <span class="text-xs text-slate-500">투자 목적</span>
+                            <span class="text-xs font-bold text-slate-700">예금보다 높은 수익 추구</span>
                         </div>
-                        <p class="text-[13px] text-slate-500 leading-relaxed pl-3.5">
-                            KDX는 고객님께 특정 상품의 투자를 권유하거나 추천하지 않는 '비권유 장외거래 플랫폼'입니다.
-                        </p>
+                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
+                            <span class="text-xs text-slate-500">감내 가능 손실</span>
+                            <span class="text-xs font-bold text-slate-700">원금의 10% 미만</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-slate-50 pb-2">
+                            <span class="text-xs text-slate-500">금융 지식 수준</span>
+                            <span class="text-xs font-bold text-slate-700">기본적인 금융상품 이해</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-slate-500">투자가능 기간</span>
+                            <span class="text-xs font-bold text-slate-700">1년 ~ 3년 미만</span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="p-4 bg-slate-50 border border-slate-100 rounded-2xl">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
-                            <h4 class="font-bold text-sm text-slate-800">적정성 심사 목적</h4>
+                <!-- Compliance Notice (Crucial) -->
+                <div class="bg-slate-100 rounded-2xl p-5 border border-slate-200">
+                    <div class="flex items-start gap-2.5">
+                        <svg class="w-5 h-5 text-slate-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-700 mb-1.5">진단 결과 활용 안내 (필수 확인)</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">
+                                KDX는 비권유 서비스 플랫폼으로, 본 진단 결과를 바탕으로 특정 상품의 투자를 권유하거나 추천하지 않습니다.<br><br>
+                                본 결과는 고객님께서 <strong class="text-slate-700">본인의 성향보다 위험 등급이 높은 상품을 거래하실 때, 위험성을 사전에 경고(적정성 원칙)</strong>해 드리기 위한 용도로만 활용됩니다.
+                            </p>
                         </div>
-                        <p class="text-[13px] text-slate-500 leading-relaxed pl-3.5">
-                            이어서 진행될 투자자성향 진단은 상품 추천을 위한 것이 아니며, <strong class="text-slate-700">고객님의 성향보다 위험한 상품을 거래하실 때 경고 안내(적정성 원칙)를 해드리기 위한 목적</strong>으로만 수집됩니다.
-                        </p>
-                    </div>
-
-                    <div class="p-4 bg-red-50 border border-red-100 rounded-2xl">
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div>
-                            <h4 class="font-bold text-sm text-red-800">자기 책임의 원칙</h4>
-                        </div>
-                        <p class="text-[13px] text-red-600 leading-relaxed pl-3.5">
-                            모든 투자의 결정은 고객님 본인의 판단과 책임하에 이루어지며, 원금 손실이 발생할 수 있습니다.
-                        </p>
                     </div>
                 </div>
 
             </div>
 
             <!-- Bottom Action Area -->
-            <div class="p-6 bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
-                <label class="flex items-center gap-3 cursor-pointer mb-5 p-2 rounded-lg hover:bg-slate-50 transition">
-                    <input type="checkbox" id="agreeCheck" class="custom-checkbox shrink-0" onchange="document.getElementById('nextBtn').disabled = !this.checked; document.getElementById('nextBtn').classList.toggle('bg-slate-200'); document.getElementById('nextBtn').classList.toggle('bg-blue-600'); document.getElementById('nextBtn').classList.toggle('text-slate-400'); document.getElementById('nextBtn').classList.toggle('text-white');">
-                    <span class="text-sm font-bold text-slate-800"><span class="text-blue-600">[필수]</span> 위 비권유 서비스 고지 내용을 확인했습니다.</span>
-                </label>
-                
-                <button id="nextBtn" disabled class="w-full py-4 bg-slate-200 text-slate-400 font-bold text-base rounded-xl transition duration-200 ease-in-out">
-                    확인하고 성향 진단 시작하기
+            <div class="p-6 bg-white border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)] flex gap-3">
+                <button class="flex-[1] py-4 bg-slate-100 text-slate-600 font-bold text-sm rounded-xl hover:bg-slate-200 transition">
+                    다시 진단
+                </button>
+                <button class="flex-[2] py-4 bg-blue-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 transition">
+                    확인 및 홈으로 이동
                 </button>
             </div>
         </div>
