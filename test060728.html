@@ -3,720 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KDX 콜센터 위탁운영 보고서 및 RFP 최종본</title>
+    <title>KDX 마케팅 STEP 1 전략 보고서</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kdx: {
+                            purple: '#693FFF',
+                            black: '#0E0F10',
+                            gray: '#242432',
+                            white: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap');
+        
         body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background-color: #333333; 
+            /* 캔버스 배경은 가장 어두운 톤으로 하여 슬라이드가 돋보이게 함 */
+            background-color: #050505; 
+            color: #FFFFFF;
+            margin: 0;
+            padding: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5rem; /* 슬라이드 간의 간격 */
+            overflow-x: auto;
         }
-        .slide-item {
-            margin-bottom: 2rem;
-            page-break-after: always;
+
+        /* 16:9 PPT Slide Container */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #0E0F10; /* 메인 블랙 */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(105, 63, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .custom-scroll::-webkit-scrollbar {
-            width: 6px;
+
+        /* 장식용 빛번짐 (Glow) */
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: #693FFF; /* 메인 퍼플 */
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: 0;
         }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-            border-radius: 4px;
+
+        .content-z {
+            z-index: 10;
+            position: relative;
         }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
+
+        /* Slide Header */
+        .slide-header {
+            padding: 4rem 5rem 1rem 5rem;
+            display: flex;
+            align-items: flex-end;
+            gap: 1.5rem;
         }
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+
+        .slide-number {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #693FFF;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        .slide-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            flex-grow: 1;
+        }
+
+        /* Slide Content Area */
+        .slide-body {
+            padding: 2rem 5rem 4rem 5rem;
+            flex-grow: 1;
+        }
+
+        /* Custom Cards (라이트 그레이 적용) */
+        .glass-card {
+            background: #242432; /* 메인 라이트그레이 */
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.03);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
+<body>
 
-    <!-- 툴바 -->
-    <div class="w-full max-w-5xl mx-auto flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 z-50">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">K</div>
-            <h1 class="font-bold text-slate-800 text-lg">KDX 콜센터 위탁운영 전체 보고서 (가로 10슬라이드)</h1>
-        </div>
-        <div class="flex items-center gap-4">
-            <span class="text-sm font-bold text-slate-500 bg-slate-100 px-4 py-2 rounded-full">
-                <i class="fas fa-print mr-1"></i> 인쇄(Ctrl+P) 후 PDF 저장 (가로모드 권장)
-            </span>
+    <!-- STREAMING_CHUNK:타이틀 슬라이드 구성 -->
+    <!-- SLIDE 1: Title -->
+    <div class="slide-container">
+        <div class="glow-circle w-[800px] h-[800px] top-[-300px] right-[-200px] opacity-20"></div>
+        <div class="glow-circle w-[600px] h-[600px] bottom-[-200px] left-[-200px] opacity-20"></div>
+        
+        <div class="content-z flex flex-col items-center justify-center h-full text-center px-20">
+            <div class="border border-kdx-purple text-kdx-purple px-6 py-2 rounded-full font-bold tracking-[0.2em] text-sm uppercase mb-10">
+                Marketing Strategy : Phase 01
+            </div>
+            <h1 class="text-7xl font-black text-white leading-tight tracking-tight mb-6">
+                KDX 런칭 마케팅 전략
+            </h1>
+            <p class="text-3xl text-gray-400 font-light tracking-wide mb-16">
+                "투자의 <span class="text-white font-bold">물음표(?)</span>를 <span class="text-kdx-purple font-bold">느낌표(!)</span>로 바꾼다"
+            </p>
+            
+            <div class="w-32 h-1 bg-kdx-purple mb-16"></div>
+            
+            <div class="text-left bg-kdx-gray px-10 py-6 rounded-2xl border border-white/5 flex gap-16 shadow-2xl">
+                <div>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Target</p>
+                    <p class="text-white font-bold text-xl">2030 도파민 서퍼</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Ultimate KPI</p>
+                    <p class="text-kdx-purple font-bold text-xl">휴대폰 인증 10만 확보</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="w-full max-w-5xl mx-auto flex flex-col gap-6" id="document-container">
-
-        <!-- ========================================== -->
-        <!-- [1] 상단 요약 보고서 1/2 (기안서) - 가로형 변환 -->
-        <!-- ========================================== -->
-        <div class="w-full aspect-video bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item p-10">
-            
-            <div class="border-b-2 border-slate-800 pb-4 mb-6 flex justify-between items-end shrink-0">
-                <div>
-                    <span class="text-blue-600 font-bold mb-1 block text-sm">내부 보고용 기안서 (1/2)</span>
-                    <h1 class="text-3xl font-black text-slate-900">KDX 고객센터 위탁 운영(BPO) 추진의 건</h1>
-                </div>
-                <div class="text-right text-sm text-slate-500">
-                    <p>기안일자 : 2026. 08. 11</p>
-                    <p>작성부서 : 플랫폼사업부</p>
-                </div>
-            </div>
-
-            <div class="flex-1 grid grid-cols-2 gap-8 mt-2 overflow-y-auto custom-scroll">
-                <!-- 1. 추진 배경 및 필요성 -->
-                <section class="flex flex-col">
-                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2 border-b border-slate-200 pb-2"><i class="fas fa-caret-right text-blue-600"></i> 1. 추진 배경 및 필요성</h2>
-                    <ul class="list-disc list-inside space-y-4 text-slate-700 ml-2 text-[15px] leading-relaxed">
-                        <li><strong>KDX(신탁수익증권) 거래소 앱 런칭</strong>(O월 예정)에 따른 대고객 응대 전담 채널 확보 필요</li>
-                        <li>전문 BPO(아웃소싱) 업체의 인프라와 노하우를 활용하여 <strong>초기 고객센터 표준 프로세스(SOP)를 신속하게 정립</strong></li>
-                        <li><strong>부산 거점화를 통한 지역 상생 도모:</strong> 부산 지역 금융권 우수 인재 채용을 통한 일자리 창출 및 상생 도모</li>
-                        <li><strong>체계적인 VOC(고객의 소리) 대응</strong>을 통해 향후 내부 서비스 고도화의 기반을 마련하고자 함</li>
-                    </ul>
-                </section>
-
-                <!-- 2. 운영 요건 개요 -->
-                <section class="flex flex-col">
-                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2 border-b border-slate-200 pb-2"><i class="fas fa-caret-right text-blue-600"></i> 2. 업무 범위 및 운영 요건</h2>
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col gap-5 flex-1">
-                        <div class="flex gap-3">
-                            <strong class="w-24 shrink-0 text-slate-800 flex items-center gap-1"><i class="fas fa-tasks text-blue-500 text-sm"></i> 주요 업무:</strong> 
-                            <span class="text-slate-700 text-[14.5px] leading-tight">유선(인바운드), 온라인 채널 문의(웹/상담톡/앱 리뷰 등) 답변, 아웃바운드(프로모션 당첨 해피콜 등)</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <strong class="w-24 shrink-0 text-slate-800 flex items-center gap-1"><i class="far fa-clock text-blue-500 text-sm"></i> 운영 시간:</strong> 
-                            <span class="text-slate-700 text-[14.5px] leading-tight">평일 09:00 ~ 20:00<br/>(장 운영 시간 일치, <strong>A/B조 2교대 편성</strong> / 주말 및 공휴일 휴무)</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <strong class="w-24 shrink-0 text-slate-800 flex items-center gap-1"><i class="fas fa-server text-blue-500 text-sm"></i> 인프라:</strong> 
-                            <span class="text-slate-700 text-[14.5px] leading-tight">제안사 인프라 전면 활용 (KDX는 권한 분리(RBAC)된 Admin 웹페이지만 계정 제공)</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <strong class="w-24 shrink-0 text-slate-800 flex items-center gap-1"><i class="fas fa-users text-blue-500 text-sm"></i> 요구 인력:</strong> 
-                            <span class="text-slate-700 text-[14.5px] leading-tight">총 O석 규모 (소규모 초기 세팅을 고려하여 <strong>팀장(관리자) 1명이 QA/교육 겸임</strong>, 금융권 경력 일반 상담사 O명)</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
+    <!-- STREAMING_CHUNK:목차 슬라이드 구성 -->
+    <!-- SLIDE 2: Table of Contents -->
+    <div class="slide-container">
+        <div class="glow-circle w-[800px] h-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">00</div>
+            <div class="slide-title">Table of Contents</div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- [2] 상단 요약 보고서 2/2 (기안서) - 가로형 변환 -->
-        <!-- ========================================== -->
-        <div class="w-full aspect-video bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item p-8">
-            
-            <div class="border-b-2 border-slate-800 pb-3 mb-4 flex justify-between items-end shrink-0">
-                <div>
-                    <span class="text-blue-600 font-bold mb-1 block text-sm">내부 보고용 기안서 (2/2)</span>
-                    <h1 class="text-3xl font-black text-slate-900">KDX 고객센터 위탁 운영(BPO) 추진의 건</h1>
-                </div>
-            </div>
-
-            <div class="flex-1 flex flex-col gap-5 mt-1 overflow-y-auto custom-scroll pr-2">
-                <!-- 3. 핵심 요구사항 (SLA) -->
-                <section class="shrink-0">
-                    <h2 class="text-xl font-bold mb-3 flex items-center gap-2"><i class="fas fa-caret-right text-blue-600"></i> 3. 핵심 요구사항 (SLA) 및 페널티</h2>
-                    <div class="bg-blue-50 rounded-xl p-5 border border-blue-100 grid grid-cols-3 gap-5">
-                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-100 flex flex-col justify-center">
-                            <span class="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded w-fit mb-2">지표 1</span>
-                            <h3 class="font-bold text-slate-800 text-lg mb-1">유선 상담 응답률</h3>
-                            <p class="text-[14px] text-slate-600">총 인입 콜 대비 <strong>응답률 95% 이상</strong> 유지</p>
-                        </div>
-                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-100 flex flex-col justify-center">
-                            <span class="text-xs font-bold text-red-500 bg-red-100 px-2 py-1 rounded w-fit mb-2">지표 2</span>
-                            <h3 class="font-bold text-slate-800 text-lg mb-1">온라인 채널 처리 속도</h3>
-                            <p class="text-[14px] text-slate-600">상담톡 5분 / 웹 문의 및 앱 리뷰 <strong>30분 이내 답변 완료 (95%↑)</strong></p>
-                        </div>
-                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-100 flex flex-col justify-center">
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded w-fit mb-2">지표 3</span>
-                            <h3 class="font-bold text-slate-800 text-lg mb-1">상담 품질 (QA)</h3>
-                            <p class="text-[14px] text-slate-600">월 단위 자체 평가 <strong>평균 85점 이상</strong> 유지</p>
-                        </div>
+        <div class="slide-body content-z flex items-center justify-center">
+            <div class="grid grid-cols-2 gap-x-20 gap-y-16 w-full max-w-5xl">
+                
+                <div class="flex gap-6 items-start">
+                    <div class="text-3xl font-black text-gray-600 mt-1">01</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">배경 및 한계</h3>
+                        <p class="text-gray-400 text-lg">최악의 하드 모드 (빈 매대 & 리소스 한계)</p>
                     </div>
-                    <p class="text-red-500 font-bold mt-2 text-sm ml-2 flex items-center gap-1">
-                        <i class="fas fa-exclamation-triangle"></i> ※ SLA 목표 미달 시 페널티 조항 반영 및 외주사 자체 평가표 템플릿/재교육 방안 제출 의무화
+                </div>
+
+                <div class="flex gap-6 items-start">
+                    <div class="text-3xl font-black text-gray-600 mt-1">02</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">타겟 재정의</h3>
+                        <p class="text-gray-400 text-lg">안전한 투자를 거부하는 '도파민 서퍼' 공략</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 items-start">
+                    <div class="text-3xl font-black text-gray-600 mt-1">03</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">세계관 및 포지셔닝</h3>
+                        <p class="text-gray-400 text-lg">도파민 디톡스 & 금융의 오락실화</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 items-start">
+                    <div class="text-3xl font-black text-gray-600 mt-1">04</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">마케팅 핵심 KPI</h3>
+                        <p class="text-gray-400 text-lg">2027년 휴대폰 본인인증 10만 명 확보</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 items-start col-span-2 w-1/2">
+                    <div class="text-3xl font-black text-kdx-purple mt-1">05</div>
+                    <div class="w-full">
+                        <h3 class="text-2xl font-bold text-kdx-purple mb-2">투스텝 전환 전략</h3>
+                        <p class="text-gray-400 text-lg">진입장벽 최소화 ➡️ 1호 상장 시점 계좌 연동</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- STREAMING_CHUNK:배경 및 한계 슬라이드 구성 -->
+    <!-- SLIDE 3: Background -->
+    <div class="slide-container">
+        <div class="glow-circle w-[600px] h-[600px] top-[-100px] right-[-100px] opacity-15"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">01</div>
+            <div class="slide-title uppercase tracking-wide">Background</div>
+        </div>
+
+        <div class="slide-body content-z flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-white mb-4">현재의 런칭 상황 : 최악의 '하드 모드'</h2>
+            <p class="text-xl text-gray-400 mb-10">마케팅 관점에서 가장 난이도가 높은 3가지 악조건 속에서 런칭을 준비해야 합니다.</p>
+            
+            <div class="grid grid-cols-3 gap-8">
+                <div class="glass-card p-10 flex flex-col items-center text-center">
+                    <i class="fas fa-box-open text-5xl text-gray-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">Zero Inventory</h3>
+                    <span class="text-kdx-purple font-bold text-lg mb-6">빈 매대</span>
+                    <p class="text-gray-400 leading-relaxed">
+                        런칭 시점에 유저가 당장 구매할 수 있는 상장 종목이 전무합니다. "투자하라"고 앱 본연의 기능을 홍보할 수 없는 상황입니다.
                     </p>
-                </section>
+                </div>
 
-                <!-- 4. 향후 추진 일정 -->
-                <section class="flex-1 flex flex-col min-h-[220px] shrink-0 mb-4">
-                    <h2 class="text-xl font-bold mb-3 flex items-center gap-2"><i class="fas fa-caret-right text-blue-600"></i> 4. 향후 추진 일정</h2>
-                    <div class="flex-1 bg-slate-50 rounded-xl border border-slate-200 p-6 flex flex-col justify-center items-center">
-                        
-                        <!-- Horizontal Timeline -->
-                        <div class="grid grid-cols-5 gap-2 relative w-full max-w-4xl mx-auto mt-2">
-                            <!-- Background connecting line -->
-                            <div class="absolute top-6 left-10 right-10 h-1 bg-slate-300 z-0"></div>
-                            
-                            <!-- Step 1 -->
-                            <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-full bg-blue-600 border-4 border-white shadow-md flex items-center justify-center text-white mb-3 text-lg"><i class="fas fa-file-alt"></i></div>
-                                <h4 class="font-bold text-blue-700 text-[14px]">8월 말</h4>
-                                <p class="text-[12px] text-slate-600 mt-1 leading-snug">RFP 내부 확정 및<br/>부산시(지자체) 전달</p>
-                            </div>
-                            <!-- Step 2 -->
-                            <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-full bg-blue-500 border-4 border-white shadow-md flex items-center justify-center text-white mb-3 text-lg"><i class="fas fa-paper-plane"></i></div>
-                                <h4 class="font-bold text-blue-600 text-[14px]">9월 초</h4>
-                                <p class="text-[12px] text-slate-600 mt-1 leading-snug">부산시 협조를 통한<br/>관내 우수 BPO 업체<br/>RFP 개별 배포</p>
-                            </div>
-                            <!-- Step 3 -->
-                            <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-full bg-amber-500 border-4 border-white shadow-md flex items-center justify-center text-white mb-3 text-lg"><i class="fas fa-inbox"></i></div>
-                                <h4 class="font-bold text-amber-600 text-[14px]">9월 중순</h4>
-                                <p class="text-[12px] text-slate-600 mt-1 leading-snug">제안서<br/>접수 마감</p>
-                            </div>
-                            <!-- Step 4 -->
-                            <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-full bg-indigo-500 border-4 border-white shadow-md flex items-center justify-center text-white mb-3 text-lg"><i class="fas fa-search"></i></div>
-                                <h4 class="font-bold text-indigo-600 text-[14px]">9월 말</h4>
-                                <p class="text-[12px] text-slate-600 mt-1 leading-snug">제안서 서면 검토 및<br/>센터 인프라 현장 실사</p>
-                            </div>
-                            <!-- Step 5 -->
-                            <div class="relative z-10 flex flex-col items-center text-center">
-                                <div class="w-12 h-12 rounded-full bg-red-500 border-4 border-white shadow-md flex items-center justify-center text-white mb-3 text-lg"><i class="fas fa-handshake"></i></div>
-                                <h4 class="font-bold text-red-600 text-[14px]">10월 초</h4>
-                                <p class="text-[12px] text-slate-800 font-bold mt-1 leading-snug">업체 1차 선정</p>
-                            </div>
-                        </div>
+                <div class="glass-card p-10 flex flex-col items-center text-center">
+                    <i class="fas fa-building text-5xl text-gray-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">Mega Competitor</h3>
+                    <span class="text-kdx-purple font-bold text-lg mb-6">거대한 경쟁사 (NXG)</span>
+                    <p class="text-gray-400 leading-relaxed">
+                        경쟁사는 런칭 초반부터 '뮤직카우'의 기존 회원 층과 방대한 상장 물량을 등에 업고 시작하는 강력한 골리앗입니다.
+                    </p>
+                </div>
 
-                    </div>
-                </section>
+                <div class="glass-card p-10 flex flex-col items-center text-center">
+                    <i class="fas fa-battery-quarter text-5xl text-gray-500 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-2">Resource Limit</h3>
+                    <span class="text-kdx-purple font-bold text-lg mb-6">리소스 한계</span>
+                    <p class="text-gray-400 leading-relaxed">
+                        가용 예산 약 1억 원, 전담 인력 3명(디자이너1, 마케터2). 자본을 쏟아붓는 매스 마케팅이나 압도적인 물량전은 불가합니다.
+                    </p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- ========================================== -->
-        <!-- [3] RFP 슬라이드 1~8 (외주사 배포용) -->
-        <!-- ========================================== -->
+    <!-- STREAMING_CHUNK:타겟 및 페르소나 슬라이드 구성 -->
+    <!-- SLIDE 4: Target & Persona -->
+    <div class="slide-container">
+        <div class="glow-circle w-[600px] h-[600px] bottom-[-200px] left-[-200px] opacity-15"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">02</div>
+            <div class="slide-title uppercase tracking-wide">Targeting</div>
+        </div>
 
-        <div class="w-full aspect-video bg-slate-900 rounded-lg shadow-lg overflow-hidden border border-slate-200 text-white flex flex-col slide-item relative">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -mr-10 -mt-10"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -ml-20 -mb-20"></div>
+        <div class="slide-body content-z flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-white mb-4">문제 해결을 위한 타겟 재정의</h2>
+            <p class="text-xl text-gray-400 mb-10">빈 매대 상황에서 '전통적인 투자자' 모객은 불가. 방향을 완전히 비틀어야 합니다.</p>
             
-            <div class="flex-1 flex flex-col items-center justify-center text-center p-12 z-10">
-                <div class="mb-8 w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-2xl">
-                    <span class="text-blue-700 text-3xl font-black tracking-tighter">KDX</span>
-                </div>
-                <span class="text-blue-400 font-semibold tracking-wider text-sm mb-4">REQUEST FOR PROPOSAL</span>
-                <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                    KDX 고객센터 위탁 운영(BPO)<br/>제안요청서
-                </h2>
-                <p class="text-slate-300 text-lg max-w-2xl font-light mb-12">
-                    고품질 고객경험 제공 및 체계적인 콜센터 운영을 위한 전문 파트너 선정
-                </p>
-                <div class="flex gap-8 text-sm text-slate-400 font-medium">
-                    <div class="flex flex-col items-center gap-1">
-                        <i class="far fa-calendar-alt text-lg"></i>
-                        <span>작성일자: 2026. 08</span>
+            <div class="flex gap-10 h-full">
+                <!-- Persona Profile -->
+                <div class="w-1/3 glass-card p-10 text-center flex flex-col justify-center border-t-4 border-kdx-purple relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-kdx-purple rounded-full filter blur-[80px] opacity-40"></div>
+                    <div class="w-24 h-24 bg-kdx-black border-2 border-kdx-purple text-kdx-purple rounded-full flex items-center justify-center text-4xl mx-auto mb-6 z-10">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <div class="flex flex-col items-center gap-1">
-                        <i class="far fa-building text-lg"></i>
-                        <span>발주처: KDX</span>
-                    </div>
+                    <p class="text-kdx-purple font-bold tracking-widest text-sm mb-2 uppercase z-10">Main Target</p>
+                    <h3 class="text-4xl font-black text-white mb-2 z-10">도파민 서퍼</h3>
+                    <p class="text-gray-400 text-lg z-10">2030 소액 투자자</p>
                 </div>
-            </div>
-            <div class="p-4 text-center bg-black bg-opacity-30 backdrop-blur-sm text-xs text-slate-400 z-10">
-                <i class="fas fa-lock mr-1"></i> 본 문서는 KDX의 대외비 정보가 포함되어 있으므로 제안 참여 목적 외의 사용을 금합니다.
-            </div>
-        </div>
 
-        <div class="w-full aspect-video bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-blue-600"></div>
-            <div class="flex-1 p-10 md:p-14 flex flex-col">
-                <div class="mb-10 border-b border-slate-200 pb-4 flex items-end justify-between">
-                    <div>
-                        <span class="text-blue-600 font-bold tracking-wider text-sm uppercase">Table of Contents</span>
-                        <h2 class="text-3xl font-black text-slate-800 mt-1">목차</h2>
+                <!-- Problem & Solution -->
+                <div class="w-2/3 flex flex-col gap-6">
+                    <div class="glass-card p-8 flex-1 border-l-4 border-gray-600 flex flex-col justify-center">
+                        <h4 class="text-gray-500 font-bold uppercase tracking-widest mb-3 text-sm">Problem : 타겟의 심리 상태</h4>
+                        <p class="text-white text-xl leading-relaxed font-light">
+                            코인 100배 레버리지나 ETF에 절여져 있습니다. 이들에게 KDX의 <span class="text-gray-400 line-through mr-1">안전한 5~7% 수익</span>은 지루합니다. 게다가 공모주 시장에서는 늘 광탈하며 소외감(FOMO)을 느끼고 있습니다.
+                        </p>
                     </div>
-                    <i class="fas fa-list text-3xl text-slate-200"></i>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-x-16 gap-y-8 flex-1 content-center px-4">
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">01</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">프로젝트 개요</h3>
-                            <p class="text-slate-500 text-sm">사업명, 추진 목적, 계약 기간 및 근무지 안내</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">02</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">업무 범위 및 운영 기준</h3>
-                            <p class="text-slate-500 text-sm">상담 채널, 주요 업무, 운영 시간 및 요구 인력 규모</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">03</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-600 mb-2">핵심 요구사항 (SLA)</h3>
-                            <p class="text-slate-500 text-sm font-medium">유선 응답률 95% 및 온라인 채널 처리 속도 목표</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">04</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-blue-600 mb-2">보고 체계 및 품질 관리</h3>
-                            <p class="text-slate-500 text-sm font-medium">일/주/월간 필수 보고 사항 및 QA 의무 사항</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">05</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">제안서 작성 지침</h3>
-                            <p class="text-slate-500 text-sm">제안 목차 요건 및 견적 산출 기준</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 group">
-                        <span class="text-4xl font-black text-slate-200 group-hover:text-blue-500 transition-colors">06</span>
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">업체 선정 및 일정</h3>
-                            <p class="text-slate-500 text-sm">추진 일정 및 제출/문의처 안내</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full aspect-video bg-slate-50 rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-blue-600 z-20"></div>
-            <div class="flex flex-1 h-full">
-                <!-- Left Sidebar -->
-                <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between z-10 relative">
-                    <div>
-                        <span class="text-blue-600 font-bold text-6xl mb-4 block">01</span>
-                        <h2 class="text-2xl font-black text-slate-800 leading-tight">프로젝트<br/>개요</h2>
-                    </div>
-                    <i class="fas fa-bullseye text-6xl text-slate-100 absolute bottom-8 left-8"></i>
-                </div>
-                <!-- Right Content -->
-                <div class="w-3/4 p-10 flex flex-col gap-5 overflow-y-auto custom-scroll bg-slate-50 z-10">
                     
-                    <!-- Top Row: Project Name & Contract Period -->
-                    <div class="flex gap-4">
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex-1 flex flex-col justify-center">
-                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Project Name</h3>
-                            <p class="text-xl font-bold text-slate-800">KDX 고객센터 위탁 운영(BPO) 사업</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex-1 text-right flex flex-col justify-center">
-                            <h3 class="text-xs font-bold text-slate-400 mb-1">계약 기간</h3>
-                            <p class="text-xl font-bold text-blue-600">계약일로부터 1년</p>
-                            <p class="text-[11px] text-slate-500 mt-1">(본 RFP의 SLA 평가표 기반 평가 후 연장)</p>
-                        </div>
-                    </div>
-
-                    <!-- Middle Box: Purpose -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex-1 flex flex-col justify-center">
-                        <div class="flex items-center gap-2 mb-4">
-                            <div class="w-8 h-8 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-rocket text-sm"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-slate-800">추진 목적</h3>
-                        </div>
-                        <ul class="space-y-4 text-slate-700 text-[15px] font-medium ml-2">
-                            <li class="flex items-start gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span><strong>KDX(신탁수익증권) 거래소 앱 런칭</strong>에 따른 전담 고객센터 구축</span></li>
-                            <li class="flex items-start gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span>전문 BPO 노하우를 통한 <strong>초기 고객센터 표준 프로세스(SOP) 조기 정립</strong></span></li>
-                            <li class="flex items-start gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span><strong>부산 거점화를 통한 지역 상생 도모:</strong> 부산 지역 금융권 우수 인재 채용을 통한 일자리 창출 및 상생 도모</span></li>
-                            <li class="flex items-start gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> <span>체계적인 <strong>VOC(고객의 소리) 대응</strong>을 통해 향후 내부 서비스 고도화의 기반 마련</span></li>
-                        </ul>
-                    </div>
-
-                    <!-- Bottom Box: Infrastructure -->
-                    <div class="bg-slate-900 text-white p-6 rounded-xl shadow-md border border-slate-800 mt-auto shrink-0">
-                        <h3 class="text-sm font-bold text-blue-400 mb-4 flex items-center gap-2"><i class="fas fa-server"></i> 근무지 및 시스템 인프라 요건</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
-                                <h4 class="text-xs text-slate-400 mb-2">외주사 제공(필수)</h4>
-                                <p class="font-bold text-sm mb-1">제안사 자체 콜센터 근무지</p>
-                                <p class="font-bold text-sm text-slate-200">녹취/CTI 등 기반 콜 통신 장비 일체 임대</p>
-                            </div>
-                            <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
-                                <h4 class="text-xs text-slate-400 mb-2">KDX 제공</h4>
-                                <p class="font-bold text-sm mb-1">대표번호 (기 확보 완료)</p>
-                                <p class="font-bold text-sm mb-2 text-slate-200">고객 응대용 Admin 웹페이지</p>
-                                <p class="text-[10px] text-slate-400 leading-tight">* 개인정보 보호를 위한 권한 분리(RBAC) 적용된 계정 지급</p>
-                            </div>
-                        </div>
+                    <div class="glass-card p-8 flex-1 border-l-4 border-kdx-purple flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-kdx-purple opacity-5"></div>
+                        <h4 class="text-kdx-purple font-bold uppercase tracking-widest mb-3 text-sm relative z-10">Solution : 우리의 접근 방식</h4>
+                        <p class="text-white text-2xl leading-relaxed font-medium relative z-10">
+                            '투자의 안전함'을 파는 것이 아니라, 텅 빈 KDX를 <br><span class="text-kdx-purple font-bold">새로운 아드레날린과 트렌드를 즐기는 놀이터</span>로 포장하여 당장의 즉각적인 보상에 반응하게 만듭니다.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="w-full aspect-video bg-slate-50 rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-blue-600"></div>
-            <div class="flex flex-1 h-full">
-                <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-blue-600 font-bold text-5xl mb-4 block">02</span>
-                        <h2 class="text-2xl font-black text-slate-800 leading-tight">업무 범위 및<br/>인력 기준</h2>
-                    </div>
-                    <div class="text-slate-300">
-                        <i class="fas fa-headset text-6xl"></i>
-                    </div>
-                </div>
-                <div class="w-3/4 p-10 overflow-y-auto custom-scroll">
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-xl flex flex-col justify-center">
-                            <h4 class="font-bold text-indigo-800 mb-2"><i class="fas fa-phone-alt mr-2"></i>유선 (인바운드)</h4>
-                            <p class="text-[13px] text-indigo-600">일반 고객 문의 응대 및 불만 접수 (대표번호 기 확보됨)</p>
-                        </div>
-                        <div class="bg-blue-50 border border-blue-100 p-5 rounded-xl flex flex-col justify-center">
-                            <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-laptop-code mr-2"></i>온라인 채널 문의</h4>
-                            <p class="text-[13px] text-blue-600">웹, 상담톡, <strong>앱 리뷰</strong> 등에 대한 신속한 답변 작성 및 처리</p>
-                        </div>
-                        <div class="bg-emerald-50 border border-emerald-100 p-5 rounded-xl flex flex-col justify-center">
-                            <h4 class="font-bold text-emerald-800 mb-2"><i class="fas fa-phone-volume mr-2"></i>아웃바운드</h4>
-                            <p class="text-[13px] text-emerald-600">이슈 발생 안내 및 <strong>프로모션 당첨 해피콜</strong> 등 지원</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-6 flex items-center justify-between">
-                        <div>
-                            <h3 class="font-bold text-slate-800 mb-1">운영 시간 (장 운영 시간 일치)</h3>
-                            <p class="text-slate-500 text-sm">주말/공휴일 휴무 / 8시간 근무 기준 <strong>A/B조 2교대 편성 (09시조 / 11시조)</strong></p>
-                        </div>
-                        <div class="text-2xl font-black text-blue-600 bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">
-                            평일 09:00 ~ 20:00
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-800 text-white p-6 rounded-2xl shadow-md">
-                        <h3 class="font-bold text-lg mb-4 border-b border-slate-600 pb-2">요구 인력 규모 <span class="text-slate-400 text-sm font-normal ml-2">※ 초기 소규모 세팅 고려</span></h3>
-                        <div class="flex items-center justify-around text-center mt-4">
-                            <div>
-                                <i class="fas fa-chair text-3xl text-slate-400 mb-2"></i>
-                                <p class="text-sm text-slate-300">총 예상 좌석</p>
-                                <p class="text-xl font-bold text-blue-400">O석</p>
-                            </div>
-                            <div class="w-px h-12 bg-slate-600"></div>
-                            <div>
-                                <i class="fas fa-user-tie text-3xl text-slate-400 mb-2"></i>
-                                <p class="text-sm text-slate-300">팀장(관리자)</p>
-                                <p class="text-xl font-bold text-blue-300">1명</p>
-                                <p class="text-[10px] text-slate-400 mt-1">(QA/교육 전담 겸임)</p>
-                            </div>
-                            <div class="w-px h-12 bg-slate-600"></div>
-                            <div>
-                                <i class="fas fa-users text-3xl text-slate-400 mb-2"></i>
-                                <p class="text-sm text-slate-300">일반 상담사</p>
-                                <p class="text-xl font-bold text-blue-300">O명</p>
-                                <p class="text-[10px] text-slate-400 mt-1">(금융권 경력 필수)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- STREAMING_CHUNK:세계관 슬라이드 구성 -->
+    <!-- SLIDE 5: Worldview -->
+    <div class="slide-container">
+        <div class="glow-circle w-[800px] h-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">03</div>
+            <div class="slide-title uppercase tracking-wide">Worldview</div>
         </div>
 
-        <div class="w-full aspect-video bg-slate-50 rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-red-500"></div>
-            <div class="flex flex-1 h-full">
-                <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-red-500 font-bold text-5xl mb-4 block">03</span>
-                        <h2 class="text-2xl font-black text-slate-800 leading-tight">핵심 요구사항<br/>(SLA)</h2>
-                        <p class="mt-4 text-sm text-slate-500 leading-relaxed">제안사는 아래의 KPI를 달성하기 위한 구체적 방안을 반드시 제시해야 합니다.</p>
-                    </div>
-                    <div class="text-slate-300">
-                        <i class="fas fa-chart-line text-6xl"></i>
-                    </div>
-                </div>
-                <div class="w-3/4 p-10 flex flex-col justify-center gap-6 overflow-y-auto custom-scroll">
-                    
-                    <!-- KPI 1 (유선 상담) -->
-                    <div class="bg-white border-l-4 border-blue-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-1 rounded">지표 1</span>
-                                <h3 class="text-lg font-bold text-slate-800">유선 상담 응답률 (Service Level)</h3>
-                            </div>
-                            <p class="text-slate-600 text-sm">총 인입 콜 대비 응답률 유지 (신속한 전화 응대 보장)</p>
-                        </div>
-                        <div class="text-right pl-6 border-l border-slate-200">
-                            <p class="text-xs text-slate-500 mb-1">목표 응답률</p>
-                            <p class="text-3xl font-black text-blue-600">95% <span class="text-lg">이상</span></p>
-                        </div>
-                    </div>
-
-                    <!-- KPI 2 (온라인 채널) -->
-                    <div class="bg-white border-l-4 border-red-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">지표 2</span>
-                                <h3 class="text-lg font-bold text-slate-800">온라인 채널 문의 처리 속도 (TAT)</h3>
-                            </div>
-                            <p class="text-slate-600 text-[13px] leading-relaxed">
-                                상담톡 <span class="font-bold text-red-600 bg-red-50 px-1">5분 이내</span> / 
-                                웹 문의 및 <strong>앱 리뷰</strong> 등록 후 <span class="font-bold text-red-600 bg-red-50 px-1">30분 이내</span> 답변 완료
-                            </p>
-                        </div>
-                        <div class="text-right pl-6 border-l border-slate-200">
-                            <p class="text-xs text-slate-500 mb-1">목표 달성률</p>
-                            <p class="text-3xl font-black text-red-600">95% <span class="text-lg">이상</span></p>
-                        </div>
-                    </div>
-
-                    <!-- KPI 3 (QA) -->
-                    <div class="bg-white border-l-4 border-emerald-500 p-6 rounded-r-xl shadow-md flex items-center justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="bg-emerald-100 text-emerald-600 text-xs font-bold px-2 py-1 rounded">지표 3</span>
-                                <h3 class="text-lg font-bold text-slate-800">상담 품질 평가 (QA 점수)</h3>
-                            </div>
-                            <p class="text-slate-600 text-sm">팀장 주관 상담사 랜덤 콜 녹취 평가 및 온라인 답변 랜덤 품질 평가 진행</p>
-                        </div>
-                        <div class="text-right pl-6 border-l border-slate-200">
-                            <p class="text-xs text-slate-500 mb-1">평균 점수</p>
-                            <p class="text-3xl font-black text-emerald-600">85점 <span class="text-lg">이상</span></p>
-                        </div>
-                    </div>
-
-                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 flex items-start gap-3 mt-2">
-                        <i class="fas fa-exclamation-triangle mt-1"></i>
-                        <p><strong>필수 제안 요건:</strong> 위 SLA 지표 미달 또는 초과 달성 시, 도급 비용 지급에 적용할 <strong>페널티 및 인센티브 방안</strong>을 제안서에 반드시 포함하여 작성 바랍니다.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full aspect-video bg-slate-50 rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-blue-600"></div>
-            <div class="flex flex-1 h-full">
-                <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-blue-600 font-bold text-5xl mb-4 block">04</span>
-                        <h2 class="text-2xl font-black text-slate-800 leading-tight">보고 체계 및<br/>품질 관리</h2>
-                        <p class="mt-4 text-sm text-slate-500 leading-relaxed">투명한 센터 운영을 위한 정기 보고 및 QA 의무 사항입니다.</p>
-                    </div>
-                    <div class="text-slate-300">
-                        <i class="fas fa-file-signature text-6xl"></i>
-                    </div>
-                </div>
-                <div class="w-3/4 p-10 flex flex-col gap-6 overflow-y-auto custom-scroll">
-                    
-                    <!-- Reporting Section -->
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fas fa-folder-open text-blue-500"></i> 정기 보고서 필수 포함 내용</h3>
-                        <div class="grid grid-cols-1 gap-3">
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4">
-                                <div class="bg-slate-100 text-slate-600 text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">일간 (18:30)</div>
-                                <div>
-                                    <p class="text-slate-700 text-sm">당일 인입 및 처리 통계, 미처리 건수, 당일 발생 <strong>VOC(고객의 소리)</strong> 요약</p>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex items-start gap-4">
-                                <div class="bg-blue-50 text-blue-600 text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">주간 (월 10:00)</div>
-                                <div>
-                                    <p class="text-slate-700 text-sm">주간 SLA 목표 달성률, 주요 문의 유형(FAQ) 순위 변동, 시스템/서비스 이슈 사항</p>
-                                </div>
-                            </div>
-                            <div class="bg-white p-4 rounded-xl shadow-sm border border-blue-300 flex items-start gap-4 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] px-2 py-1 font-bold rounded-bl-lg">중요</div>
-                                <div class="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded mt-1 whitespace-nowrap">월간 (익월 5일)</div>
-                                <div>
-                                    <p class="text-slate-800 font-medium text-sm">월간 KPI 종합 결과 분석, 인력 현황(퇴사/신규), 차월 운영 계획</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- QA Section -->
-                    <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg mt-2 relative">
-                        <div class="absolute right-6 top-6 opacity-20"><i class="fas fa-headphones-alt text-6xl"></i></div>
-                        <h3 class="text-lg font-bold mb-4 border-b border-slate-600 pb-2 relative z-10">상담 품질 관리 (QA) 의무 사항</h3>
-                        <ul class="space-y-3 relative z-10 text-sm text-slate-200">
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-blue-400 mt-1"></i>
-                                <span>팀장 주관으로 상담사 1인당 월 최소 O콜 이상 <strong>랜덤 콜 녹취 청취 및 온라인 답변 랜덤 품질 평가</strong> 진행</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-blue-400 mt-1"></i>
-                                <span>월간 보고 시 <strong>'개인별 QA 스코어 카드'</strong> 및 <strong>'코칭 피드백 결과'</strong> 첨부 필수</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fas fa-check-circle text-blue-400 mt-1"></i>
-                                <span>분기별 KDX 실무진과 함께하는 QA 캘리브레이션(평가 기준 조율) 회의 진행</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full aspect-video bg-slate-50 rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="h-2 w-full bg-blue-600"></div>
-            <div class="flex flex-1 h-full">
-                <div class="w-1/4 bg-white border-r border-slate-200 p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-blue-600 font-bold text-5xl mb-4 block">05</span>
-                        <h2 class="text-2xl font-black text-slate-800 leading-tight">제안서 작성 지침<br/>및 비용 제안</h2>
-                    </div>
-                    <div class="text-slate-300">
-                        <i class="fas fa-file-invoice-dollar text-6xl"></i>
-                    </div>
-                </div>
-                <div class="w-3/4 p-10 overflow-y-auto custom-scroll flex gap-8">
-                    
-                    <!-- Left Col -->
-                    <div class="w-1/2 flex flex-col gap-4">
-                        <h3 class="text-lg font-bold text-slate-800 border-b-2 border-slate-800 pb-2 mb-2">제안서 목차 요구사항</h3>
-                        
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
-                            <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                            <h4 class="font-bold text-slate-800 ml-2">제안사 일반 현황</h4>
-                            <p class="text-[13px] text-slate-500 mt-1 ml-2 leading-tight">보유 중인 부산 센터 인프라 환경 사진/규모 및 <strong>금융권 상담 도급 운영 이력 필수 기재</strong></p>
-                        </div>
-                        
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
-                            <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                            <h4 class="font-bold text-slate-800 ml-2">인력 채용 및 유지 관리</h4>
-                            <p class="text-[13px] text-slate-500 mt-1 ml-2 leading-tight"><strong>금융권 경력 상담사 우대 채용 방안 필수</strong> 및 이직률 방어 대책 포함</p>
-                        </div>
-                        
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 relative">
-                            <span class="absolute -left-3 top-5 bg-slate-800 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                            <h4 class="font-bold text-slate-800 ml-2">교육 및 QA 운영 계획</h4>
-                            <p class="text-[13px] text-slate-500 mt-1 ml-2 leading-tight"><strong>자체 QA 평가표 템플릿 제출</strong> 및 평가 점수 미달자에 대한 재교육/코칭 방안 필수 포함</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-5 rounded-xl shadow-sm border border-blue-200 relative">
-                            <span class="absolute -left-3 top-5 bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">4</span>
-                            <h4 class="font-bold text-blue-800 ml-2">SLA 달성 전략 (핵심)</h4>
-                            <p class="text-[13px] text-blue-600 mt-1 ml-2 leading-tight">상담톡 5분/웹 30분 이내 답변 달성을 위한 동선 및 인력 운영 전략</p>
-                        </div>
-                    </div>
-
-                    <!-- Right Col -->
-                    <div class="w-1/2 flex flex-col gap-4">
-                        <h3 class="text-lg font-bold text-slate-800 border-b-2 border-slate-800 pb-2 mb-2">견적 산출 기준 <span class="text-xs text-red-500 font-normal bg-red-50 px-2 py-1 rounded ml-2">별도 밀봉 제출</span></h3>
-                        
-                        <div class="bg-slate-800 text-white rounded-xl p-6 shadow-md h-full flex flex-col gap-6">
-                            <div>
-                                <div class="flex items-center gap-3 mb-2">
-                                    <i class="fas fa-coins text-yellow-400 text-xl"></i>
-                                    <h4 class="font-bold text-lg">월 고정 도급비</h4>
-                                </div>
-                                <p class="text-sm text-slate-300 ml-8 border-l-2 border-slate-600 pl-3">인원/좌석당 단가를 명시하여 월 고정 운영비 산출 (2교대 근무 인건비 반영)</p>
-                            </div>
-                            
-                            <div>
-                                <div class="flex items-center gap-3 mb-2">
-                                    <i class="fas fa-tools text-slate-400 text-xl"></i>
-                                    <h4 class="font-bold text-lg">초기 세팅비 (Set-up)</h4>
-                                </div>
-                                <p class="text-sm text-slate-300 ml-8 border-l-2 border-slate-600 pl-3">초기 교육, 시스템 연동 등 1회성 발생 비용 분리</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full aspect-video bg-slate-900 text-white rounded-lg shadow-lg overflow-hidden border border-slate-200 flex flex-col slide-item relative">
-            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0yMCAwbDIwIDIwdjIwaC0yMHptLTIwIDIwbDIwLTIwdjIwaC0yMHoiIGZpbGw9IiMzMzQxNTUiIGZpbGwtb3BhY2l0eT0iLjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4=')] opacity-30"></div>
+        <div class="slide-body content-z flex flex-col justify-center">
             
-            <div class="flex-1 p-12 z-10 flex flex-col">
-                <h2 class="text-3xl font-black mb-10 text-center"><span class="text-blue-500">06.</span> 업체 선정 및 추진 일정</h2>
-                
-                <div class="flex justify-center gap-8 mb-12 h-full">
-                    <!-- Timeline (5 Steps) -->
-                    <div class="w-2/3">
-                        <div class="relative wrap overflow-hidden p-4 h-full">
-                            <div class="border-2-2 absolute border-opacity-20 border-white h-full border" style="left: 50%"></div>
-                            
-                            <!-- 8월 말 -->
-                            <div class="mb-4 flex justify-between items-center w-full right-timeline">
-                                <div class="order-1 w-5/12"></div>
-                                <div class="z-20 flex items-center order-1 bg-blue-600 shadow-xl w-6 h-6 rounded-full"></div>
-                                <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-2 border border-slate-700">
-                                    <h3 class="font-bold text-blue-400 text-sm">RFP 확정 및 부산시 전달</h3>
-                                    <p class="text-xs text-slate-300 mt-1">8월 말</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 9월 초 -->
-                            <div class="mb-4 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                                <div class="order-1 w-5/12"></div>
-                                <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-6 h-6 rounded-full"></div>
-                                <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-2 text-right border border-slate-700">
-                                    <h3 class="font-bold text-blue-400 text-sm">우수 BPO 업체 RFP 배포</h3>
-                                    <p class="text-xs text-slate-300 mt-1">9월 초 (부산시 협조 개별 배포)</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 9월 중순 -->
-                            <div class="mb-4 flex justify-between items-center w-full right-timeline">
-                                <div class="order-1 w-5/12"></div>
-                                <div class="z-20 flex items-center order-1 bg-amber-500 shadow-xl w-6 h-6 rounded-full"></div>
-                                <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-2 border border-amber-900">
-                                    <h3 class="font-bold text-amber-400 text-sm">제안서 접수 마감</h3>
-                                    <p class="text-xs text-slate-200 mt-1">9월 중순</p>
-                                </div>
-                            </div>
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">마케팅 세계관 및 스토리텔링</h2>
+                    <p class="text-xl text-gray-400">단순히 앱 가입을 유도하는 것이 아닌, 뚜렷한 유저 진화 서사(Story)를 갖습니다.</p>
+                </div>
+                <div class="bg-kdx-gray border border-kdx-purple px-8 py-4 rounded-full shadow-[0_0_20px_rgba(105,63,255,0.2)]">
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-widest mr-4">Theme</span>
+                    <span class="text-2xl font-black text-white">도파민 디톡스 & 금융의 <span class="text-kdx-purple">오락실화</span></span>
+                </div>
+            </div>
 
-                            <!-- 9월 말 -->
-                            <div class="mb-4 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                                <div class="order-1 w-5/12"></div>
-                                <div class="z-20 flex items-center order-1 bg-indigo-500 shadow-xl w-6 h-6 rounded-full"></div>
-                                <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-2 text-right border border-slate-700">
-                                    <h3 class="font-bold text-indigo-400 text-sm">제안서 서면 검토 및 실사</h3>
-                                    <p class="text-xs text-slate-300 mt-1">9월 말 (센터 인프라 현장 방문)</p>
-                                </div>
-                            </div>
-
-                            <!-- 10월 초 -->
-                            <div class="mb-2 flex justify-between items-center w-full right-timeline">
-                                <div class="order-1 w-5/12"></div>
-                                <div class="z-20 flex items-center order-1 bg-red-500 shadow-xl w-6 h-6 rounded-full ring-4 ring-slate-900"></div>
-                                <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-5/12 px-4 py-2 border border-red-900">
-                                    <h3 class="font-bold text-red-400 text-sm">업체 1차 선정</h3>
-                                    <p class="text-xs text-white mt-1 font-bold">10월 초</p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="flex items-center justify-between gap-6">
+                <!-- Step 1 -->
+                <div class="glass-card p-10 w-1/3 h-[280px] flex flex-col">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="text-kdx-purple font-black text-6xl opacity-40 leading-none">1</span>
+                        <h4 class="text-2xl font-bold text-white pb-1">후킹 <span class="text-gray-500 text-lg font-normal ml-2">놀이터 입장</span></h4>
                     </div>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        레버리지에 지친 2030에게 "아직 살 건 없지만, 여기서 룰렛 돌리고 놀면 나중에 건물 살 수 있는 시드머니(포인트) 준대!" 라며 가벼운 마음으로 입장시킵니다.
+                    </p>
+                </div>
 
-                    <!-- Contact -->
-                    <div class="w-1/3 bg-slate-800 rounded-2xl p-6 border border-slate-700 flex flex-col justify-center">
-                        <h3 class="text-xl font-bold mb-6 text-center text-blue-400 border-b border-slate-700 pb-4">제출 및 문의처</h3>
-                        <div class="space-y-4 text-sm">
-                            <div class="bg-slate-700/50 p-3 rounded-lg border border-slate-600 text-center mb-4">
-                                <p class="text-amber-400 text-xs font-bold mb-1"><i class="fas fa-info-circle"></i> 서면 질의응답</p>
-                                <p class="text-slate-300 text-xs">제안서 제출 마감 전까지 상시 가능</p>
-                            </div>
-                            
-                            <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
-                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-user"></i></div>
-                                <div>
-                                    <p class="text-slate-400 text-xs">작성자</p>
-                                    <p class="font-medium text-slate-200">KDX 플랫폼사업부 박미란</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
-                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <p class="text-slate-400 text-xs">이메일</p>
-                                    <p class="font-medium text-slate-200">rub0706@kdx.ai.kr</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 bg-slate-900 p-3 rounded-lg">
-                                <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center text-slate-300"><i class="fas fa-phone"></i></div>
-                                <div>
-                                    <p class="text-slate-400 text-xs">연락처</p>
-                                    <p class="font-medium text-slate-200">010-2958-0706</p>
-                                </div>
-                            </div>
-                        </div>
+                <i class="fas fa-chevron-right text-4xl text-gray-700"></i>
+
+                <!-- Step 2 -->
+                <div class="glass-card p-10 w-1/3 h-[280px] flex flex-col">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="text-kdx-purple font-black text-6xl opacity-60 leading-none">2</span>
+                        <h4 class="text-2xl font-bold text-white pb-1">경험 <span class="text-gray-500 text-lg font-normal ml-2">현금흐름의 맛</span></h4>
                     </div>
+                    <p class="text-gray-400 leading-relaxed text-lg">
+                        앱 내 미션과 혜택(출석 등)으로 모은 조각에서 실제 배당이 꽂히는 것을 보여줍니다. 차트의 등락이 아닌 현금흐름의 본질을 깨닫게 합니다.
+                    </p>
+                </div>
+
+                <i class="fas fa-chevron-right text-4xl text-gray-700"></i>
+
+                <!-- Step 3 -->
+                <div class="glass-card p-10 w-1/3 h-[280px] flex flex-col border border-kdx-purple relative overflow-hidden">
+                    <div class="absolute inset-0 bg-kdx-purple opacity-10"></div>
+                    <div class="relative z-10 flex items-end gap-4 mb-6">
+                        <span class="text-kdx-purple font-black text-6xl leading-none">3</span>
+                        <h4 class="text-2xl font-bold text-white pb-1">진화 <span class="text-gray-400 text-lg font-normal ml-2">스마트 콜렉터</span></h4>
+                    </div>
+                    <p class="text-white leading-relaxed text-lg font-medium relative z-10">
+                        투기적 도파민에서 벗어나, 대형 금융사 연합이 만든 안전한 KDX 금고에서 우량 자산을 모으는 '건강한 가치 투자자'로 성장합니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pre-marketing -->
+            <div class="mt-8 flex justify-end">
+                <div class="text-right">
+                    <p class="text-kdx-purple font-bold mb-1"><i class="fas fa-rocket mr-2"></i>생존을 위한 프리(Pre) 마케팅</p>
+                    <p class="text-gray-400">인앱 개발 전, 노코드 툴(랜딩페이지)과 소액 기프티콘을 활용해 가짜 돈으로 진짜 도파민을 자극하여 DB를 선점합니다.</p>
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- STREAMING_CHUNK:목표 및 KPI 슬라이드 구성 -->
+    <!-- SLIDE 6: Goals & KPIs -->
+    <div class="slide-container">
+        <div class="glow-circle w-[600px] h-[600px] top-[-150px] right-[-150px] opacity-15"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">04</div>
+            <div class="slide-title uppercase tracking-wide">KPI & Goal</div>
+        </div>
+
+        <div class="slide-body content-z flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-white mb-10">마케팅 목표 및 핵심 지표 재설정</h2>
+            
+            <div class="flex gap-8 mb-10">
+                <div class="w-1/2 glass-card p-8 border-t-4 border-gray-600">
+                    <h4 class="text-gray-400 font-bold mb-3 uppercase tracking-wider text-sm">The Challenge</h4>
+                    <p class="text-white text-lg leading-relaxed">살 물건이 없는 상태에서 투자를 위한 무거운 <span class="font-bold text-red-400">'계좌 연동'</span>을 요구하면 이탈률은 90% 이상 치솟습니다.</p>
+                </div>
+                <div class="w-1/2 glass-card p-8 border-t-4 border-kdx-purple bg-kdx-purple/5">
+                    <h4 class="text-kdx-purple font-bold mb-3 uppercase tracking-wider text-sm">The Goal</h4>
+                    <p class="text-white text-lg leading-relaxed">투자를 위한 가입이 아닌 <span class="font-bold text-kdx-purple">"당장의 혜택을 위한 가벼운 가입"</span>으로 프레임 전환. 가입 허들을 대폭 낮춥니다.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-8 items-stretch">
+                <!-- Ultimate KPI -->
+                <div class="w-1/2 glass-card p-10 border border-kdx-purple relative overflow-hidden flex flex-col justify-center">
+                    <i class="fas fa-bullseye absolute -right-10 -bottom-10 text-[12rem] text-kdx-purple opacity-10"></i>
+                    <p class="text-kdx-purple font-bold tracking-widest text-sm mb-4 uppercase">2027 Ultimate KPI</p>
+                    <h3 class="text-3xl font-bold text-white mb-4">휴대폰 본인인증 완료 회원</h3>
+                    <p class="text-gray-400 mb-6">복잡한 계좌 연동은 미루고, KDX 생태계에 들어와 연락처가 확보된 진성 베이스캠프 구축</p>
+                    <div class="text-7xl font-black text-white tracking-tighter">
+                        100,000<span class="text-3xl text-kdx-purple font-bold ml-2">명</span>
+                    </div>
+                </div>
+
+                <!-- Sub KPIs -->
+                <div class="w-1/2 flex flex-col gap-6">
+                    <div class="glass-card p-8 flex-1 flex flex-col justify-center">
+                        <div class="flex items-center gap-4 mb-3">
+                            <i class="fas fa-share-alt text-3xl text-gray-500"></i>
+                            <h4 class="text-2xl font-bold text-white">친구 초대 바이럴 (K-factor)</h4>
+                        </div>
+                        <p class="text-gray-400 text-lg">다단계 보상 링크를 통한 가입 전환율. 10만 명 달성을 위한 고객 획득 비용(CAC) 최적화 핵심 지표.</p>
+                    </div>
+                    
+                    <div class="glass-card p-8 flex-1 flex flex-col justify-center">
+                        <div class="flex items-center gap-4 mb-3">
+                            <i class="fas fa-mobile-alt text-3xl text-gray-500"></i>
+                            <h4 class="text-2xl font-bold text-white">앱 잔존율 (Retention)</h4>
+                        </div>
+                        <p class="text-gray-400 text-lg">첫 종목 상장 전까지 앱 삭제 방어. '매일 출석 룰렛', '상장가 맞추기' 등을 통한 D+1, D+7 접속 유지율.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- STREAMING_CHUNK:투스텝 전략 슬라이드 구성 -->
+    <!-- SLIDE 7: Two-Step Strategy -->
+    <div class="slide-container">
+        <div class="glow-circle w-[800px] h-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+        
+        <div class="slide-header content-z">
+            <div class="slide-number">05</div>
+            <div class="slide-title uppercase tracking-wide">Two-Step Strategy</div>
+        </div>
+
+        <div class="slide-body content-z flex flex-col justify-center items-center">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">이탈 방지 투스텝(Two-Step) 전환 전략</h2>
+                <p class="text-2xl text-gray-400">10만 명의 가두리 양식장을 만들고, <span class="text-white font-medium">확실한 명분</span>으로 진성 투자자로 전환시킵니다.</p>
+            </div>
+
+            <div class="flex items-center gap-6 w-full max-w-5xl h-[300px]">
+                
+                <!-- Step 1 -->
+                <div class="w-[45%] glass-card p-10 h-full flex flex-col justify-center relative">
+                    <span class="absolute top-0 left-10 transform -translate-y-1/2 bg-kdx-black border border-gray-600 text-gray-300 px-6 py-2 rounded-full font-bold tracking-widest text-sm uppercase">Step 1. 진입장벽 최소화</span>
+                    <h3 class="text-3xl font-bold text-white leading-tight mb-6">
+                        "3초 휴대폰 인증하고<br>랜덤 시드 박스 까보세요!"
+                    </h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        살 물건이 없어도 랜덤 박스와 매일 룰렛을 돌리기 위해 가볍게 번호 인증만 마치고 앱에 대기하게 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="w-[10%] flex flex-col items-center justify-center">
+                    <div class="w-20 h-20 rounded-full bg-kdx-black border-2 border-kdx-purple flex items-center justify-center shadow-[0_0_20px_rgba(105,63,255,0.3)] z-10">
+                        <i class="fas fa-arrow-right text-3xl text-kdx-purple"></i>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-to-r from-gray-700 to-kdx-purple -mt-10 relative -z-0"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="w-[45%] glass-card p-10 h-full flex flex-col justify-center relative border border-kdx-purple bg-kdx-purple/10">
+                    <span class="absolute top-0 left-10 transform -translate-y-1/2 bg-kdx-purple text-white px-6 py-2 rounded-full font-bold tracking-widest text-sm uppercase shadow-lg">Step 2. 1호 상장 시점 전환</span>
+                    <h3 class="text-3xl font-bold text-white leading-tight mb-6">
+                        "모으신 포인트로 1호 조각 사려면<br>지금 <span class="text-kdx-purple">계좌 연동</span>해 주세요!"
+                    </h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        KDX 독점 1호 상장이 열리는 순간, 그동안 모은 포인트를 쓰게 해주겠다는 가장 강력한 명분으로 계좌 연동을 강제합니다.
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </body>
 </html>
+```eof
+
+원하시는 대로 **블랙, 퍼플, 라이트그레이, 화이트**의 메인 컬러 시스템을 완벽하게 적용하여, **총 7장(타이틀+목차+본문5장)**으로 구성된 프로페셔널한 프레젠테이션 보드를 완성했습니다. 
+
+각 슬라이드가 `1280x720` (16:9 비율)로 고정되어 있어, 이 화면들을 캡처해서 피그마(Figma) 프레임에 얹기만 하시면 바로 보고용 PPT가 완성됩니다. 다크 모드 특유의 세련됨이 더해져 보고 시 확실히 "있어 보이는" 퀄리티를 느끼실 수 있을 것입니다.
+
+우측 Preview 버튼으로 전체 슬라이드 구성을 확인해 보시고, 마음에 드신다면 이어서 10만 명을 끌어모을 **[STEP 2: 마케팅 초반 프로모션 및 채널 운영 기획 방향]** 작성을 진행해 볼까요?
